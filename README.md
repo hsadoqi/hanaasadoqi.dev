@@ -12,21 +12,21 @@ This site is an attempt to collect all of that in one place.
 
 ## Tech Stack
 
-* Next.js
-* TypeScript
-* Tailwind CSS
-* shadcn/ui
-* MDX
-* Vercel
+- Next.js
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- MDX
+- Vercel
 
 ## What's Here?
 
-* Featured projects
-* Technical writing
-* Notes and experiments
-* Career history
-* Things I'm currently building
-* Thoughts on software, systems, and product design
+- Featured projects
+- Technical writing
+- Notes and experiments
+- Career history
+- Things I'm currently building
+- Thoughts on software, systems, and product design
 
 ## Running Locally
 
@@ -43,10 +43,10 @@ http://localhost:3000
 
 ## Current Focus
 
-* Rebuilding Generafi, a Moroccan accounting and payroll platform
-* Exploring ideas around knowledge management with Synapcity
-* Thinking about workflows, permissions, auditability, and operational software
-* Looking for my next role in product, frontend, full-stack, or project engineering
+- Rebuilding Generafi, a Moroccan accounting and payroll platform
+- Exploring ideas around knowledge management with Synapcity
+- Thinking about workflows, permissions, auditability, and operational software
+- Looking for my next role in product, frontend, full-stack, or project engineering
 
 ## Status
 
