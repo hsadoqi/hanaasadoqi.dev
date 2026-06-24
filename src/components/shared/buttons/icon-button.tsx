@@ -7,7 +7,11 @@ import {
 } from '@/components/ui/tooltip';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { useMediaQuery } from '@/hooks/use-media-query';
-import { breakpointQueries, collapseMap, type CollapseAt } from '@/lib/breakpoints';
+import {
+  breakpointQueries,
+  collapseMap,
+  type CollapseAt,
+} from '@/lib/breakpoints';
 import { cn } from '@/lib/utils';
 import { type VariantProps } from 'class-variance-authority';
 

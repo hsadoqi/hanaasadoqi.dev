@@ -8,7 +8,11 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useMediaQuery } from '@/hooks/use-media-query';
-import { breakpointQueries, collapseMap, type CollapseAt } from '@/lib/breakpoints';
+import {
+  breakpointQueries,
+  collapseMap,
+  type CollapseAt,
+} from '@/lib/breakpoints';
 import { cn } from '@/lib/utils';
 
 export function IconLink({
