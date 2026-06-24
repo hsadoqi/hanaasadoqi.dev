@@ -23,7 +23,8 @@
       "@/components/*": ["./src/components/*"],
       "@/data/*": ["./src/data/*"],
       "@/lib/*": ["./src/lib/*"],
-      "@/types/*": ["./src/types/*"]
+      "@/types/*": ["./src/types/*"],
+      "@/hooks/*": ["./src/hooks/*"]
     }
   },
   "include": [
@@ -34,5 +35,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".next", "out", "build", "dist", "docs"]
 }

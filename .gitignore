@@ -44,3 +44,5 @@ next-env.d.ts
 .lh
 .lhignore
 .vscode
+
+docs
