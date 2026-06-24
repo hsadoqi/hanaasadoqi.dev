@@ -10,7 +10,7 @@ export function Footer() {
           </p>
           <div className="flex gap-4 text-sm">
             <a
-              href="https://twitter.com"
+              href="https://x.com/hanaasadoqi"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
@@ -18,7 +18,7 @@ export function Footer() {
               Twitter
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/hanaasadoqi"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
