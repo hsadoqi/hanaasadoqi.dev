@@ -21,7 +21,7 @@ export const Hero = ({
       fullScreen
       align="center"
       justify="center"
-      showMarginLine
+      // showMarginLine
       marginLineText="Brooklyn, NY"
       containerClassName="grid md:grid-cols-[1fr_auto] gap-16 md:gap-24 items-end"
       eyebrow={greeting}
