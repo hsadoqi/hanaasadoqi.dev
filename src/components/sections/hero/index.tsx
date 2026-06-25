@@ -23,10 +23,14 @@ export const Hero = ({
       justify="center"
       // showMarginLine
       marginLineText="Brooklyn, NY"
-      containerClassName="grid md:grid-cols-[1fr_auto] gap-16 md:gap-24 items-end"
-      eyebrow={greeting}
+      containerClassName="grid gap-16 md:grid-cols-[1fr_auto] md:gap-24 items-end"
     >
-      <HeroContent headlineParts={headlineParts} identities={identities} />
+      <div className="space-y-10">
+        <p className="text-muted-foreground hover:text-foreground text-sm font-medium tracking-[0.25em] uppercase transition-colors">
+          {greeting}
+        </p>
+        <HeroContent headlineParts={headlineParts} identities={identities} />
+      </div>
       <div className="flex items-center justify-center md:justify-start">
         <HeroCta cta={cta} />
       </div>

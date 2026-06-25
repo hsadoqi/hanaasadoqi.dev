@@ -1,4 +1,3 @@
-export * from './section-wrapper';
 export * from './section-header';
 import { cn } from '@/lib/utils';
 import { MarginLine } from '@/components/shared/margin-line';
@@ -9,6 +8,20 @@ import {
   alignMap,
   justifyMap,
 } from './types';
+
+export type SectionProps = React.HTMLAttributes<HTMLElement> & {
+  id?: string;
+  variant?: SectionVariant;
+  /** Fills the viewport height (`min-h-svh`). Implicitly enables flex layout. */
+  fullScreen?: boolean;
+  /** Horizontal alignment of children (cross-axis in column flex). Only applies when flex is active. */
+  align?: SectionAlign;
+  /** Vertical distribution of children (main-axis in column flex). Only applies when flex is active. */
+  justify?: SectionJustify;
+  showMarginLine?: boolean;
+  marginLineText?: string;
+  containerClassName?: string;
+};
 
 export function Section({
   className,
@@ -21,22 +34,10 @@ export function Section({
   showMarginLine = false,
   marginLineText = '',
   containerClassName,
-  eyebrow,
-}: React.HTMLAttributes<HTMLElement> & {
-  id?: string;
-  variant?: SectionVariant;
-  /** Fills the viewport height (`min-h-svh`). Implicitly enables flex layout. */
-  fullScreen?: boolean;
-  /** Horizontal alignment of children (cross-axis in column flex). Only applies when flex is active. */
-  align?: SectionAlign;
-  /** Vertical distribution of children (main-axis in column flex). Only applies when flex is active. */
-  justify?: SectionJustify;
-  showMarginLine?: boolean;
-  marginLineText?: string;
-  containerClassName?: string;
-  eyebrow?: string;
-}) {
+  ...props
+}: SectionProps) {
   const needsFlex = fullScreen || !!align || !!justify;
+
   return (
     <section
       id={id}
@@ -50,6 +51,7 @@ export function Section({
         justify && justifyMap[justify],
         className,
       )}
+      {...props}
     >
       <div
         className={cn(
@@ -57,14 +59,7 @@ export function Section({
           containerClassName,
         )}
       >
-        <div className="space-y-10">
-          {eyebrow && (
-            <p className="text-muted-foreground hover:text-brand/80 pl-2 text-sm font-medium tracking-[0.25em] uppercase transition-colors">
-              {eyebrow}
-            </p>
-          )}
-          {children}
-        </div>
+        {children}
         {showMarginLine && <MarginLine text={marginLineText} />}
       </div>
     </section>

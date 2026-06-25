@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Section, SectionHeader } from '@/components/layout/section';
-import { Container } from '@/components/shared/container';
 import { Hero } from '@/components/sections/hero';
 import { CaseStudiesSection } from '@/components/sections/case-studies';
 
@@ -36,99 +35,93 @@ export default function Home() {
 
       {/* Writing */}
       <Section id="writing" variant="surface">
-        <Container>
-          <SectionHeader
-            eyebrow="Writing"
-            title="Notes & essays"
-            description="On product thinking, engineering practice, and working with complexity."
-            className="mb-12"
-          />
-          <div className="space-y-4">
-            {[
-              'On building for operators, not just users',
-              'Why audit trails are a design problem',
-              'The underrated value of boring software',
-            ].map((title) => (
-              <Card key={title} size="sm">
-                <CardHeader className="flex-row items-center justify-between gap-4">
-                  <div className="space-y-1">
-                    <CardTitle>{title}</CardTitle>
-                    <CardDescription>June 2026 · 6 min read</CardDescription>
-                  </div>
-                  <Button variant="ghost" size="sm" className="shrink-0">
-                    Read →
-                  </Button>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </Container>
+        <SectionHeader
+          eyebrow="Writing"
+          title="Notes & essays"
+          description="On product thinking, engineering practice, and working with complexity."
+          className="mb-12"
+        />
+        <div className="space-y-4">
+          {[
+            'On building for operators, not just users',
+            'Why audit trails are a design problem',
+            'The underrated value of boring software',
+          ].map((title) => (
+            <Card key={title} size="sm">
+              <CardHeader className="flex-row items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <CardTitle>{title}</CardTitle>
+                  <CardDescription>June 2026 · 6 min read</CardDescription>
+                </div>
+                <Button variant="ghost" size="sm" className="shrink-0">
+                  Read →
+                </Button>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
       </Section>
 
       {/* Component tokens preview */}
       <Section id="design-tokens">
-        <Container>
-          <SectionHeader
-            eyebrow="Design system"
-            title="Tokens & primitives"
-            description="Verify semantic colors, typography, and components render correctly in both themes."
-            className="mb-12"
-          />
-          <div className="space-y-8">
-            {/* Buttons */}
-            <div className="space-y-3">
-              <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
-                Buttons
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Button>Default</Button>
-                <Button variant="secondary">Secondary</Button>
-                <Button variant="outline">Outline</Button>
-                <Button variant="ghost">Ghost</Button>
-                <Button variant="destructive">Destructive</Button>
-                <Button variant="link">Link</Button>
-              </div>
-            </div>
-
-            {/* Badges */}
-            <div className="space-y-3">
-              <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
-                Badges
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Badge>Default</Badge>
-                <Badge variant="secondary">Secondary</Badge>
-                <Badge variant="outline">Outline</Badge>
-                <Badge variant="destructive">Destructive</Badge>
-              </div>
-            </div>
-
-            {/* Typography */}
-            <div className="space-y-3">
-              <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
-                Typography
-              </p>
-              <div className="space-y-2">
-                <p className="text-foreground text-4xl font-bold tracking-tight">
-                  Page title
-                </p>
-                <p className="text-foreground text-2xl font-semibold tracking-tight">
-                  Section title
-                </p>
-                <p className="text-foreground text-lg font-medium">
-                  Card title
-                </p>
-                <p className="text-foreground text-base">Body text</p>
-                <p className="text-muted-foreground text-sm">
-                  Muted / supporting text
-                </p>
-                <p className="text-muted-foreground text-xs font-medium tracking-widest uppercase">
-                  Label / eyebrow
-                </p>
-              </div>
+        <SectionHeader
+          eyebrow="Design system"
+          title="Tokens & primitives"
+          description="Verify semantic colors, typography, and components render correctly in both themes."
+          className="mb-12"
+        />
+        <div className="space-y-8">
+          {/* Buttons */}
+          <div className="space-y-3">
+            <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
+              Buttons
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Button>Default</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="destructive">Destructive</Button>
+              <Button variant="link">Link</Button>
             </div>
           </div>
-        </Container>
+
+          {/* Badges */}
+          <div className="space-y-3">
+            <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
+              Badges
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Badge>Default</Badge>
+              <Badge variant="secondary">Secondary</Badge>
+              <Badge variant="outline">Outline</Badge>
+              <Badge variant="destructive">Destructive</Badge>
+            </div>
+          </div>
+
+          {/* Typography */}
+          <div className="space-y-3">
+            <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
+              Typography
+            </p>
+            <div className="space-y-2">
+              <p className="text-foreground text-4xl font-bold tracking-tight">
+                Page title
+              </p>
+              <p className="text-foreground text-2xl font-semibold tracking-tight">
+                Section title
+              </p>
+              <p className="text-foreground text-lg font-medium">Card title</p>
+              <p className="text-foreground text-base">Body text</p>
+              <p className="text-muted-foreground text-sm">
+                Muted / supporting text
+              </p>
+              <p className="text-muted-foreground text-xs font-medium tracking-widest uppercase">
+                Label / eyebrow
+              </p>
+            </div>
+          </div>
+        </div>
       </Section>
     </main>
   );

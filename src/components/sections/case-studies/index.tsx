@@ -10,7 +10,7 @@ import {
 import { featured, studies } from '@/data/projects-data';
 import { FeaturedCaseStudy } from './featured-case-study';
 import { CaseStudyCard } from './case-study-card';
-import { SectionWrapper } from '@/components/layout/section/section-wrapper';
+import { Section, SectionHeader } from '@/components/layout/section';
 import { CarouselNav } from '@/components/shared/carousel-nav';
 import '@/styles/status.css';
 
@@ -111,14 +111,19 @@ export function CaseStudiesSection() {
   );
 
   return (
-    <SectionWrapper
-      eyebrow="Case Studies"
-      title="Featured Work"
-      subtitle="Some solved problems. Others created new ones..."
-      className="overflow-hidden"
+    <Section
+      id="case-studies"
+      aria-labelledby="case-studies-heading"
+      className="overflow-hidden border-t py-20 sm:py-28"
     >
       {/* Header with Navigation — desktop */}
       <div className="mb-10 flex flex-col gap-6 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
+        <SectionHeader
+          id="case-studies-heading"
+          eyebrow="Case Studies"
+          title="Featured Work"
+          description="Some solved problems. Others created new ones..."
+        />
         <div className="hidden sm:block">
           <CarouselNav
             currentIndex={activeIndex}
@@ -187,6 +192,6 @@ export function CaseStudiesSection() {
           className="flex justify-center"
         />
       </div>
-    </SectionWrapper>
+    </Section>
   );
 }
