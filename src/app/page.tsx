@@ -9,7 +9,7 @@ import {
 import { Section, SectionHeader } from '@/components/layout/section';
 import { Container } from '@/components/shared/container';
 import { Hero } from '@/components/sections/hero';
-import { CaseStudiesSection } from '@/components/sections';
+import { CaseStudiesSection } from '@/components/sections/case-studies';
 
 const greeting = "Hi, I'm Hanaa. 👋";
 const headlineParts = ['Software engineer', 'with too many', 'side quests.'];
