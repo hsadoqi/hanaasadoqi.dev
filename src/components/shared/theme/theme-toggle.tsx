@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 
 function useIsMounted() {
   return useSyncExternalStore(
-    () => () => { },
+    () => () => {},
     () => true,
     () => false,
   );
@@ -26,7 +26,7 @@ export const useThemeToggle = () => {
   };
 
   return { isDark, toggleTheme, mounted };
-}
+};
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { isDark, toggleTheme, mounted } = useThemeToggle();
