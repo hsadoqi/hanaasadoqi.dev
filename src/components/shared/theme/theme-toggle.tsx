@@ -2,18 +2,34 @@
 
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-export function ThemeToggle({ className }: { className?: string }) {
-  const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+function useIsMounted() {
+  return useSyncExternalStore(
+    () => () => { },
+    () => true,
+    () => false,
+  );
+}
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+export const useThemeToggle = () => {
+  const { resolvedTheme, setTheme } = useTheme();
+  const mounted = useIsMounted();
+
+  const isDark = resolvedTheme === 'dark';
+
+  const toggleTheme = () => {
+    setTheme(isDark ? 'light' : 'dark');
+  };
+
+  return { isDark, toggleTheme, mounted };
+}
+
+export function ThemeToggle({ className }: { className?: string }) {
+  const { isDark, toggleTheme, mounted } = useThemeToggle();
 
   if (!mounted) {
     return (
@@ -29,7 +45,6 @@ export function ThemeToggle({ className }: { className?: string }) {
     );
   }
 
-  const isDark = resolvedTheme === 'dark';
   const Icon = isDark ? Sun : Moon;
   const label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
 
@@ -37,11 +52,14 @@ export function ThemeToggle({ className }: { className?: string }) {
     <Button
       variant="ghost"
       size="icon"
-      className={cn('bg-muted/80 text-foreground border border-transparent hover:border-brand group transition-[colors,border] ease-in-out duration-200', className)}
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      className={cn(
+        'bg-muted/80 text-foreground hover:border-brand group border border-transparent transition-[colors,border] duration-200 ease-in-out',
+        className,
+      )}
+      onClick={toggleTheme}
       aria-label={label}
     >
-      <Icon className="size-4 group-hover:text-brand transition-colors" />
+      <Icon className="group-hover:text-brand size-4 transition-colors" />
     </Button>
   );
 }
