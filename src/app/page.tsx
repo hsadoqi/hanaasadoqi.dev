@@ -6,9 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Section, SectionHeader } from '@/components/layout/section';
+import { Section } from '@/components/layout/section';
 import { Hero } from '@/components/sections/hero';
-import { CaseStudiesSection } from '@/components/sections/case-studies';
+import { CaseStudiesSection, SystemsSection } from '@/components/sections';
 
 const greeting = "Hi, I'm Hanaa. 👋";
 const headlineParts = ['Software engineer', 'with too many', 'side quests.'];
@@ -32,15 +32,19 @@ export default function Home() {
         cta={cta}
       />
       <CaseStudiesSection />
+      <SystemsSection />
 
       {/* Writing */}
-      <Section id="writing" variant="surface">
-        <SectionHeader
-          eyebrow="Writing"
-          title="Notes & essays"
-          description="On product thinking, engineering practice, and working with complexity."
-          className="mb-12"
-        />
+      <Section
+        id="writing"
+        variant="surface"
+        header={{
+          eyebrow: 'Writing',
+          title: 'Notes & essays',
+          description:
+            'On product thinking, engineering practice, and working with complexity.',
+        }}
+      >
         <div className="space-y-4">
           {[
             'On building for operators, not just users',
@@ -63,13 +67,15 @@ export default function Home() {
       </Section>
 
       {/* Component tokens preview */}
-      <Section id="design-tokens">
-        <SectionHeader
-          eyebrow="Design system"
-          title="Tokens & primitives"
-          description="Verify semantic colors, typography, and components render correctly in both themes."
-          className="mb-12"
-        />
+      <Section
+        id="design-tokens"
+        header={{
+          eyebrow: 'Design system',
+          title: 'Tokens & primitives',
+          description:
+            'Verify semantic colors, typography, and components render correctly in both themes.',
+        }}
+      >
         <div className="space-y-8">
           {/* Buttons */}
           <div className="space-y-3">

@@ -1,6 +1,6 @@
-export * from './section-header';
 import { cn } from '@/lib/utils';
 import { MarginLine } from '@/components/shared/margin-line';
+import { SectionHeader, type SectionHeaderProps } from './section-header';
 import {
   SectionVariant,
   SectionAlign,
@@ -21,6 +21,7 @@ export type SectionProps = React.HTMLAttributes<HTMLElement> & {
   showMarginLine?: boolean;
   marginLineText?: string;
   containerClassName?: string;
+  header?: SectionHeaderProps;
 };
 
 export function Section({
@@ -34,9 +35,12 @@ export function Section({
   showMarginLine = false,
   marginLineText = '',
   containerClassName,
+  header,
+  'aria-labelledby': ariaLabelledBy,
   ...props
 }: SectionProps) {
   const needsFlex = fullScreen || !!align || !!justify;
+  const headerId = header?.id ?? (id && header ? `${id}-heading` : undefined);
 
   return (
     <section
@@ -51,6 +55,7 @@ export function Section({
         justify && justifyMap[justify],
         className,
       )}
+      aria-labelledby={ariaLabelledBy ?? headerId}
       {...props}
     >
       <div
@@ -59,9 +64,18 @@ export function Section({
           containerClassName,
         )}
       >
+        {header ? (
+          <SectionHeader
+            {...header}
+            id={headerId}
+            className={cn('mb-12', header.className)}
+          />
+        ) : null}
         {children}
         {showMarginLine && <MarginLine text={marginLineText} />}
       </div>
     </section>
   );
 }
+
+export * from './section-header';
