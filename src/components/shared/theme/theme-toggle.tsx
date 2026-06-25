@@ -37,11 +37,11 @@ export function ThemeToggle({ className }: { className?: string }) {
     <Button
       variant="ghost"
       size="icon"
-      className={cn('bg-muted/80 text-foreground', className)}
+      className={cn('bg-muted/80 text-foreground border border-transparent hover:border-brand group transition-[colors,border] ease-in-out duration-200', className)}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={label}
     >
-      <Icon className="size-4" />
+      <Icon className="size-4 group-hover:text-brand transition-colors" />
     </Button>
   );
 }

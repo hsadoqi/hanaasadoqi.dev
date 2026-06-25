@@ -14,6 +14,7 @@ import {
   type CollapseAt,
 } from '@/lib/breakpoints';
 import { cn } from '@/lib/utils';
+import clsx from 'clsx';
 
 export function IconLink({
   className,
@@ -22,6 +23,10 @@ export function IconLink({
   icon,
   collapseAt,
   children,
+  target,
+  rel,
+  variant = "default",
+  size = "md",
 }: {
   href: string;
   label: string;
@@ -29,6 +34,10 @@ export function IconLink({
   collapseAt?: CollapseAt;
   children?: React.ReactNode;
   className?: string;
+    target?: string;
+    rel?: string;
+    variant?: 'default' | 'outline' | 'ghost';
+    size?: 'sm' | 'md' | 'lg';
 }) {
   const isCollapsed = useMediaQuery(
     collapseAt ? breakpointQueries[collapseAt] : '',
@@ -37,10 +46,21 @@ export function IconLink({
   const link = (
     <Link
       href={href}
-      className={cn(
-        'border-border bg-background text-foreground hover:bg-muted focus-visible:ring-ring focus-visible:ring-offset-background inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+      className={clsx(
+        'focus-visible:ring-ring focus-visible:ring-offset-background inline-flex items-center rounded-md font-medium transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+        {
+          'border border-border bg-foreground text-accent hover:bg-muted hover:text-brand': variant === 'default',
+          'border border-border bg-background text-accent hover:bg-muted hover:text-brand': variant === 'outline',
+          'bg-transparent text-foreground hover:bg-brand/40': variant === 'ghost',
+          "px-2 py-1 text-xs": size === 'sm',
+          "px-3 py-2 text-sm": size === 'md',
+          "px-4 py-3 text-base": size === 'lg',
+          "gap-2": !showTooltip
+        },
         className,
       )}
+      target={target}
+      rel={rel}
       aria-label={label}
     >
       {icon}

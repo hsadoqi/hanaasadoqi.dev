@@ -8,14 +8,14 @@ export function Logo({ className }: { className?: string }) {
       href="/"
       className={cn(
         '-m-3 inline-flex items-center gap-0.5 rounded-md px-3 py-2 text-xl font-semibold tracking-tight transition',
-        'hover:bg-muted hover:text-foreground',
-        'focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+        'group hover:text-brand/80 hover:opacity-80focus-visible:ring-brand focus-visible:ring-offset-background',
+        'focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         className,
       )}
       aria-label="hanaa. — home"
     >
       hanaa
-      <span className="text-brand mt-0.5 font-extrabold">.</span>
+      <span className="text-brand mt-0.5 font-extrabold group-hover:text-foreground transition ease-in-out">.</span>
     </Link>
   );
 }
