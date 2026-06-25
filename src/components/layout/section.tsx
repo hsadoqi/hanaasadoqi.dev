@@ -29,20 +29,20 @@ export function Section({
   showMarginLine,
   marginLineText = '',
   containerClassName,
-  eyebrow
+  eyebrow,
 }: React.HTMLAttributes<HTMLElement> & {
   id?: string;
   variant?: SectionVariant;
   /** Fills the viewport height (`min-h-svh`). Implicitly enables flex layout. */
   fullScreen?: boolean;
-    /** Horizontal alignment of children (cross-axis in column flex). Only applies when flex is active. */
+  /** Horizontal alignment of children (cross-axis in column flex). Only applies when flex is active. */
   align?: SectionAlign;
-    /** Vertical distribution of children (main-axis in column flex). Only applies when flex is active. */
+  /** Vertical distribution of children (main-axis in column flex). Only applies when flex is active. */
   justify?: SectionJustify;
-    showMarginLine?: boolean;
-    marginLineText?: string;
-    containerClassName?: string;
-    eyebrow?: string;
+  showMarginLine?: boolean;
+  marginLineText?: string;
+  containerClassName?: string;
+  eyebrow?: string;
 }) {
   const needsFlex = fullScreen || !!align || !!justify;
   return (
@@ -59,18 +59,21 @@ export function Section({
         className,
       )}
     >
-      <div className={cn('mx-auto max-w-5xl w-full px-4 sm:px-6 lg:px-8', containerClassName)}>
+      <div
+        className={cn(
+          'mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8',
+          containerClassName,
+        )}
+      >
         <div className="space-y-10">
           {eyebrow && (
-            <p className="text-muted-foreground text-sm font-medium tracking-[0.25em] uppercase transition-colors hover:text-brand/80 pl-2">
+            <p className="text-muted-foreground hover:text-brand/80 pl-2 text-sm font-medium tracking-[0.25em] uppercase transition-colors">
               {eyebrow}
             </p>
           )}
           {children}
         </div>
-        {showMarginLine && (
-          <MarginLine text={marginLineText} />
-        )}
+        {showMarginLine && <MarginLine text={marginLineText} />}
       </div>
     </section>
   );
@@ -81,13 +84,13 @@ export function SectionHeader({
   title,
   description,
   className,
-  id
+  id,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   className?: string;
-    id?: string;
+  id?: string;
 }) {
   return (
     <div id={id} className={cn('space-y-4', className)}>

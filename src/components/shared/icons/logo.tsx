@@ -15,7 +15,9 @@ export function Logo({ className }: { className?: string }) {
       aria-label="hanaa. — home"
     >
       hanaa
-      <span className="text-brand mt-0.5 font-extrabold group-hover:text-foreground transition ease-in-out">.</span>
+      <span className="text-brand group-hover:text-foreground mt-0.5 font-extrabold transition ease-in-out">
+        .
+      </span>
     </Link>
   );
 }

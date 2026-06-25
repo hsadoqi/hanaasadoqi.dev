@@ -1,5 +1,3 @@
-import { GitFork, Mail } from 'lucide-react';
-
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,14 +12,21 @@ import { Section, SectionHeader } from '@/components/layout/section';
 import { Container } from '@/components/shared/container';
 import { Hero } from '@/components/sections/hero/hero';
 
-const greeting = "Hi, I'm Hanaa. 👋"
-const headlineParts = ['Software engineer', 'with too many', 'side quests.']
-const identities = ['Recovering mechanical engineer.', 'Professional overthinker.', 'Insomniac.']
-const cta = 'View Projects'
+const greeting = "Hi, I'm Hanaa. 👋";
+const headlineParts = ['Software engineer', 'with too many', 'side quests.'];
+const identities = [
+  'Recovering mechanical engineer.',
+  'Professional overthinker.',
+  'Insomniac.',
+];
+const cta = 'View Projects';
 export default function Home() {
   return (
-    <main id="main-content" className="flex-1 flex flex-col gap-16 overflow-x-hidden">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/50 to-background/0" />
+    <main
+      id="main-content"
+      className="flex flex-1 flex-col gap-16 overflow-x-hidden"
+    >
+      <div className="from-background/50 to-background/0 absolute inset-0 -z-10 bg-gradient-to-b" />
       <Hero
         greeting={greeting}
         headlineParts={headlineParts}
