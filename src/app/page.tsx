@@ -12,47 +12,22 @@ import {
 } from '@/components/ui/card';
 import { Section, SectionHeader } from '@/components/layout/section';
 import { Container } from '@/components/shared/container';
-import { IconLink } from '@/components/shared';
+import { Hero } from '@/components/sections/hero/hero';
 
+const greeting = "Hi, I'm Hanaa. 👋"
+const headlineParts = ['Software engineer', 'with too many', 'side quests.']
+const identities = ['Recovering mechanical engineer.', 'Professional overthinker.', 'Insomniac.']
+const cta = 'View Projects'
 export default function Home() {
   return (
-    <main id="main-content" className="flex-1">
-      {/* Hero */}
-      <Section id="hero" className="border-border/50 border-b sm:py-28">
-        <Container>
-          <div className="max-w-3xl space-y-6">
-            <Badge variant="outline">Open to work</Badge>
-            <h1 className="text-foreground text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              I build systems that make messy work easier.
-            </h1>
-            <p className="text-muted-foreground max-w-2xl text-lg leading-8">
-              Focused on complex problem-solving, workflow-heavy features,
-              internal tools, and reliable software for real-world systems.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button>View projects</Button>
-              <Button variant="outline">Read writing</Button>
-              <IconLink
-                href="https://github.com/hanaasadoqi"
-                label="GitHub profile"
-                icon={<GitFork className="size-4" />}
-                collapseAt="sm"
-              >
-                GitHub
-              </IconLink>
-              <IconLink
-                href="mailto:hello@hanaasadoqi.dev"
-                label="Send email"
-                icon={<Mail className="size-4" />}
-                collapseAt="sm"
-              >
-                Email
-              </IconLink>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
+    <main id="main-content" className="flex-1 flex flex-col gap-16 overflow-x-hidden">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/50 to-background/0" />
+      <Hero
+        greeting={greeting}
+        headlineParts={headlineParts}
+        identities={identities}
+        cta={cta}
+      />
       {/* Projects */}
       <Section id="projects">
         <Container>

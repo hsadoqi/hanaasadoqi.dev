@@ -132,7 +132,7 @@
     scroll-padding-top: 5rem;
   }
   body {
-    @apply bg-background text-foreground min-h-dvh antialiased;
+    @apply bg-background text-foreground min-h-dvh w-full antialiased overflow-x-hidden overscroll-none;
   }
   ::selection {
     @apply bg-primary text-primary-foreground;
