@@ -6,10 +6,10 @@ import { SkipLink } from '@/components/shared';
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <Providers>
-      <div className="bg-background text-foreground flex min-h-screen flex-col">
+      <div className="bg-background text-foreground flex min-h-dvh flex-col">
         <SkipLink />
         <Navbar />
-        <div className="flex w-full flex-1 flex-col">{children}</div>
+        <div className="flex flex-1 flex-col">{children}</div>
         <Footer />
       </div>
     </Providers>

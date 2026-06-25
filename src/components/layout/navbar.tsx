@@ -1,6 +1,6 @@
 import { Container } from '@/components/shared/container';
 import { LinkButton } from '@/components/shared/buttons/link-button';
-import { Logo } from '@/components/shared/logo';
+import { Logo } from '@/components/shared/icons/logo';
 import { ThemeToggle } from '@/components/shared/theme/theme-toggle';
 
 const customNavLinks = [
