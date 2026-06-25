@@ -4,8 +4,10 @@ import { Logo } from '@/components/shared/icons/logo';
 import { ThemeToggle } from '@/components/shared/theme/theme-toggle';
 
 const customNavLinks = [
-  { href: '/#projects', label: 'Projects' },
+  { href: '/#case-studies', label: 'Case Studies' },
   { href: '/#writing', label: 'Writing' },
+  { href: '/#contact', label: 'Contact' },
+  { href: '/#hero', label: 'Home' },
   { href: '/#about', label: 'About' },
 ];
 

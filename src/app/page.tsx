@@ -2,15 +2,14 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 import { Section, SectionHeader } from '@/components/layout/section';
 import { Container } from '@/components/shared/container';
 import { Hero } from '@/components/sections/hero';
+import { CaseStudiesSection } from '@/components/sections';
 
 const greeting = "Hi, I'm Hanaa. 👋";
 const headlineParts = ['Software engineer', 'with too many', 'side quests.'];
@@ -33,57 +32,7 @@ export default function Home() {
         identities={identities}
         cta={cta}
       />
-      {/* Projects */}
-      <Section id="projects">
-        <Container>
-          <SectionHeader
-            eyebrow="Selected work"
-            title="Projects"
-            description="Workflow-heavy products, internal tools, and systems still being shaped."
-            className="mb-12"
-          />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {(['Active', 'Draft', 'Planned'] as const).map((status) => (
-              <Card key={status}>
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-2">
-                    <CardTitle>Project title</CardTitle>
-                    <Badge
-                      variant={
-                        status === 'Active'
-                          ? 'default'
-                          : status === 'Draft'
-                            ? 'secondary'
-                            : 'outline'
-                      }
-                    >
-                      {status}
-                    </Badge>
-                  </div>
-                  <CardDescription>
-                    A short description of what this project does and the
-                    problem it solves.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-1.5">
-                    {['TypeScript', 'Next.js', 'Postgres'].map((tag) => (
-                      <Badge key={tag} variant="outline">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button variant="ghost" size="sm" className="ml-auto">
-                    View →
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </Section>
+      <CaseStudiesSection />
 
       {/* Writing */}
       <Section id="writing" variant="surface">

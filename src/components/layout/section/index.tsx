@@ -1,22 +1,14 @@
+export * from './section-wrapper';
+export * from './section-header';
 import { cn } from '@/lib/utils';
-import { MarginLine } from '../shared';
-
-type SectionVariant = 'default' | 'surface';
-type SectionAlign = 'start' | 'center' | 'end';
-type SectionJustify = 'start' | 'center' | 'end' | 'between';
-
-const alignMap: Record<SectionAlign, string> = {
-  start: 'items-start',
-  center: 'items-center',
-  end: 'items-end',
-};
-
-const justifyMap: Record<SectionJustify, string> = {
-  start: 'justify-start',
-  center: 'justify-center',
-  end: 'justify-end',
-  between: 'justify-between',
-};
+import { MarginLine } from '@/components/shared/margin-line';
+import {
+  SectionVariant,
+  SectionAlign,
+  SectionJustify,
+  alignMap,
+  justifyMap,
+} from './types';
 
 export function Section({
   className,
@@ -26,7 +18,7 @@ export function Section({
   align,
   justify,
   children,
-  showMarginLine,
+  showMarginLine = false,
   marginLineText = '',
   containerClassName,
   eyebrow,
@@ -76,37 +68,5 @@ export function Section({
         {showMarginLine && <MarginLine text={marginLineText} />}
       </div>
     </section>
-  );
-}
-
-export function SectionHeader({
-  eyebrow,
-  title,
-  description,
-  className,
-  id,
-}: {
-  eyebrow?: string;
-  title: string;
-  description?: string;
-  className?: string;
-  id?: string;
-}) {
-  return (
-    <div id={id} className={cn('space-y-4', className)}>
-      {eyebrow ? (
-        <p className="text-muted-foreground text-sm font-medium tracking-[0.25em] uppercase">
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2 className="text-foreground text-3xl font-semibold tracking-tight sm:text-4xl">
-        {title}
-      </h2>
-      {description ? (
-        <p className="text-muted-foreground max-w-2xl text-base leading-8">
-          {description}
-        </p>
-      ) : null}
-    </div>
   );
 }

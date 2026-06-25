@@ -1,0 +1,53 @@
+/* Status badge tokens — scoped to data-status attribute
+   Dark-first: the default context is a dark background.
+   Light override applied via prefers-color-scheme and .light class toggle.
+*/
+
+[data-status='shipped'] {
+  background-color: oklch(0.24 0.05 145 / 0.2);
+  color: oklch(0.72 0.14 145);
+}
+
+[data-status='in-progress'] {
+  /* Muted blue — intentionally restrained vs saturated #93c5fd */
+  background-color: oklch(0.3 0.04 230 / 0.28);
+  color: oklch(0.72 0.08 230);
+}
+
+[data-status='concept'] {
+  background-color: oklch(0.25 0 0 / 0.5);
+  color: oklch(0.6 0 0);
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  [data-status='shipped'] {
+    background-color: oklch(0.95 0.04 145 / 0.55);
+    color: oklch(0.4 0.16 145);
+  }
+
+  [data-status='in-progress'] {
+    background-color: oklch(0.94 0.04 230 / 0.55);
+    color: oklch(0.36 0.14 230);
+  }
+
+  [data-status='concept'] {
+    background-color: oklch(0.92 0 0 / 0.55);
+    color: oklch(0.48 0 0);
+  }
+}
+
+.light [data-status='shipped'] {
+  background-color: oklch(0.95 0.04 145 / 0.55);
+  color: oklch(0.4 0.16 145);
+}
+
+.light [data-status='in-progress'] {
+  background-color: oklch(0.94 0.04 230 / 0.55);
+  color: oklch(0.36 0.14 230);
+}
+
+.light [data-status='concept'] {
+  background-color: oklch(0.92 0 0 / 0.55);
+  color: oklch(0.48 0 0);
+}
