@@ -1,16 +1,18 @@
-import { LinkButton } from "@/components/shared"
+import { LinkButton } from '@/components/shared';
 
 export const HeroCta = ({ cta }: { cta: string }) => {
   return (
-              <LinkButton 
-              variant="link"
-              href="#projects" 
-              className="group transition-colors hover:text-brand/80 hover:no-underline"
-              >
-                <span className="inline-block transition-[color,transform] ease-in-out duration-300 group-hover:translate-y-0.5 group-hover:text-brand">↓</span>
-                {cta}
-              </LinkButton>
-  )
-}
+    <LinkButton
+      variant="link"
+      href="#projects"
+      className="group hover:text-brand/80 transition-colors hover:no-underline"
+    >
+      <span className="group-hover:text-brand inline-block transition-[color,transform] duration-300 ease-in-out group-hover:translate-y-0.5">
+        ↓
+      </span>
+      {cta}
+    </LinkButton>
+  );
+};
 
-export default HeroCta
+export default HeroCta;
