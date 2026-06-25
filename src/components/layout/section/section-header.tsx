@@ -18,7 +18,7 @@ export function SectionHeader({
   headingClassName,
 }: SectionHeaderProps) {
   return (
-    <div id={`${id}-heading`} className={cn('space-y-4', className)}>
+    <div id={id} className={cn('space-y-4', className)}>
       {eyebrow ? (
         <p className="text-muted-foreground text-sm font-medium tracking-[0.25em] uppercase">
           {eyebrow}

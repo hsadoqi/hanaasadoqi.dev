@@ -15,9 +15,19 @@ export function LinkButton({
   children,
   ...props
 }: LinkButtonProps) {
+  if (typeof href === 'string' && href.startsWith('#')) {
+    return (
+      <Button asChild variant={variant} size={size} className={cn(className)}>
+        <a {...props} href={href}>
+          {children}
+        </a>
+      </Button>
+    );
+  }
+
   return (
     <Button asChild variant={variant} size={size} className={cn(className)}>
-      <Link href={href} {...props}>
+      <Link {...props} href={href}>
         {children}
       </Link>
     </Button>
