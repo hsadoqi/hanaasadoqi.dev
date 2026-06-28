@@ -1,21 +1,8 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import '@/styles/globals.css';
 import { PageShell } from '@/components/layout';
 
 const siteUrl = 'https://hanaasadoqi.dev';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -91,12 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
-      data-scroll-behavior="smooth"
-      suppressHydrationWarning
-    >
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         <PageShell>{children}</PageShell>
       </body>
