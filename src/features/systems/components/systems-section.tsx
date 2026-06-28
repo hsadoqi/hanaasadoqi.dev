@@ -6,10 +6,10 @@ import { Section } from '@/components/layout/section';
 import { systemCards } from '../data';
 import { cn } from '@/lib/utils';
 import { ConceptGroup } from '@/types/components';
-import type { SystemsView, SystemCard } from '../types';
+import type { SystemView, SystemCard } from '../types';
 
 const views: Array<{
-  id: SystemsView;
+  id: SystemView;
   label: string;
   description: string;
 }> = [
@@ -72,7 +72,7 @@ const projectGroups: ConceptGroup[] = [
 ];
 
 export function SystemsSection() {
-  const [view, setView] = useState<SystemsView>('index');
+  const [view, setView] = useState<SystemView>('index');
   const activeView = views.find((item) => item.id === view) ?? views[0];
 
   return (

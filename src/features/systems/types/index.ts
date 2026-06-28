@@ -12,3 +12,5 @@ export type SystemCard = {
     href?: string;
   }>;
 };
+
+export type SystemView = 'map' | 'proof' | 'index' | 'glossary';

@@ -41,7 +41,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        'border-border/50 py-28 sm:py-40',
+        'border-border/20 from-background via-background to-background border-b bg-gradient-to-b px-6 py-12 sm:px-8 sm:py-16 lg:px-12',
         id && 'scroll-mt-24',
         variant === 'surface' &&
           'bg-card/80 shadow-ring/5 rounded-3xl border shadow-sm',

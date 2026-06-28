@@ -15,12 +15,12 @@ export const BaseHero = ({
   return (
     <Section
       id="hero"
-      className="border-b"
+      className="before:from-background via-background before:to-background/80 relative border-b before:pointer-events-none before:absolute before:inset-0 before:bg-gradient-to-b"
       aria-labelledby="hero-heading"
       fullScreen
       justify="evenly"
       marginLineText="Brooklyn, NY"
-      containerClassName="grid gap-16 md:grid-cols-[1fr_auto] md:gap-24 items-end max-w-full mx-0"
+      containerClassName="relative grid gap-16 md:grid-cols-[1fr_auto] md:gap-24 items-end max-w-full mx-0 z-10"
     >
       <HeroLayout
         greeting={greeting}

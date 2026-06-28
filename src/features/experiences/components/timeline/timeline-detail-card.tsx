@@ -17,7 +17,7 @@ export const ExperienceDetailCard = ({
   const totalHighlights = 5;
 
   return (
-    <div className="group flex justify-center px-4">
+    <div className="group flex justify-center px-4 pb-4">
       <div
         className={`w-full max-w-2xl motion-safe:duration-300 ${
           slideDirection === 'none'

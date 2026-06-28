@@ -60,7 +60,7 @@ export const ExperienceLabel = ({
           className={`absolute top-1/2 left-1/2 z-20 -translate-x-1/2 transition-[transform] duration-300 ${isAbove ? '-translate-y-[calc(100%+1rem)]' : 'translate-y-[1rem]'}`}
         >
           <div
-            className={`group-hover:text-foreground flex flex-col gap-0.5 px-2 text-center whitespace-nowrap transition-all duration-300 ${labelClassName}`}
+            className={`group-hover:text-foreground flex flex-col gap-1 px-2 text-center whitespace-nowrap transition-all duration-300 ${labelClassName}`}
           >
             <span className="text-xs leading-snug font-semibold sm:text-sm">
               {experience.company}

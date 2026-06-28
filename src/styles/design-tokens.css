@@ -147,28 +147,34 @@
   @apply gap-6 space-y-6;
 }
 
-/* CARD FRAMEWORK
-   Base styles for all card variants
-   ─────────────────────────────────────────────────────────────────────────── */
-
 /* Base card structure */
 @utility card-base {
-  @apply border-border/40 bg-background/50 backdrop-blur-sm transition-all duration-300 motion-safe:transition-all;
+  @apply border-border/40 bg-background/50 backdrop-blur-sm motion-safe:transition-all motion-safe:duration-300;
 }
 
 /* Quiet card — subtle, secondary */
 @utility card-quiet {
-  @apply card-base shadow-elevation-1 hover:shadow-elevation-2 hover:border-border/70 rounded-md border;
+  @apply card-base shadow-elevation-1 hover:shadow-elevation-2 hover:border-border/60 rounded-md border hover:motion-safe:-translate-y-1;
 }
 
 /* Standard card — default, most common */
 @utility card-standard {
-  @apply card-base shadow-elevation-1 hover:shadow-elevation-2 hover:border-border/70 rounded-lg border;
+  @apply card-base shadow-elevation-1 hover:shadow-elevation-2 hover:border-border/60 rounded-lg border hover:motion-safe:-translate-y-1;
 }
 
 /* Featured card — prominent, interactive */
 @utility card-featured {
-  @apply card-base shadow-elevation-2 hover:shadow-elevation-3 hover:border-border/70 focus-within:shadow-elevation-3 focus-within:border-border/70 rounded-lg border;
+  @apply card-base shadow-elevation-2 hover:shadow-elevation-3 hover:border-border/70 focus-within:shadow-elevation-3 focus-within:border-border/70 rounded-xl border hover:motion-safe:-translate-y-1.5;
+}
+
+/* Interactive card with enhanced glow effect */
+@utility card-interactive {
+  @apply card-featured hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)];
+}
+
+/* Project card styling with hover lift */
+@utility card-project {
+  @apply card-standard relative overflow-hidden;
 }
 
 /* FOCUS STATES
