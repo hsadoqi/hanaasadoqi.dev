@@ -1,11 +1,11 @@
-export type SectionVariant = 'default' | 'surface';
-export type SectionAlign = 'start' | 'center' | 'end';
-export type SectionJustify = 'start' | 'center' | 'end' | 'between';
+import { SectionAlign, SectionJustify } from '@/types/components';
 
 export const alignMap: Record<SectionAlign, string> = {
   start: 'items-start',
   center: 'items-center',
   end: 'items-end',
+  evenly: 'items-evenly',
+  stretch: 'items-stretch',
 };
 
 export const justifyMap: Record<SectionJustify, string> = {
@@ -13,4 +13,6 @@ export const justifyMap: Record<SectionJustify, string> = {
   center: 'justify-center',
   end: 'justify-end',
   between: 'justify-between',
+  evenly: 'justify-evenly',
+  stretch: 'justify-stretch',
 };

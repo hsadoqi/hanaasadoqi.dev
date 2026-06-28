@@ -15,7 +15,10 @@ export function LinkButton({
   children,
   ...props
 }: LinkButtonProps) {
-  if (typeof href === 'string' && href.startsWith('#')) {
+  if (
+    typeof href === 'string' &&
+    (href.startsWith('#') || href.startsWith('/#'))
+  ) {
     return (
       <Button asChild variant={variant} size={size} className={cn(className)}>
         <a {...props} href={href}>

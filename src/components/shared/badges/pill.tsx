@@ -29,11 +29,10 @@ export function Pill({
     focus: 'bg-muted/30 border border-border/40 text-foreground/80',
   };
 
+  const combinedClassName = `${baseStyles} ${variantStyles[variant]} ${className || ''}`;
+
   return (
-    <div
-      className={`${baseStyles} ${variantStyles[variant]} ${className || ''}`}
-      {...props}
-    >
+    <div className={combinedClassName.trim()} data-status={status} {...props}>
       {children}
     </div>
   );

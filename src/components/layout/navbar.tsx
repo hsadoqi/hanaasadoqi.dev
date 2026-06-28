@@ -2,13 +2,14 @@ import { Container } from '@/components/shared/container';
 import { LinkButton } from '@/components/shared/buttons/link-button';
 import { Logo } from '@/components/shared/icons/logo';
 import { ThemeToggle } from '@/components/shared/theme/theme-toggle';
+import Image from 'next/image';
 
 const customNavLinks = [
-  { href: '/#case-studies', label: 'Case Studies' },
+  { href: '/case-studies', label: 'Case Studies' },
   { href: '/#writing', label: 'Writing' },
-  { href: '/#contact', label: 'Contact' },
-  { href: '/#hero', label: 'Home' },
+  { href: '/#experience', label: 'Experience' },
   { href: '/#about', label: 'About' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
 export type NavLink = {
@@ -24,7 +25,18 @@ export function Navbar({
   return (
     <header className="border-border/50 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b backdrop-blur">
       <Container className="flex items-center justify-between py-4">
-        <Logo />
+        <span className="block md:sr-only md:hidden">
+          <Image
+            src="/icons/icon.png"
+            alt="Hanaa Sadoqi"
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain"
+          />
+        </span>
+        <span className="hidden md:block">
+          <Logo />
+        </span>
         <nav className="ml-4 hidden gap-1 sm:flex">
           {navLinks.map((link) => (
             <LinkButton

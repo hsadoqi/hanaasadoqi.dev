@@ -1,13 +1,8 @@
 import { cn } from '@/lib/utils';
-import { MarginLine } from '@/components/shared/margin-line';
+import { MarginLine } from './margin-line';
 import { SectionHeader, type SectionHeaderProps } from './section-header';
-import {
-  SectionVariant,
-  SectionAlign,
-  SectionJustify,
-  alignMap,
-  justifyMap,
-} from './types';
+import { SectionAlign, SectionJustify, SectionVariant } from '@/types';
+import { alignMap, justifyMap } from './types';
 
 export type SectionProps = React.HTMLAttributes<HTMLElement> & {
   id?: string;
@@ -46,7 +41,8 @@ export function Section({
     <section
       id={id}
       className={cn(
-        'border-border/50 py-16 sm:py-20',
+        'border-border/50 py-28 sm:py-40',
+        id && 'scroll-mt-24',
         variant === 'surface' &&
           'bg-card/80 shadow-ring/5 rounded-3xl border shadow-sm',
         fullScreen && 'min-h-svh',
@@ -79,3 +75,4 @@ export function Section({
 }
 
 export * from './section-header';
+export * from './margin-line';
