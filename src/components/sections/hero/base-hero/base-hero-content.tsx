@@ -1,4 +1,4 @@
-export const HeroContent = ({
+export const BaseHeroContent = ({
   headlineParts,
   identities,
 }: {
@@ -9,7 +9,7 @@ export const HeroContent = ({
     <>
       <h1
         id="hero-heading"
-        className="text-foreground font-sans text-5xl leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
+        className="text-foreground text-4xl leading-[1.05] tracking-tight md:text-5xl lg:text-6xl"
       >
         {headlineParts.map((line, i) => (
           <span key={i} className="block">
@@ -32,4 +32,4 @@ export const HeroContent = ({
   );
 };
 
-export default HeroContent;
+export default BaseHeroContent;
