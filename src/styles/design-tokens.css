@@ -1,0 +1,260 @@
+/* ============================================================================
+   DESIGN TOKENS SYSTEM
+   Semantic utilities for consistent, maintainable styling
+   ============================================================================ */
+
+/* BORDER RADIUS SYSTEM
+   4-tier hierarchy for visual hierarchy and consistency
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Tier 1: Compact — small UI elements, pills, badges */
+@utility radius-compact {
+  border-radius: theme('borderRadius.full');
+}
+
+/* Tier 2: Small — buttons, small inputs, status badges */
+@utility radius-sm {
+  border-radius: theme('borderRadius.md');
+}
+
+/* Tier 3: Medium — standard cards, metric cards, decision cards */
+@utility radius-md {
+  border-radius: theme('borderRadius.lg');
+}
+
+/* Tier 4: Large — featured cards, project cards, prominent sections */
+@utility radius-lg {
+  border-radius: theme('borderRadius.xl');
+}
+
+/* SHADOW ELEVATION SYSTEM
+   3-tier depth system for layering and interactive feedback
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Level 1: Subtle — resting state, secondary cards */
+@utility shadow-elevation-1 {
+  box-shadow:
+    theme('boxShadow.sm'),
+    0 1px 3px theme('colors.black / 0.03');
+}
+
+/* Level 2: Medium — hover states, interactive elements */
+@utility shadow-elevation-2 {
+  box-shadow:
+    theme('boxShadow.md'),
+    0 4px 6px theme('colors.black / 0.05');
+}
+
+/* Level 3: Prominent — active states, featured elements, focus */
+@utility shadow-elevation-3 {
+  box-shadow:
+    theme('boxShadow.lg'),
+    0 10px 15px theme('colors.black / 0.08');
+}
+
+/* PADDING SCALE SYSTEM
+   3 preset sizes for consistent card and component spacing
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Compact: For small cards, metric displays */
+@utility p-compact {
+  padding: theme('spacing.5');
+}
+
+/* Default: Standard card padding, most common use case */
+@utility p-default {
+  padding: theme('spacing.6');
+}
+
+/* Spacious: Featured cards, prominent sections */
+@utility p-spacious {
+  padding: theme('spacing.8');
+}
+
+/* Responsive padding helpers */
+@utility p-default-responsive {
+  @apply p-6 md:p-8;
+}
+
+@utility p-spacious-responsive {
+  @apply p-8 md:p-10;
+}
+
+/* BORDER OPACITY SYSTEM
+   3 semantic levels for visual hierarchy
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Tier 1: Quiet — dividers, subtle separators */
+@utility border-quiet {
+  border-color: hsl(var(--border) / 0.2);
+}
+
+/* Tier 2: Standard — card boundaries, default state */
+@utility border-standard {
+  border-color: hsl(var(--border) / 0.4);
+}
+
+/* Tier 3: Active — hover states, focus states */
+@utility border-active {
+  border-color: hsl(var(--border) / 0.7);
+}
+
+/* TEXT COLOR HIERARCHY
+   5 semantic levels for information hierarchy
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Level 1: Primary — main headings, critical information */
+@utility text-primary-content {
+  @apply text-foreground;
+}
+
+/* Level 2: Secondary — body text, descriptions */
+@utility text-secondary-content {
+  @apply text-muted-foreground;
+}
+
+/* Level 3: Tertiary — hints, supporting information */
+@utility text-tertiary-content {
+  @apply text-muted-foreground/70;
+}
+
+/* Level 4: Subtle — labels, metadata, timestamps */
+@utility text-subtle-content {
+  @apply text-muted-foreground/50;
+}
+
+/* Level 5: Faded — disabled states, inactive content */
+@utility text-faded-content {
+  @apply text-muted-foreground/30;
+}
+
+/* SPACING SCALE SYSTEM
+   Preset combinations for consistent component spacing
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Compact spacing — tight layouts, list items */
+@utility spacing-compact {
+  @apply gap-2 space-y-2;
+}
+
+/* Default spacing — standard components, most common */
+@utility spacing-default {
+  @apply gap-4 space-y-4;
+}
+
+/* Spacious spacing — prominent sections, breathing room */
+@utility spacing-spacious {
+  @apply gap-6 space-y-6;
+}
+
+/* CARD FRAMEWORK
+   Base styles for all card variants
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Base card structure */
+@utility card-base {
+  @apply border-border/40 bg-background/50 backdrop-blur-sm transition-all duration-300 motion-safe:transition-all;
+}
+
+/* Quiet card — subtle, secondary */
+@utility card-quiet {
+  @apply card-base shadow-elevation-1 hover:shadow-elevation-2 hover:border-border/70 rounded-md border;
+}
+
+/* Standard card — default, most common */
+@utility card-standard {
+  @apply card-base shadow-elevation-1 hover:shadow-elevation-2 hover:border-border/70 rounded-lg border;
+}
+
+/* Featured card — prominent, interactive */
+@utility card-featured {
+  @apply card-base shadow-elevation-2 hover:shadow-elevation-3 hover:border-border/70 focus-within:shadow-elevation-3 focus-within:border-border/70 rounded-lg border;
+}
+
+/* FOCUS STATES
+   Consistent, accessible focus styling
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@utility focus-ring {
+  @apply focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2;
+}
+
+@utility interactive-focus {
+  @apply focus-visible:ring-ring focus-visible:ring-offset-background transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-offset-2;
+}
+
+/* MOTION UTILITIES
+   Respect user motion preferences throughout design system
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@utility motion-safe-all {
+  @apply motion-safe:transition-all motion-safe:duration-300;
+}
+
+@utility motion-safe-fast {
+  @apply motion-safe:transition-all motion-safe:duration-150;
+}
+
+@utility motion-safe-slow {
+  @apply motion-safe:transition-all motion-safe:duration-500;
+}
+
+/* RESPONSIVE GRID SYSTEM
+   Common grid patterns for layouts
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* 2-column grid on desktop, single column on mobile */
+@utility grid-2-col {
+  @apply grid grid-cols-1 gap-6 md:grid-cols-2;
+}
+
+/* 3-column grid on desktop, 2 on tablet, 1 on mobile */
+@utility grid-3-col {
+  @apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+/* Asymmetric grid: featured item + standard grid */
+@utility grid-featured-plus {
+  @apply grid grid-cols-1 gap-6 lg:grid-cols-3;
+}
+
+/* ACCESSIBILITY UTILITIES
+   Helper utilities for semantic structure
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@utility sr-only-focus {
+  @apply sr-only focus:not-sr-only;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Container size constraints for readability */
+@utility prose-container {
+  @apply max-w-prose;
+}
+
+/* COMMON PATTERNS
+   Reusable combinations that recur throughout design
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Section header styling */
+@utility section-header {
+  @apply flex flex-col space-y-2 md:space-y-3;
+}
+
+/* Eyebrow label styling */
+@utility eyebrow-label {
+  @apply text-muted-foreground/50 font-mono text-xs tracking-wider uppercase;
+}
+
+/* Action link styling */
+@utility link-action {
+  @apply text-primary hover:text-primary/80 focus-visible:outline-ring underline underline-offset-4 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2;
+}
+
+/* Disabled state utilities */
+@utility disabled-state {
+  @apply pointer-events-none cursor-not-allowed opacity-50;
+}
