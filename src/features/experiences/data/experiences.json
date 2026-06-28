@@ -1,0 +1,53 @@
+[
+  {
+    "company": "Synapcity",
+    "title": "Founding Engineer",
+    "period": "2023 — Present",
+    "location": "Remote",
+    "description": "Architecting and building a full-stack platform from zero — spanning product infrastructure, design systems, and a modular composable widget layer across a 50+ package monorepo.",
+    "highlights": [
+      "Built a Turborepo monorepo with 50+ packages across domain, UI, and platform layers using Next.js and TypeScript",
+      "Designed a modular widget system enabling dynamic, composable interfaces and rapid feature iteration",
+      "Developed core product infrastructure: command palette, theming system, and extensible sidebar navigation",
+      "Established scalable engineering foundations — PNPM workspaces, shared configs, and internal documentation",
+      "Led end-to-end product decisions across architecture, design system, and UX, prioritizing long-term extensibility"
+    ]
+  },
+  {
+    "company": "Stitch Fix",
+    "title": "Software Engineer II",
+    "period": "2022 — 2023",
+    "location": "Remote",
+    "description": "Built and maintained internal tooling for the Merchandising org — improving data reliability, shipping user-driven features, and leading a full rebuild of a core internal app.",
+    "highlights": [
+      "Reduced Merch team workload by 300+ hours per month through targeted code optimisations and automation",
+      "Rebuilt a core internal web app using React and TypeScript, improving scalability, maintainability, and UX",
+      "Partnered across Merch, IT, and Product teams to resolve complex data issues and improve system reliability",
+      "Designed and deployed features based on direct user feedback, iterating quickly on real workflows"
+    ]
+  },
+  {
+    "company": "Pandora",
+    "title": "Apprentice Software Engineer",
+    "period": "Apr — Nov 2021",
+    "location": "Remote",
+    "description": "Contributed to consumer-facing social sharing features on the Pandora web platform, working closely with product, design, and the core web team.",
+    "highlights": [
+      "Led development of social sharing features end-to-end — from ideation through production",
+      "Collaborated with product, design, and platform teams using React, TypeScript, and GraphQL",
+      "Received intensive hands-on training while contributing directly to key product initiatives"
+    ]
+  },
+  {
+    "company": "Flatiron School",
+    "title": "Lead Instructor",
+    "period": "2020 — 2022",
+    "location": "Remote",
+    "description": "Delivered full-stack curriculum and technical mentorship to 40+ students across cohorts, covering JavaScript, React, Redux, Ruby on Rails, and modern developer workflows.",
+    "highlights": [
+      "Mentored 40+ students through 5 projects each — guiding architecture, debugging, and deployment",
+      "Delivered live lectures across the full stack: JavaScript, React, Redux, Ruby on Rails, and ActiveRecord",
+      "Improved curriculum delivery by incorporating real-world coding challenges and modern tooling"
+    ]
+  }
+]
