@@ -4,9 +4,9 @@ import {
   ALL_FILTER_VALUE,
   createFilterOptions,
 } from '@/lib/index-view/filters';
-import { FilterGroup } from './filter-group';
-import { FilterPill } from './filter-pill';
-import type { IndexViewFilter } from './types';
+import { FilterGroup } from './filters/filter-group';
+import { FilterPill } from './filters/filter-pill';
+import type { IndexViewFilter } from '../types';
 
 type IndexControlsProps<T> = {
   activeFilters: Record<string, string>;

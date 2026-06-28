@@ -9,10 +9,10 @@ import {
 import { itemMatchesSearch } from '@/lib/index-view/search';
 import { sortItems } from '@/lib/index-view/sort';
 import { getInitialId } from './utils';
-import { IndexControls } from './index-controls';
+import { IndexControls } from './index-controls/index-controls';
 import { IndexEmptyState } from './index-empty-state';
-import { SortToggle } from './sort-toggle';
-import { ViewModeToggle } from './view-mode-toggle';
+import { SortToggle } from './index-controls/toggles/sort-toggle';
+import { ViewModeToggle } from './index-controls/toggles/view-mode-toggle';
 import type { IndexViewProps } from './types';
 
 export function IndexView<T>({

@@ -6,6 +6,5 @@ export * from './states';
 export * from './theme/theme-provider';
 export * from './theme/theme-toggle';
 export * from './container';
-export * from './filters';
 export * from './index-view';
 export * from './blocks';

@@ -1,5 +1,5 @@
-import { FilterPill } from './filter-pill';
-import type { IndexViewSortOption } from './types';
+import { FilterPill } from '../filters/filter-pill';
+import type { IndexViewSortOption } from '../../types';
 
 type SortToggleProps<T> = {
   activeSortId: string;
