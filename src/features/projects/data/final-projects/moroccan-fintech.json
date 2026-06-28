@@ -1,0 +1,191 @@
+{
+  "slug": "moroccan-fintech",
+  "title": "Moroccan FinTech Platform",
+  "subtitle": "Building modern financial software for emerging markets",
+  "hero": {
+    "eyebrow": "Project",
+    "badges": [
+      {
+        "text": "Active development",
+        "color": "blue"
+      },
+      {
+        "text": "Foundation building",
+        "color": "muted"
+      }
+    ],
+    "image": {
+      "label": "Platform preview",
+      "src": "",
+      "alt": ""
+    }
+  },
+  "description": "A comprehensive initiative to modernize financial software infrastructure in Morocco. This project encompasses multiple interconnected systems—from accounting and payroll (Generafi) to marketplace and collaboration tools (Synapcity)—all designed around the principles of compliance-first architecture, multi-tenancy, and user-centric design. The goal is not to build another generic SaaS, but to deeply understand Moroccan business needs and build systems that actually work for emerging market constraints.",
+  "impact": "By creating thoughtful, context-aware financial software, we're enabling Moroccan businesses to operate more efficiently, maintain better compliance, and ultimately compete more effectively. Each case study in this project represents a learning opportunity—how to handle regulation, how to design for low-bandwidth environments, how to balance feature richness with operational simplicity.",
+  "sections": [
+    {
+      "type": "context",
+      "title": "Why this platform exists",
+      "paragraphs": [
+        "Moroccan businesses need financial software that reflects local compliance, operating rhythms, and cost constraints. The platform is an attempt to model those realities directly instead of adapting generic SaaS assumptions after the fact.",
+        "Generafi and Synapcity provide the first product contexts for this work: payroll and accounting on one side, organizational knowledge and workflow context on the other."
+      ],
+      "pullQuote": {
+        "text": "The platform exists to make local constraints reusable instead of rediscovered in every product.",
+        "attribution": "Project thesis"
+      }
+    },
+    {
+      "type": "decisions",
+      "title": "The questions we had to answer",
+      "decisions": [
+        {
+          "title": "What should be shared across products?",
+          "teaser": "A premature platform slows learning, but repeated trust primitives should not be rebuilt every time.",
+          "answer": "The shared layer focuses on tenant identity, permissions, audit events, evidence links, and workflow status. Product-specific behavior stays local until it repeats across products.",
+          "alternatives": [
+            "Build every product independently",
+            "Create a broad internal platform first",
+            "Share only UI components"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "architecture",
+      "title": "How the foundation is framed",
+      "diagramLabel": "Shared fintech platform model",
+      "diagramHeight": 500,
+      "callout": {
+        "type": "discovery",
+        "text": "The reusable layer should encode stable constraints, not speculative future features."
+      },
+      "designDecision": {
+        "title": "Shared Trust Primitives",
+        "description": "Tenant identity, permission checks, audit events, and evidence links are modeled as shared primitives.",
+        "why": "These concerns appear in every finance workflow and become expensive to retrofit later."
+      }
+    },
+    {
+      "type": "constraints",
+      "title": "What shaped the build",
+      "constraints": [
+        {
+          "title": "Local compliance is specific",
+          "description": "Moroccan finance workflows include regulatory and operational details that generic SaaS primitives often miss.",
+          "impact": ["Domain modeling", "Reporting", "User trust"]
+        }
+      ]
+    },
+    {
+      "type": "tradeoffs",
+      "title": "What is intentionally deferred",
+      "tradeoffs": [
+        {
+          "title": "No broad platform upfront",
+          "whatWeChose": "Extract only primitives that already repeat across products.",
+          "whatItCost": "Some duplication remains while workflows are still moving.",
+          "whenWeReconsider": "When multiple products need the same workflow or domain service."
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "title": "How the work evolved",
+      "milestones": [
+        {
+          "date": "Discovery",
+          "title": "Shared constraint mapping",
+          "description": "Compared Generafi and Synapcity workflows to identify repeated trust, compliance, and permission needs."
+        },
+        {
+          "date": "Foundation",
+          "title": "Primitive definition",
+          "description": "Defined tenant, audit, evidence, and workflow-status primitives as the first shared layer."
+        }
+      ]
+    },
+    {
+      "type": "metrics",
+      "title": "How I evaluate it",
+      "metrics": [
+        {
+          "label": "Shared primitives",
+          "value": "5",
+          "unit": "defined",
+          "description": "Tenant identity, permissions, audit events, evidence links, and workflow status."
+        },
+        {
+          "label": "Product lines",
+          "value": "2",
+          "unit": "informed",
+          "description": "Generafi and Synapcity supply the initial platform constraints."
+        }
+      ]
+    },
+    {
+      "type": "reflections",
+      "title": "What this clarified",
+      "reflections": [
+        {
+          "intro": "I learned that...",
+          "insight": "A platform is useful when it preserves product speed. If it predicts too much, it becomes another source of drag.",
+          "transferable": "Extract shared infrastructure from repeated constraints, not from abstract architectural preference."
+        }
+      ]
+    },
+    {
+      "type": "whatsnext",
+      "title": "The work ahead",
+      "intro": "The next phase is to keep tightening the shared layer while product workflows become clearer.",
+      "items": [
+        {
+          "title": "Audit event schema",
+          "description": "Stabilize a shared event format that works across payroll, documents, approvals, and knowledge artifacts."
+        },
+        {
+          "title": "Permission capability map",
+          "description": "Define reusable capabilities for finance and collaboration workflows."
+        }
+      ]
+    }
+  ],
+  "relatedCaseStudies": ["moroccan-fintech-platform-foundation"],
+  "featured": false,
+  "ctaItems": [
+    {
+      "label": "View project",
+      "link": "/projects/moroccan-fintech"
+    }
+  ],
+  "linkItems": [],
+  "status": {
+    "value": "in-progress",
+    "variant": "green"
+  },
+  "tags": [
+    "Platform architecture",
+    "Compliance-first design",
+    "Shared primitives",
+    "Product strategy"
+  ],
+  "problem": "Finance products for Moroccan businesses repeatedly need the same trust, tenancy, audit, and compliance primitives.",
+  "solution": "A shared platform layer that extracts reusable tenant identity, permissions, audit events, evidence links, and workflow status.",
+  "role": "Platform strategy and shared domain architecture across product lines.",
+  "proof": "The shared layer extracts tenant identity, permissions, audit events, evidence links, and workflow status from repeated product needs.",
+  "techStack": [
+    "Domain modeling",
+    "Platform design",
+    "Permissions",
+    "Audit systems"
+  ],
+  "challenges": [
+    "Avoiding a premature platform before product workflows repeat",
+    "Deciding which finance primitives are genuinely shared",
+    "Keeping local Moroccan compliance visible in reusable abstractions"
+  ],
+  "learnings": [
+    "A platform should preserve product speed, not predict every future need.",
+    "Shared infrastructure is strongest when it comes from repeated constraints."
+  ]
+}

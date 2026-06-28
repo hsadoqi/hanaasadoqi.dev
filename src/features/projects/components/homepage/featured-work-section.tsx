@@ -1,0 +1,127 @@
+'use client';
+
+import { projects } from '@/features/projects/data';
+import { FeaturedProjectCard } from '../show/featured-project-card';
+import { ProjectCard as CarouselProjectCard } from '../show/carousel-project-card';
+import { Section } from '@/components/layout/section';
+import { CarouselNav } from '@/features/projects/components/shared/carousel-nav';
+import { useCarousel } from '@/hooks/use-carousel';
+
+export function FeaturedWorkSection() {
+  const total = projects.length;
+  const {
+    activeIndex,
+    handleKeyDown,
+    next,
+    prev,
+    railRef,
+    scrollTo,
+    showLeftFade,
+    showRightFade,
+  } = useCarousel(total);
+
+  return (
+    <Section
+      id="case-studies"
+      header={{
+        eyebrow: 'Projects',
+        title: 'Selected Work',
+        description: 'Not everything ships. Everything gets thought through.',
+      }}
+      className="overflow-hidden"
+    >
+      {/* Header with Navigation — desktop */}
+      <div className="mb-10 flex flex-col gap-6 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
+        <div className="hidden sm:block">
+          <CarouselNav
+            currentIndex={activeIndex}
+            totalItems={total}
+            onPrevious={prev}
+            onNext={next}
+            layout="desktop"
+          />
+        </div>
+      </div>
+
+      {/* Carousel rail */}
+      <div
+        role="region"
+        aria-label="Projects carousel"
+        aria-roledescription="carousel"
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        className="focus-visible:ring-ring relative focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset"
+      >
+        {/* Left fade — visible when not at start */}
+        {showLeftFade && (
+          <div
+            className="from-background pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-12 bg-gradient-to-r to-transparent opacity-100 motion-safe:transition-opacity motion-safe:duration-300 sm:w-16 lg:w-20"
+            aria-hidden="true"
+          />
+        )}
+
+        <div
+          ref={railRef}
+          className="flex snap-x snap-mandatory scroll-px-6 [scrollbar-width:none] gap-3 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth px-6 pb-3 [-webkit-overflow-scrolling:touch] sm:scroll-px-8 sm:gap-4 sm:px-8 lg:scroll-px-12 lg:px-12 [&::-webkit-scrollbar]:hidden"
+          aria-live="polite"
+        >
+          {/* Featured card */}
+          {/* <div
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`1 of ${total}: ${featured.title} (featured)`}
+            className="flex-none"
+          >
+            <FeaturedProjectCard featured={featured} />
+          </div> */}
+
+          {/* Secondary cards */}
+          {projects.map((study, i) => (
+            <div
+              key={study.title}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${i + 1} of ${total}: ${study.title}`}
+              className="flex-none"
+            >
+              {study.featured ? (
+                <FeaturedProjectCard featured={study} />
+              ) : (
+                <CarouselProjectCard project={study} index={i} />
+              )}
+            </div>
+          ))}
+
+          {/* Trailing spacer so last card can snap cleanly */}
+          <div
+            className="w-6 flex-none shrink-0 sm:w-8 lg:w-12"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Right fade — visible when not at end */}
+        {showRightFade && (
+          <div
+            className="from-background pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-12 bg-gradient-to-l to-transparent opacity-100 motion-safe:transition-opacity motion-safe:duration-300 sm:w-16 lg:w-20"
+            aria-hidden="true"
+          />
+        )}
+      </div>
+
+      {/* Navigation — mobile (below rail) */}
+      <div className="mt-6 px-6 sm:hidden">
+        <CarouselNav
+          currentIndex={activeIndex}
+          totalItems={total}
+          onPrevious={prev}
+          onNext={next}
+          onDotClick={scrollTo}
+          layout="mobile"
+          className="flex justify-center"
+        />
+      </div>
+    </Section>
+  );
+}
+
+export { FeaturedWorkSection as ProjectsSection };

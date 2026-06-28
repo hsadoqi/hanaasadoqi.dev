@@ -1,0 +1,216 @@
+{
+  "slug": "blog",
+  "title": "Blog - Custom MDX site",
+  "subtitle": "A dedicated writing system with full control over structure, components, and publishing rhythm",
+  "hero": {
+    "eyebrow": "Case Study",
+    "badges": [
+      {
+        "text": "Live",
+        "color": "green"
+      },
+      {
+        "text": "Content system",
+        "color": "muted"
+      }
+    ],
+    "image": {
+      "label": "Writing system preview",
+      "src": "",
+      "alt": ""
+    }
+  },
+  "sections": [
+    {
+      "type": "context",
+      "title": "Why split writing from the portfolio?",
+      "paragraphs": [
+        "The original portfolio had a blog section, but it was too tightly coupled to the site around it. Writing needed its own system: separate information architecture, stronger MDX primitives, and enough control to support essays, technical notes, and teaching material without reshaping the portfolio every time.",
+        "The dedicated blog became a small publishing product rather than a page on a personal site."
+      ],
+      "pullQuote": {
+        "text": "The blog itself is the artifact: a system for writing, teaching, and shaping technical context without fighting the container.",
+        "attribution": "Project framing"
+      }
+    },
+    {
+      "type": "decisions",
+      "title": "The questions we had to answer",
+      "decisions": [
+        {
+          "title": "Why use MDX instead of a headless CMS?",
+          "teaser": "The content needed custom rendering and version control more than an editor UI.",
+          "answer": "MDX keeps content close to the components that explain it. Posts can include custom callouts, diagrams, code blocks, and structured sections while still living in git with the rest of the project.",
+          "alternatives": [
+            "Headless CMS with rich text fields",
+            "Plain Markdown with limited custom components",
+            "A hosted writing platform"
+          ]
+        },
+        {
+          "title": "How much design should a technical blog have?",
+          "teaser": "Too little structure makes posts hard to scan; too much visual design distracts from the writing.",
+          "answer": "The design direction is restrained: readable type, strong spacing, careful code treatment, and reusable components for recurring teaching patterns. The interface should support attention rather than perform as a portfolio piece.",
+          "alternatives": [
+            "Minimal default Markdown styling",
+            "Magazine-like layouts for every post",
+            "Portfolio-styled cards and visual flourishes"
+          ]
+        },
+        {
+          "title": "What should stay separate from the portfolio?",
+          "teaser": "The blog has different navigation and content needs than the main site.",
+          "answer": "The blog is deployed separately so its routes, content model, and design system can evolve independently. The portfolio can reference the blog without inheriting its complexity.",
+          "alternatives": [
+            "Keep posts under the portfolio route tree",
+            "Duplicate styles and components between both sites",
+            "Use a third-party publishing service"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "architecture",
+      "title": "How the content system works",
+      "diagramLabel": "MDX content pipeline",
+      "diagramHeight": 460,
+      "callout": {
+        "type": "note",
+        "text": "A writing system is infrastructure. The better the primitives are, the less friction there is between having an idea and publishing it well."
+      },
+      "designDecision": {
+        "title": "Component-Driven MDX",
+        "description": "Posts use MDX components for recurring structures like notes, examples, and code explanations.",
+        "why": "Reusable components keep posts consistent without forcing every article into the same layout."
+      }
+    },
+    {
+      "type": "constraints",
+      "title": "What shaped the build",
+      "constraints": [
+        {
+          "title": "Writing needs low friction",
+          "description": "If publishing requires too much ceremony, the system will not get used.",
+          "impact": ["Content workflow", "File structure", "Preview ergonomics"]
+        },
+        {
+          "title": "Code examples need care",
+          "description": "Technical writing depends on code blocks, inline explanations, and examples that stay readable on mobile.",
+          "impact": ["Typography", "Responsive design", "MDX components"]
+        },
+        {
+          "title": "The blog should evolve independently",
+          "description": "The portfolio and writing site serve different purposes and should not block each other's changes.",
+          "impact": ["Deployment", "Routing", "Component boundaries"]
+        }
+      ]
+    },
+    {
+      "type": "tradeoffs",
+      "title": "What I chose not to optimize yet",
+      "tradeoffs": [
+        {
+          "title": "No CMS editor",
+          "whatWeChose": "Write directly in MDX files",
+          "whatItCost": "No browser-based editing or non-technical authoring flow",
+          "whenWeReconsider": "If the site needs guest authors or editorial collaboration"
+        },
+        {
+          "title": "No complex taxonomy",
+          "whatWeChose": "Keep metadata and navigation simple",
+          "whatItCost": "Fewer discovery paths for now",
+          "whenWeReconsider": "Once there is enough writing volume to justify stronger categorization"
+        }
+      ]
+    },
+    {
+      "type": "metrics",
+      "title": "How I judge the system",
+      "metrics": [
+        {
+          "label": "Deploy target",
+          "value": "1",
+          "unit": "separate site"
+        },
+        {
+          "label": "Content format",
+          "value": "MDX",
+          "unit": "native"
+        },
+        {
+          "label": "Primary goal",
+          "value": "Low",
+          "unit": "publishing friction"
+        },
+        {
+          "label": "Design priority",
+          "value": "High",
+          "unit": "readability"
+        }
+      ]
+    },
+    {
+      "type": "reflections",
+      "title": "What this clarified",
+      "reflections": [
+        {
+          "intro": "I learned that...",
+          "insight": "A blog is easier to maintain when it has product boundaries. Separating it from the portfolio made both systems simpler.",
+          "transferable": "Split systems when their publishing cadence, information architecture, and user goals differ."
+        },
+        {
+          "intro": "I learned that...",
+          "insight": "Good writing tools are quiet. The best components disappear while drafting and only show their value when the post is read.",
+          "transferable": "Build authoring primitives around repeated real needs, not decorative possibilities."
+        }
+      ]
+    },
+    {
+      "type": "whatsnext",
+      "title": "The work ahead",
+      "intro": "The site is live, but the writing system can still get sharper:",
+      "items": [
+        {
+          "title": "Improve post templates",
+          "description": "Add stronger defaults for essays, technical walkthroughs, and short notes."
+        },
+        {
+          "title": "Refine discovery",
+          "description": "Introduce lightweight topic pages once there are enough posts to make them useful."
+        },
+        {
+          "title": "Keep examples reusable",
+          "description": "Turn repeated explanation patterns into MDX components only after they prove up across multiple posts."
+        }
+      ]
+    }
+  ],
+  "relatedCaseStudies": [],
+  "featured": false,
+  "ctaItems": [
+    {
+      "label": "View project",
+      "link": "/projects/blog"
+    }
+  ],
+  "linkItems": [],
+  "tags": ["MDX", "Content system", "Typography", "Publishing workflow"],
+  "status": {
+    "value": "launched",
+    "variant": "green"
+  },
+  "problem": "Technical writing needed its own publishing system instead of being tightly coupled to the portfolio.",
+  "solution": "A dedicated MDX-based site with custom content primitives, readable defaults, and independent deployment.",
+  "role": "Information architecture, MDX component design, and publishing workflow.",
+  "proof": "The writing system separates content structure, custom components, and deployment cadence from the main portfolio.",
+  "techStack": ["Next.js", "MDX", "TypeScript", "Content architecture"],
+  "challenges": [
+    "Keeping authoring friction low while supporting rich posts",
+    "Designing reusable MDX components without overfitting early content",
+    "Separating the blog from the portfolio without duplicating every primitive"
+  ],
+  "learnings": [
+    "Publishing systems need product boundaries as much as visual polish.",
+    "Good writing tools should make the common path quiet and predictable."
+  ]
+}

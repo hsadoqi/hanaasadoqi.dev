@@ -1,0 +1,225 @@
+{
+  "slug": "synapcity",
+  "title": "Synapcity",
+  "subtitle": "Validating a knowledge system for teams that lose decisions faster than they make them",
+  "hero": {
+    "eyebrow": "Case Study",
+    "badges": [
+      {
+        "text": "Early validation",
+        "color": "amber"
+      },
+      {
+        "text": "Product architecture",
+        "color": "muted"
+      }
+    ],
+    "image": {
+      "label": "Knowledge graph exploration",
+      "src": "",
+      "alt": ""
+    }
+  },
+  "sections": [
+    {
+      "type": "context",
+      "title": "Why this problem matters",
+      "paragraphs": [
+        "Teams rarely lose knowledge all at once. They lose it through thousands of small context leaks: decisions buried in chat, undocumented trade-offs, unresolved questions, and onboarding paths that depend on whoever happens to remember the history.",
+        "Synapcity started as an exploration of how to make team knowledge easier to recover without asking people to maintain a second system by hand."
+      ],
+      "pullQuote": {
+        "text": "The hard part is not storing knowledge. The hard part is making the right context reappear when a team needs it.",
+        "attribution": "Product thesis"
+      }
+    },
+    {
+      "type": "decisions",
+      "title": "The questions we had to answer",
+      "decisions": [
+        {
+          "title": "What counts as knowledge worth preserving?",
+          "teaser": "A capture-everything system becomes noise almost immediately.",
+          "answer": "The model focuses on decisions, source material, people, and follow-up questions rather than raw message archives. That keeps the product centered on reusable context instead of becoming another search box over stale conversation history.",
+          "alternatives": [
+            "Index every message and rely on search ranking",
+            "Ask users to manually curate canonical documents",
+            "Treat every document, message, and task as the same object type"
+          ]
+        },
+        {
+          "title": "How should permissions work across team memory?",
+          "teaser": "Knowledge tools fail if private context leaks into broad search results.",
+          "answer": "The permission model is scoped around source systems and derived artifacts. If a user cannot access the original source, they should not see generated summaries or connected nodes that reveal its contents.",
+          "alternatives": [
+            "Single workspace-wide permission model",
+            "Manual labels on every captured artifact",
+            "Separate indexes per source without cross-linking"
+          ]
+        },
+        {
+          "title": "When is AI useful versus distracting?",
+          "teaser": "Generated summaries are only valuable when grounded in traceable source material.",
+          "answer": "The product direction keeps AI in a supporting role: clustering related context, naming decision threads, and suggesting missing questions. Every generated artifact needs source links and a clear confidence boundary.",
+          "alternatives": [
+            "Chat-first interface for all interactions",
+            "Fully automatic decision records",
+            "Purely manual knowledge maps"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "architecture",
+      "title": "How the system is framed",
+      "diagramLabel": "Knowledge model diagram",
+      "diagramHeight": 480,
+      "callout": {
+        "type": "discovery",
+        "text": "The product is most useful when it treats knowledge as a graph of claims, decisions, people, and evidence, not a folder of documents."
+      },
+      "designDecision": {
+        "title": "Source-Backed Knowledge Nodes",
+        "description": "Every durable piece of knowledge is represented as a node with links back to the source material that produced it.",
+        "why": "Teams need to trust the output. Source-backed nodes make generated context auditable instead of mysterious."
+      }
+    },
+    {
+      "type": "constraints",
+      "title": "What makes this hard",
+      "constraints": [
+        {
+          "title": "The source material is messy",
+          "description": "Relevant context can live in Slack, docs, tickets, meeting notes, and people's heads. The system has to tolerate incomplete and uneven inputs.",
+          "impact": ["Data ingestion", "Ranking", "Source attribution"]
+        },
+        {
+          "title": "Access control is product-critical",
+          "description": "Search and summarization cannot reveal private source material through indirect references.",
+          "impact": ["Permissions", "Indexing", "Generated summaries"]
+        },
+        {
+          "title": "Users should not need a new habit",
+          "description": "The product needs to recover context from existing workflows before asking users to create new artifacts.",
+          "impact": [
+            "Integration strategy",
+            "Onboarding",
+            "Information architecture"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tradeoffs",
+      "title": "What is intentionally out of scope",
+      "tradeoffs": [
+        {
+          "title": "No full project management layer",
+          "whatWeChose": "Focus on knowledge recovery and decision context",
+          "whatItCost": "Tasks and delivery planning still live in dedicated tools",
+          "whenWeReconsider": "Only if the knowledge graph starts exposing workflow gaps that existing tools cannot represent"
+        },
+        {
+          "title": "No automatic truth source",
+          "whatWeChose": "Show source-backed context with confidence instead of declaring a single canonical answer",
+          "whatItCost": "Users still need judgment when sources disagree",
+          "whenWeReconsider": "When the system can model provenance, freshness, and authority well enough to rank truth claims responsibly"
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "title": "Current stage",
+      "milestones": [
+        {
+          "date": "Discovery",
+          "title": "Problem framing",
+          "description": "Mapped the recurring failure modes around buried decisions, onboarding context, and source fragmentation."
+        },
+        {
+          "date": "Validation",
+          "title": "Knowledge model sketches",
+          "description": "Explored how decisions, evidence, people, and unresolved questions should relate to each other."
+        },
+        {
+          "date": "Next",
+          "title": "Prototype scope",
+          "description": "Define the smallest useful workflow that proves whether source-backed team memory is worth building."
+        }
+      ]
+    },
+    {
+      "type": "reflections",
+      "title": "What this is teaching me",
+      "reflections": [
+        {
+          "intro": "I learned that...",
+          "insight": "Knowledge products are trust products. If users cannot trace where an answer came from, they will treat the system as decoration.",
+          "transferable": "Design AI-assisted systems around provenance before adding more generation."
+        },
+        {
+          "intro": "I learned that...",
+          "insight": "The capture problem is less important than the recovery problem. Teams already create huge amounts of context; the real value is making it usable later.",
+          "transferable": "Optimize for the moment of retrieval, not the moment of storage."
+        }
+      ]
+    },
+    {
+      "type": "whatsnext",
+      "title": "The work ahead",
+      "intro": "Synapcity is still in validation, so the next steps are intentionally narrow:",
+      "items": [
+        {
+          "title": "Prototype one source workflow",
+          "description": "Start with one source system and prove whether extracted decisions can become useful knowledge nodes."
+        },
+        {
+          "title": "Test permission boundaries",
+          "description": "Model what users can see when source permissions differ across people and teams."
+        },
+        {
+          "title": "Validate retrieval moments",
+          "description": "Interview around concrete moments: onboarding, revisiting old decisions, and preparing for project handoff."
+        }
+      ]
+    }
+  ],
+  "relatedCaseStudies": ["synapcity-knowledge-graph"],
+  "featured": false,
+  "ctaItems": [
+    {
+      "label": "View project",
+      "link": "/projects/synapcity"
+    }
+  ],
+  "linkItems": [],
+  "status": {
+    "value": "development",
+    "variant": "green"
+  },
+  "tags": [
+    "Knowledge graph",
+    "Permissions",
+    "Source attribution",
+    "AI workflows"
+  ],
+  "problem": "Teams lose decisions, trade-offs, and source context across chat, docs, tickets, and meetings.",
+  "solution": "A source-backed knowledge model that organizes decisions, evidence, people, and open questions instead of raw message archives.",
+  "role": "Product discovery, knowledge model design, and prototype architecture.",
+  "proof": "The prototype models knowledge as source-backed decisions, evidence, people, and open questions instead of raw message archives.",
+  "techStack": [
+    "Knowledge modeling",
+    "Permissions",
+    "AI workflows",
+    "Source attribution"
+  ],
+  "challenges": [
+    "Separating durable knowledge from noisy source material",
+    "Preserving permission boundaries across generated summaries",
+    "Making context recoverable without asking teams to maintain a second system"
+  ],
+  "learnings": [
+    "Knowledge products are trust products; provenance has to come first.",
+    "The recovery moment matters more than the capture moment."
+  ]
+}
