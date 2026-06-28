@@ -1,3 +1,5 @@
 export * from './hero';
-export * from './case-studies';
-export * from './systems';
+export * from './about';
+export * from './contact';
+export * from './experience';
+export * from './writing';
