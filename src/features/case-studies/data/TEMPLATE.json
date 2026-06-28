@@ -1,0 +1,185 @@
+{
+  "slug": "case-study-slug",
+  "project_slug": "project-slug",
+  "title": "Case Study Title",
+  "subtitle": "One-line description of the case study",
+  "description": "A short overview of what this case study covers and why it matters.",
+  "problem": "The specific product, system, or user problem this case study investigates.",
+  "solution": "The approach, architecture, workflow, or design direction used to address the problem.",
+  "role": "Your role and ownership in this case study.",
+  "proof": "A short evidence statement, artifact, or outcome that supports the case study.",
+  "impact": "Why the case study matters for users, the product, the business, or future work.",
+  "featured": false,
+  "status": {
+    "value": "in-progress",
+    "variant": "green"
+  },
+  "tags": ["Tag one", "Tag two", "Tag three"],
+  "techStack": ["Technology one", "Technology two", "Technology three"],
+  "challenges": [
+    "Challenge or constraint one",
+    "Challenge or constraint two",
+    "Challenge or constraint three"
+  ],
+  "learnings": ["Learning or insight one.", "Learning or insight two."],
+  "hero": {
+    "eyebrow": "Case Study",
+    "badges": [
+      {
+        "text": "Status badge",
+        "color": "blue"
+      },
+      {
+        "text": "Category badge",
+        "color": "muted"
+      }
+    ],
+    "image": {
+      "label": "Hero image label",
+      "src": "/artifacts/case-study-slug/hero.png",
+      "alt": "Descriptive alt text for the case study hero image"
+    }
+  },
+  "images": [
+    {
+      "label": "Supporting image label",
+      "src": "/artifacts/case-study-slug/supporting-image.png",
+      "alt": "Descriptive alt text for the supporting image",
+      "caption": "Optional caption for this image."
+    }
+  ],
+  "sections": [
+    {
+      "type": "context",
+      "title": "Section Title",
+      "paragraphs": [
+        "First paragraph of context explaining the background.",
+        "Second paragraph providing more detail."
+      ],
+      "pullQuote": {
+        "text": "Optional important quote or problem statement",
+        "attribution": "Attribution or source"
+      }
+    },
+    {
+      "type": "decisions",
+      "title": "The questions we had to answer",
+      "decisions": [
+        {
+          "title": "Decision question here?",
+          "teaser": "Brief teaser of what this decision was about",
+          "answer": "Detailed explanation of how you solved it and why you chose this approach",
+          "alternatives": [
+            "Alternative 1 you considered",
+            "Alternative 2 you considered"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "architecture",
+      "title": "How we structured the thinking",
+      "diagramLabel": "Architecture diagram",
+      "diagramHeight": 500,
+      "callout": {
+        "type": "discovery",
+        "text": "Important insight about your architectural decisions"
+      },
+      "designDecision": {
+        "title": "Key Design Decision Name",
+        "description": "What this design decision is and why it matters",
+        "why": "The business or technical reasoning behind this choice"
+      }
+    },
+    {
+      "type": "constraints",
+      "title": "What looked easy but wasn't",
+      "constraints": [
+        {
+          "title": "Constraint name",
+          "description": "What this constraint is and why it was challenging",
+          "impact": [
+            "System 1 affected",
+            "System 2 affected",
+            "System 3 affected"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tradeoffs",
+      "title": "What we chose not to do and why",
+      "tradeoffs": [
+        {
+          "title": "Feature we didn't build",
+          "whatWeChose": "What you chose to do instead",
+          "whatItCost": "The trade-off or limitation of your choice",
+          "whenWeReconsider": "Under what conditions you would reconsider"
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "title": "How the case study evolved",
+      "milestones": [
+        {
+          "date": "Month Year",
+          "title": "Milestone title",
+          "description": "What happened in this phase"
+        }
+      ]
+    },
+    {
+      "type": "metrics",
+      "title": "How we know it's working",
+      "metrics": [
+        {
+          "label": "Metric name",
+          "value": "42",
+          "unit": "units",
+          "description": "Optional detailed description"
+        }
+      ]
+    },
+    {
+      "type": "reflections",
+      "title": "What we'd do differently",
+      "reflections": [
+        {
+          "intro": "We learned that...",
+          "insight": "Key insight from the case study that might have taken time or was surprising",
+          "transferable": "What this means for other projects or general application"
+        }
+      ]
+    },
+    {
+      "type": "whatsnext",
+      "title": "The work ahead",
+      "intro": "Narrative introduction to what comes next",
+      "items": [
+        {
+          "title": "Next focus area 1",
+          "description": "What you're planning to work on next"
+        }
+      ]
+    }
+  ],
+  "ctaItems": [
+    {
+      "label": "View project",
+      "link": "/projects/project-slug",
+      "variant": "default"
+    }
+  ],
+  "linkItems": [
+    {
+      "kind": "external",
+      "href": "https://example.com",
+      "label": "Related artifact",
+      "isExternal": true,
+      "isDisabled": false
+    }
+  ],
+  "isComingSoon": false,
+  "isDisabled": false
+}

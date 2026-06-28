@@ -1,0 +1,274 @@
+{
+  "slug": "generafi-payroll-rules",
+  "title": "Generafi Payroll Rules Engine",
+  "subtitle": "Rebuilding Moroccan payroll and accounting around versioned compliance rules",
+  "description": "A technical case study on turning fast-changing Moroccan payroll and accounting requirements into auditable, tenant-safe product infrastructure.",
+  "status": {
+    "value": "in-progress",
+    "variant": "pink"
+  },
+  "tags": [
+    "Rules engine",
+    "Multi-tenancy",
+    "Audit logs",
+    "Payroll compliance",
+    "Permissions"
+  ],
+  "project_slug": "generafi",
+  "hero": {
+    "eyebrow": "Generafi Case Study",
+    "badges": [
+      {
+        "text": "Active rebuild",
+        "color": "blue"
+      },
+      {
+        "text": "Compliance architecture",
+        "color": "muted"
+      }
+    ],
+    "image": {
+      "label": "platform architecture",
+      "src": "/artifacts/generafi/generafi-dashboard.png",
+      "alt": ""
+    }
+  },
+  "images": [
+    {
+      "src": "/artifacts/generafi/generafi-dashboard.png",
+      "alt": "Generafi dashboard showing payroll and accounting operations",
+      "caption": "Primary workflow surface for payroll, accounting, and compliance activity.",
+      "className": "bg-white",
+      "imageClassName": "object-contain p-3"
+    },
+    {
+      "src": "/artifacts/generafi/generafi-dashboard.png",
+      "alt": "Detailed Generafi dashboard controls for finance operators",
+      "caption": "Operational controls are organized around review, approval, and audit readiness.",
+      "className": "bg-white",
+      "imageClassName": "object-cover object-left-top"
+    }
+  ],
+  "sections": [
+    {
+      "type": "context",
+      "title": "Why the product needed a rebuild",
+      "paragraphs": [
+        "Generafi started from a practical problem: Moroccan SMBs need accounting and payroll software that understands local compliance instead of forcing teams to translate generic workflows into Moroccan operating reality.",
+        "The original architecture could support basic workflows, but it made every new compliance change expensive. Payroll rules, permissions, and audit trails were too tightly coupled to application logic, so the rebuild focused on making compliance an explicit part of the data model."
+      ],
+      "pullQuote": {
+        "text": "The goal was not to make payroll configurable. The goal was to make every calculation explainable later.",
+        "attribution": "Architecture thesis"
+      }
+    },
+    {
+      "type": "decisions",
+      "title": "The questions we had to answer",
+      "decisions": [
+        {
+          "title": "How should payroll rules change without rewriting application code?",
+          "teaser": "Regulatory changes are normal, so the system needed a durable way to model them.",
+          "answer": "Payroll rules became first-class records with schemas, effective dates, versions, and test fixtures. A payroll run locks to the applicable rule version, which means historical calculations remain reproducible even after new rules are published.",
+          "alternatives": [
+            "Hardcode calculations directly in service logic",
+            "Keep rules in spreadsheets and import results",
+            "Use a separate rules service before the domain model was stable"
+          ]
+        },
+        {
+          "title": "How do we isolate tenants without making operations expensive?",
+          "teaser": "The product needs shared infrastructure economics without casual data leakage risk.",
+          "answer": "The system uses tenant-scoped data access and audit checks at mutation boundaries. Every business object carries tenant ownership, and service methods require tenant context before reads or writes can happen.",
+          "alternatives": [
+            "Separate databases per customer",
+            "Application-only filtering with no database guardrails",
+            "A hybrid model that separates only payroll records"
+          ]
+        },
+        {
+          "title": "What should permissions model for Moroccan SMBs look like?",
+          "teaser": "Real organizations do not always match fixed admin, manager, and employee hierarchies.",
+          "answer": "The permissions model is action-based rather than title-based. Customers can define roles that match their accounting, payroll, and approval workflows while the product keeps high-risk operations behind explicit capabilities.",
+          "alternatives": [
+            "A fixed role hierarchy",
+            "Full attribute-based access control from day one",
+            "One owner account with lightweight collaborator access"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "architecture",
+      "title": "How the rebuild is structured",
+      "diagramLabel": "Generafi domain architecture",
+      "diagramHeight": 500,
+      "callout": {
+        "type": "discovery",
+        "text": "The most important architecture boundary is between rules that can change and records that must never change retroactively."
+      },
+      "designDecision": {
+        "title": "Versioned Rules as Domain Data",
+        "description": "Tax, payroll, and deduction rules are represented as versioned domain records with validation and effective dates.",
+        "why": "This keeps compliance updates operationally manageable while preserving a clear audit path for past payroll runs."
+      }
+    },
+    {
+      "type": "constraints",
+      "title": "What made it hard",
+      "constraints": [
+        {
+          "title": "Compliance changes are recurring",
+          "description": "The system has to assume tax and payroll rules will evolve several times a year.",
+          "impact": ["Rule schema", "Testing strategy", "Release workflow"]
+        },
+        {
+          "title": "Historical payroll must be reproducible",
+          "description": "A past payroll run cannot silently change because a rule was edited later.",
+          "impact": ["Versioning", "Audit logs", "Reporting"]
+        },
+        {
+          "title": "Operators need confidence, not just automation",
+          "description": "Finance teams need to see why a calculation happened before they trust the system.",
+          "impact": [
+            "Interface design",
+            "Calculation explainability",
+            "Support tooling"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tradeoffs",
+      "title": "What we chose not to do",
+      "tradeoffs": [
+        {
+          "title": "No marketplace of integrations at launch",
+          "whatWeChose": "Build a small set of deliberate import and export paths around core payroll and accounting workflows.",
+          "whatItCost": "Customers with unusual toolchains need custom handling during onboarding.",
+          "whenWeReconsider": "When repeated integration requests show stable demand patterns."
+        },
+        {
+          "title": "No full no-code rule builder",
+          "whatWeChose": "Expose rules as structured configuration managed by trusted operators.",
+          "whatItCost": "Non-technical users cannot create arbitrary payroll logic themselves.",
+          "whenWeReconsider": "When rule schemas stabilize enough to make a constrained builder safe."
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "title": "How the work evolved",
+      "milestones": [
+        {
+          "date": "Jan 2024",
+          "title": "Domain mapping",
+          "description": "Mapped payroll, accounting, and compliance workflows into entities that could be audited independently."
+        },
+        {
+          "date": "Mar 2024",
+          "title": "Tenant and permission foundation",
+          "description": "Built tenant-scoped access patterns, role capabilities, and mutation audit events."
+        },
+        {
+          "date": "May 2024",
+          "title": "Rules engine prototype",
+          "description": "Modeled versioned payroll rules and tested historical calculation replay."
+        },
+        {
+          "date": "Oct 2024",
+          "title": "Operator workflow refinement",
+          "description": "Shifted interface work toward review, approval, and exception handling."
+        }
+      ]
+    },
+    {
+      "type": "metrics",
+      "title": "How we evaluated it",
+      "metrics": [
+        {
+          "label": "Rule families",
+          "value": "12",
+          "unit": "modeled",
+          "description": "Core payroll and deduction families represented in the rules model."
+        },
+        {
+          "label": "Audit coverage",
+          "value": "100",
+          "unit": "% mutations",
+          "description": "Target coverage for domain mutations that affect payroll or accounting records."
+        },
+        {
+          "label": "Replay checks",
+          "value": "48",
+          "unit": "fixtures",
+          "description": "Historical-style scenarios used to verify versioned rule behavior."
+        },
+        {
+          "label": "Tenant scope",
+          "value": "1",
+          "unit": "required context",
+          "description": "Every domain operation requires explicit tenant context."
+        }
+      ]
+    },
+    {
+      "type": "reflections",
+      "title": "What we learned",
+      "reflections": [
+        {
+          "intro": "We learned that...",
+          "insight": "Compliance-heavy products need a data model that explains decisions after the fact, not just a UI that helps users complete tasks.",
+          "transferable": "Treat regulatory logic as product infrastructure early, especially when customers need auditability."
+        },
+        {
+          "intro": "We learned that...",
+          "insight": "Versioning only the rule is not enough. The inputs, dependencies, and approval state around a calculation need to be preserved too.",
+          "transferable": "Design replayability around the whole calculation context."
+        }
+      ]
+    },
+    {
+      "type": "whatsnext",
+      "title": "The work ahead",
+      "intro": "The next phase is about turning the architecture into a reliable operator experience.",
+      "items": [
+        {
+          "title": "Exception workflows",
+          "description": "Make unusual payroll cases visible, reviewable, and easy to resolve without breaking auditability."
+        },
+        {
+          "title": "Reporting layer",
+          "description": "Expose payroll and accounting history through reports that finance teams can trust."
+        },
+        {
+          "title": "Integration boundaries",
+          "description": "Define stable import and export contracts before expanding partner integrations."
+        }
+      ]
+    }
+  ],
+  "linkItems": [],
+  "ctaItems": [
+    {
+      "label": "View project",
+      "link": "/projects/generafi"
+    }
+  ],
+  "featured": false,
+  "problem": "Moroccan payroll rules change often, but historical payroll calculations need to remain reproducible and auditable.",
+  "solution": "Model payroll rules as versioned domain objects with tenant-scoped execution, audit events, and replayable calculation context.",
+  "role": "Domain modeling, payroll rules architecture, and audit workflow design.",
+  "proof": "The case study defines rule families, tenant boundaries, replay fixtures, and audit coverage targets for compliance-heavy payroll work.",
+  "impact": "A versioned rules model makes compliance changes safer while giving operators and auditors a clear record of how each payroll result was produced.",
+  "techStack": ["Rules engine", "Postgres", "TypeScript", "Audit logging"],
+  "challenges": [
+    "Keeping historical calculations stable after rule changes",
+    "Scoping every payroll operation to the correct tenant",
+    "Making compliance behavior explainable to operators and auditors"
+  ],
+  "learnings": [
+    "Compliance-heavy products need a data model that can explain decisions after the fact.",
+    "Replayability depends on preserving inputs, dependencies, and approval state, not only the rule version."
+  ]
+}
