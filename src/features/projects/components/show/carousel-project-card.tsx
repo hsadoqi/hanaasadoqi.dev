@@ -16,7 +16,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <article
       id={studyId}
-      className="group border-border/50 bg-card text-card-foreground hover:border-border focus-within:border-border relative flex h-full max-w-[min(76vw,300px)] min-w-[min(76vw,300px)] snap-start flex-col rounded-xl border p-6 hover:shadow-lg hover:shadow-black/[0.05] motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-out sm:max-w-[300px] sm:min-w-[300px] md:max-w-[320px] md:min-w-[320px] md:p-7 lg:max-w-[340px] lg:min-w-[340px]"
+      className="group border-border/40 bg-background/40 text-card-foreground shadow-elevation-1 hover:shadow-elevation-2 hover:border-border/60 relative flex h-full max-w-[min(76vw,300px)] min-w-[min(76vw,300px)] snap-start flex-col rounded-xl border p-6 backdrop-blur-sm motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-out hover:motion-safe:-translate-y-1 sm:max-w-[300px] sm:min-w-[300px] md:max-w-[320px] md:min-w-[320px] md:p-7 lg:max-w-[340px] lg:min-w-[340px]"
       aria-label={`Project: ${project.title}`}
     >
       {/* Status + index */}

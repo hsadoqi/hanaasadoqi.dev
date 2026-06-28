@@ -25,7 +25,7 @@ export function getProjectDisplay(project: ProjectDisplayItem) {
     status: project.status.value,
     tags,
     focus: tags,
-    techStack: isFeaturedProject ? techStack : [],
+    techStack,
     isFeaturedProject,
   };
 }
@@ -34,11 +34,25 @@ export function getProjectLink(project: ProjectDisplayItem): ProjectLink {
   const primaryCta = project.ctaItems?.[0];
   const projectSlug =
     'project_slug' in project ? project.project_slug : project.slug;
-  const href = primaryCta?.link ?? `/projects/${projectSlug}`;
+  const relatedCaseStudySlug =
+    'relatedCaseStudies' in project ? project.relatedCaseStudies?.[0] : undefined;
+  const projectHref = `/projects/${projectSlug}`;
+  const caseStudyHref = relatedCaseStudySlug
+    ? `${projectHref}/${relatedCaseStudySlug}`
+    : undefined;
+  const primaryCtaHref = primaryCta?.link;
+  const shouldUsePrimaryCta =
+    primaryCtaHref && (primaryCtaHref !== projectHref || !caseStudyHref);
+  const href = shouldUsePrimaryCta
+    ? primaryCtaHref
+    : (caseStudyHref ?? projectHref);
 
   return {
     href,
-    label: primaryCta?.label ?? 'View project',
+    label:
+      !shouldUsePrimaryCta && caseStudyHref
+        ? 'View case study'
+        : (primaryCta?.label ?? 'View project'),
     isExternal: /^https?:\/\//.test(href),
     isDisabled: project.isComingSoon ?? false,
   };

@@ -16,7 +16,7 @@ export function FeaturedProjectCard({
   return (
     <article
       id={studyId}
-      className="group border-border/50 bg-card text-card-foreground hover:border-border focus-within:border-border relative flex h-full max-w-[min(84vw,520px)] min-w-[min(84vw,520px)] snap-start flex-col rounded-2xl border p-7 hover:shadow-xl hover:shadow-black/[0.06] motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-out sm:max-w-[560px] sm:min-w-[560px] md:max-w-[640px] md:min-w-[640px] md:p-9 lg:max-w-[720px] lg:min-w-[720px]"
+      className="group border-border/40 bg-background/40 text-card-foreground shadow-elevation-2 hover:shadow-elevation-3 hover:border-border/70 relative flex h-full max-w-[min(84vw,520px)] min-w-[min(84vw,520px)] snap-start flex-col rounded-2xl border p-7 backdrop-blur-sm motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-out hover:motion-safe:-translate-y-1.5 sm:max-w-[560px] sm:min-w-[560px] md:max-w-[640px] md:min-w-[640px] md:p-9 lg:max-w-[720px] lg:min-w-[720px]"
       aria-label={`Featured project: ${featured.title}`}
     >
       {/* Status + index */}

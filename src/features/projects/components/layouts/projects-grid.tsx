@@ -9,13 +9,11 @@ export interface ProjectsGridProps {
 
 export function ProjectsGrid({ projects }: ProjectsGridProps) {
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
       {projects.map((project) => (
-        <ProjectCard
-          key={project.slug}
-          project={project}
-          featured={project.featured}
-        />
+        <div key={project.slug} className="mb-6 break-inside-avoid">
+          <ProjectCard project={project} featured={project.featured} />
+        </div>
       ))}
     </div>
   );

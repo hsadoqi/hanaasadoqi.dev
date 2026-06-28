@@ -19,11 +19,9 @@ export interface ProjectCardProps {
 export function ProjectCard({ project, featured }: ProjectCardProps) {
   const display = getProjectDisplay(project);
   const isFeatured = display.isFeaturedProject && featured;
-  const focusLimit = isFeatured ? 5 : 3;
-  const techStackLimit = isFeatured ? 8 : 4;
   const content = (
     <article
-      className={`group overflow-hidden rounded-lg border motion-safe:transition-all motion-safe:duration-200 ${display.link.isDisabled ? 'border-border/30 bg-muted/10 opacity-75' : 'hover:border-border/70 hover:bg-muted/20 focus-within:ring-ring focus-within:ring-2 focus-within:outline-none'} ${isFeatured ? 'border-border/50 bg-muted/30 p-8 sm:col-span-full sm:p-10' : 'border-border/40 bg-background p-6'} `}
+      className={`group inline-block w-full overflow-hidden rounded-lg border p-6 shadow-sm motion-safe:transition-all motion-safe:duration-200 ${display.link.isDisabled ? 'border-border/30 bg-card/40 opacity-75' : 'hover:border-border/70 hover:bg-card/80 focus-within:ring-ring focus-within:ring-2 focus-within:outline-none'} ${isFeatured ? 'border-border/60 bg-card/80' : 'border-border/50 bg-card/60'} `}
       aria-label={`${display.title}: ${display.link.label}`}
     >
       <div className="space-y-4">
@@ -37,31 +35,23 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
           <h3
             className={`text-foreground leading-snug motion-safe:transition-colors ${
               !display.link.isDisabled ? 'group-hover:text-foreground/80' : ''
-            } ${
-              isFeatured
-                ? 'text-xl font-semibold sm:text-2xl'
-                : 'text-base font-semibold'
-            }`}
+            } text-base font-semibold`}
           >
             {display.title}
           </h3>
-          <p
-            className={`text-muted-foreground/70 leading-relaxed ${
-              isFeatured ? 'text-base' : 'text-sm'
-            }`}
-          >
+          <p className="text-muted-foreground/70 text-sm leading-relaxed">
             {display.subtitle}
           </p>
         </div>
 
         {/* Focus Areas */}
-        <ProjectTagList tags={display.focus} limit={focusLimit} />
+        <ProjectTagList tags={display.focus} limit={2} />
 
         {/* Tech Stack */}
         <ProjectTagList
           tags={display.techStack}
           variant="tech"
-          limit={techStackLimit}
+          limit={3}
           className="pt-2"
         />
 

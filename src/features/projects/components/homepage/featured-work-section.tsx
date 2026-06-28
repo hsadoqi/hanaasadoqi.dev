@@ -25,8 +25,9 @@ export function FeaturedWorkSection() {
       id="case-studies"
       header={{
         eyebrow: 'Projects',
-        title: 'Selected Work',
-        description: 'Not everything ships. Everything gets thought through.',
+        title: 'Featured Work',
+        description:
+          'Not everything ships. But everything gets thought through.',
       }}
       className="overflow-hidden"
     >

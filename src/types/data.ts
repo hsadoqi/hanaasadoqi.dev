@@ -47,6 +47,10 @@ export interface BaseDataItem {
   isComingSoon?: boolean;
   isDisabled?: boolean;
   impact?: string;
+  startDate?: Date;
+  endDate?: Date;
+  lastUpdated?: Date;
+  createdAt?: Date;
 }
 
 export type CaseStudy = BaseDataItem & {

@@ -1,9 +1,9 @@
 'use client';
 
 import { useMemo } from 'react';
-import { ProjectsGrid } from './projects-grid';
-import { ProjectsList } from './projects-list';
-import { ProjectsCarousel } from './projects-carousel';
+import { ProjectsGrid } from '../projects-grid';
+import { ProjectsList } from '../projects-list';
+import { ProjectsCarousel } from '../../layouts/projects-carousel';
 import {
   IndexView,
   type IndexViewFilter,
