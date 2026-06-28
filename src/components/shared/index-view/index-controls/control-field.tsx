@@ -11,7 +11,7 @@ export function ControlField({
   children,
   className,
   label,
-  showLabel=true
+  showLabel = true,
 }: ControlFieldProps) {
   return (
     <div className={className}>

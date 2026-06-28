@@ -115,7 +115,7 @@ export function IndexToolbar<TViewId extends string, TSortId extends string>({
             <button
               type="button"
               onClick={handleClearFilters}
-              className="text-muted-foreground hover:bg-card/70 hover:text-foreground focus-visible:ring-ring inline-flex h-10 items-center rounded-md border border-transparent px-3 text-sm font-medium motion-safe:transition-colors focus-visible:ring-2 focus-visible:outline-none"
+              className="text-muted-foreground hover:bg-card/70 hover:text-foreground focus-visible:ring-ring inline-flex h-10 items-center rounded-md border border-transparent px-3 text-sm font-medium focus-visible:ring-2 focus-visible:outline-none motion-safe:transition-colors"
             >
               Clear
             </button>

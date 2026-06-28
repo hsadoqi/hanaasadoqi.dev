@@ -35,7 +35,9 @@ export function getProjectLink(project: ProjectDisplayItem): ProjectLink {
   const projectSlug =
     'project_slug' in project ? project.project_slug : project.slug;
   const relatedCaseStudySlug =
-    'relatedCaseStudies' in project ? project.relatedCaseStudies?.[0] : undefined;
+    'relatedCaseStudies' in project
+      ? project.relatedCaseStudies?.[0]
+      : undefined;
   const projectHref = `/projects/${projectSlug}`;
   const caseStudyHref = relatedCaseStudySlug
     ? `${projectHref}/${relatedCaseStudySlug}`

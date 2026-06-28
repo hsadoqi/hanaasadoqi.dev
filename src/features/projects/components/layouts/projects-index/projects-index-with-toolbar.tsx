@@ -78,7 +78,7 @@ export function ProjectsIndexWithToolbar({
         className="border-border/30 bg-card/20 -mx-6 border-y px-6 py-6 sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12"
       >
         <div className="mx-auto max-w-6xl space-y-7">
-          <div className="flex flex-col gap-4 border-b border-border/20 pb-6">
+          <div className="border-border/20 flex flex-col gap-4 border-b pb-6">
             <div>
               <p className="text-muted-foreground text-xs font-medium tracking-[0.2em] uppercase">
                 Browse
