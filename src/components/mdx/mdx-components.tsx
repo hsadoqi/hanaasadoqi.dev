@@ -1,45 +1,71 @@
-import type { ComponentProps, ReactNode } from 'react';
 import {
   CalloutNote as BlockCalloutNote,
+  PullQuote as BlockPullQuote,
+  SectionMarker as BlockSectionMarker,
   ConstraintBlock,
   DecisionCard,
   DiagramPlaceholder,
   GalleryGrid,
   MetricCard,
-  PullQuote as BlockPullQuote,
   ReflectionBlock,
   RenderSection,
-  SectionMarker as BlockSectionMarker,
   SectionTitle,
   TimelineItem,
   TradeOffCard,
 } from '@/components/shared/blocks';
 import { cn } from '@/lib/utils';
+import type { ComponentProps, ReactNode } from 'react';
+import { BeforeAfterSlider } from '../shared/visual';
 import { CodeBlock, Pre } from './code-block';
 import { MermaidDiagram } from './mermaid-diagram';
 
 type BeforeAfterItem = {
   before: string;
   after: string;
+  impact?: string;
 };
 
 export function BeforeAfter({ items }: { items: BeforeAfterItem[] }) {
   if (!items.length) return null;
 
   return (
-    <div className="my-8 grid gap-4 md:grid-cols-2">
+    <div className="my-8 space-y-4">
       {items.map((item) => (
         <div
           key={`${item.before}-${item.after}`}
-          className="border-border/40 bg-background/60 rounded-lg border p-4"
+          className="border-border/40 bg-card overflow-hidden rounded-xl border"
         >
-          <p className="type-eyebrow mb-3">Before</p>
-          <p className="type-body-sm text-secondary-content">{item.before}</p>
+          <div className="grid md:grid-cols-[1fr_auto_1fr]">
+            <div className="p-5">
+              <p className="type-eyebrow text-secondary-content mb-2">
+                Before
+              </p>
+              <p className="type-body-sm text-secondary-content">
+                {item.before}
+              </p>
+            </div>
 
-          <div className="border-border/30 my-4 border-t" />
+            <div
+              aria-hidden="true"
+              className="border-border/30 text-secondary-content flex items-center justify-center border-y px-4 py-3 md:border-x md:border-y-0"
+            >
+              →
+            </div>
 
-          <p className="type-eyebrow mb-3">After</p>
-          <p className="type-body-sm">{item.after}</p>
+            <div className="bg-brand/5 p-5">
+              <p className="type-eyebrow mb-2">After</p>
+              <p className="type-body-sm">{item.after}</p>
+            </div>
+          </div>
+
+          {item.impact ? (
+            <div className="border-border/30 bg-background/50 border-t px-5 py-4">
+              <p className="type-eyebrow text-secondary-content mb-2">
+                Impact
+              </p>
+              <p className="type-body-sm">{item.impact}</p>
+            </div>
+          ) : null}
         </div>
       ))}
     </div>
@@ -430,6 +456,7 @@ export const mdxComponents = {
   TradeOffCard,
   GalleryGrid,
   BeforeAfter,
+  BeforeAfterSlider,
   ArchitectureHighlightCard,
   SystemMap,
   OutcomeList,

@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useId, useState } from 'react';
-import mermaid from 'mermaid';
 import { cn } from '@/lib/utils';
+import mermaid from 'mermaid';
+import { useEffect, useId, useState } from 'react';
 
 type MermaidDiagramProps = {
   chart: string;

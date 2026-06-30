@@ -1,3 +1,4 @@
+export { ContentClosedState } from './content-closed-state';
 export {
   EmptyState,
   type EmptyStateAction,

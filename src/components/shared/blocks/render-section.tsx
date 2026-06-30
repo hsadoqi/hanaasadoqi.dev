@@ -1,15 +1,15 @@
 import type { PresentationalSection as CaseStudySection } from '@/types';
 import {
-  SectionTitle,
-  PullQuote,
-  DecisionCard,
-  DiagramPlaceholder,
   CalloutNote,
   ConstraintBlock,
-  TradeOffCard,
-  TimelineItem,
+  DecisionCard,
+  DiagramPlaceholder,
   MetricCard,
+  PullQuote,
   ReflectionBlock,
+  SectionTitle,
+  TimelineItem,
+  TradeOffCard,
 } from '../blocks';
 
 export function RenderSection({ section }: { section: CaseStudySection }) {
@@ -89,7 +89,7 @@ export function RenderSection({ section }: { section: CaseStudySection }) {
                 key={idx}
                 title={constraint.title}
                 description={constraint.description}
-                impact={constraint.impact}
+                impactSummary={constraint.impactSummary}
               />
             ))}
           </div>
