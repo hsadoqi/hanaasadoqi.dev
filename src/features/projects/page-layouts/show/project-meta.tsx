@@ -11,7 +11,7 @@ export const ProjectMeta = ({
 }) => {
   if (!project) return null;
   return (
-    <section className="border-border/40 border-b px-6 pt-16 pb-4 sm:pb-12 sm:px-8 sm:pt-24 lg:px-12">
+    <section className="border-border/40 border-b px-6 pt-16 pb-4 sm:px-8 sm:pt-24 sm:pb-12 lg:px-12">
       <div className="mx-auto max-w-4xl">
         <div className="space-y-6">
           <div>

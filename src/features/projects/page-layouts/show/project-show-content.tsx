@@ -11,7 +11,7 @@ export const ProjectShowContent = ({
   impactSummary?: string[];
   mdx?: string;
 }) => (
-  <section className="border-border/40 border-b px-6 sm:px-8 py-4 sm:py-12 lg:px-12">
+  <section className="border-border/40 border-b px-6 py-4 sm:px-8 sm:py-12 lg:px-12">
     <div className="mx-auto max-w-4xl space-y-16">
       {(problem || solution) && (
         <div className="grid gap-4 md:grid-cols-2">

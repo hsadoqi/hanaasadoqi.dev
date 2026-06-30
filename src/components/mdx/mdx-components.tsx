@@ -37,9 +37,7 @@ export function BeforeAfter({ items }: { items: BeforeAfterItem[] }) {
         >
           <div className="grid md:grid-cols-[1fr_auto_1fr]">
             <div className="p-5">
-              <p className="type-eyebrow text-secondary-content mb-2">
-                Before
-              </p>
+              <p className="type-eyebrow text-secondary-content mb-2">Before</p>
               <p className="type-body-sm text-secondary-content">
                 {item.before}
               </p>
@@ -60,9 +58,7 @@ export function BeforeAfter({ items }: { items: BeforeAfterItem[] }) {
 
           {item.impact ? (
             <div className="border-border/30 bg-background/50 border-t px-5 py-4">
-              <p className="type-eyebrow text-secondary-content mb-2">
-                Impact
-              </p>
+              <p className="type-eyebrow text-secondary-content mb-2">Impact</p>
               <p className="type-body-sm">{item.impact}</p>
             </div>
           ) : null}
