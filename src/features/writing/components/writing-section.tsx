@@ -38,7 +38,6 @@ export function WritingSection() {
               index !== visibleArticles.length - 1 ? 'border-b' : ''
             }`}
           >
-            {/* Status badge + Title row */}
             <div className="flex items-start justify-between gap-4">
               <h3 className="type-card-title-sm hover:text-foreground flex-1 motion-safe:transition-colors motion-safe:duration-200 sm:text-lg">
                 {article.title}
@@ -51,19 +50,13 @@ export function WritingSection() {
               </StatusBadge>
             </div>
 
-            {/* Summary */}
             <p className="type-body-sm max-w-3xl">{article.summary}</p>
 
-            {/* Tags */}
             <div className="flex flex-wrap gap-2 pt-2">
-              {article.tags.map((tag, tagIdx) => (
+              {article.tags.map((tag) => (
                 <span
                   key={tag}
-                  className={`rounded-md px-2.5 py-1 text-xs font-medium motion-safe:transition-all motion-safe:duration-200 ${
-                    tagIdx === 0
-                      ? 'text-brand bg-brand/10 border-brand/30 hover:border-brand/60 hover:bg-brand/15 border'
-                      : 'text-subtle-content bg-background/60 border-border/30 hover:border-border/60 hover:bg-background border'
-                  }`}
+                  className={`text-subtle-content bg-background/60 border-border/30 hover:border-border/60 hover:bg-background rounded-md border px-2.5 py-1 text-xs font-medium motion-safe:transition-all motion-safe:duration-200`}
                 >
                   {tag}
                 </span>
@@ -73,13 +66,12 @@ export function WritingSection() {
         ))}
       </div>
 
-      {/* Show more/less button */}
       {!showAll && remaining > 0 && (
         <button
           onClick={() => setShowAll(true)}
           className="border-border/30 type-body-sm hover:text-secondary-content hover:border-border/50 hover:bg-background/60 focus-visible:ring-ring focus-visible:ring-offset-background mt-8 w-full rounded-md border px-4 py-3 font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:transition-all motion-safe:duration-200"
         >
-          Show {remaining} more essays
+          Show
         </button>
       )}
 

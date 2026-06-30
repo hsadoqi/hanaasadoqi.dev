@@ -1,13 +1,13 @@
 import type { MetadataRoute } from 'next';
-import { loadAllCaseStudies } from '@/features/case-studies/lib';
-import { getProjectShowSlugs } from '@/features/projects/lib';
+import { loadPublicCaseStudies } from '@/features/case-studies/lib';
+import { getPublicProjectSlugs } from '@/features/projects/lib';
 
 const siteUrl = 'https://hanaasadoqi.dev';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [projectSlugs, caseStudies] = await Promise.all([
-    getProjectShowSlugs(),
-    loadAllCaseStudies(),
+    getPublicProjectSlugs(),
+    loadPublicCaseStudies(),
   ]);
 
   return [

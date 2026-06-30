@@ -1,3 +1,4 @@
+import { ScrollGradientText } from '@/components/shared/visual/scroll-gradient-text';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -64,36 +65,75 @@ const HeroContent = ({
   supportingLine?: string;
 }) => {
   return (
-    <div className="relative z-10">
-      {/* Greeting */}
+    <div id="hero-content" className="relative z-10">
       <p className="type-eyebrow mb-16">{greeting}</p>
-
-      {/* Headline with brand color gradient on "side quests" */}
       <h1 className="type-hero max-w-6xl">
         {headlineParts.map((line, i) => {
           const isBrandHighlight =
             line.toLowerCase().includes('side') ||
             line.toLowerCase().includes('quest');
+
           return (
-            <span
-              key={i}
-              className={`block ${
-                isBrandHighlight
-                  ? 'from-foreground to-brand bg-gradient-to-r bg-clip-text text-transparent'
-                  : ''
-              }`}
-            >
-              {line}
+            <span key={i} className="block">
+              {isBrandHighlight ? (
+                <ScrollGradientText id="hero-content">
+                  {line}
+                </ScrollGradientText>
+              ) : (
+                line
+              )}
             </span>
           );
         })}
       </h1>
+
       {supportingLine ? (
         <p className="type-body-lg mt-10 max-w-2xl">{supportingLine}</p>
       ) : null}
     </div>
   );
 };
+
+// const HeroContent = ({
+//   greeting,
+//   headlineParts,
+//   supportingLine,
+// }: {
+//   greeting: string;
+//   headlineParts: string[];
+//   supportingLine?: string;
+// }) => {
+//   return (
+//     <div className="relative z-10">
+//       {/* Greeting */}
+//       <p className="type-eyebrow mb-16">{greeting}</p>
+
+//       {/* Headline with brand color gradient on "side quests" */}
+//       <h1 className="type-hero max-w-6xl">
+//         {headlineParts.map((line, i) => {
+//           const isBrandHighlight =
+//             line.toLowerCase().includes('side') ||
+//             line.toLowerCase().includes('quest');
+//           return (
+//             <span
+//               key={i}
+//               className={`block ${
+//                 isBrandHighlight
+//                   ? 'from-foreground to-brand bg-gradient-to-r bg-clip-text text-transparent'
+//                   : ''
+//               }`}
+//             >
+//               {line}
+//             </span>
+//           );
+//         })}
+//       </h1>
+//       {supportingLine ? (
+//         <p className="type-body-lg mt-10 max-w-2xl">{supportingLine}</p>
+//       ) : null}
+//     </div>
+//   );
+// };
 
 export const HeroCta = ({ cta }: { cta: string }) => {
   return (
