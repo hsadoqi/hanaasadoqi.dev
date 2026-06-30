@@ -323,6 +323,7 @@
   button {
     @apply hover:cursor-pointer focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50;
   }
+
   h1,
   h2,
   h3,
@@ -360,30 +361,6 @@
     @apply bg-badge-solid-bg text-badge-solid-text;
   }
 
-  .accent-sky-solid {
-    @apply bg-accent-sky text-accent-sky-foreground;
-  }
-
-  .accent-sky-outline {
-    @apply text-accent-sky-foreground border-accent-sky-border-subtle hover:bg-accent-sky-subtle hover:text-accent-sky-text-subtle border bg-transparent;
-  }
-
-  .accent-gold-outline {
-    @apply text-accent-gold-foreground border-accent-gold-border-subtle hover:bg-accent-gold-subtle hover:text-accent-gold-text-subtle border bg-transparent;
-  }
-
-  .accent-emerald-outline {
-    @apply text-accent-emerald-foreground border-accent-emerald-border-subtle hover:bg-accent-emerald-subtle hover:text-accent-emerald-text-subtle border bg-transparent;
-  }
-
-  .accent-violet-outline {
-    @apply text-accent-violet-foreground border-accent-violet-border-subtle hover:bg-accent-violet-subtle hover:text-accent-violet-text-subtle border bg-transparent;
-  }
-
-  /* [data-status="draft"]{
-    @apply accent-gold-outline;
-  } */
-
   .interactive-glow {
     @apply motion-safe:transition-all motion-safe:duration-300;
   }
@@ -392,7 +369,6 @@
     filter: drop-shadow(0 0 12px var(--brand));
   }
 
-  /* Card glow effect */
   .card-glow {
     @apply motion-safe:transition-all motion-safe:duration-300;
   }
@@ -403,7 +379,6 @@
     );
   }
 
-  /* Pulse animation for active elements */
   @keyframes pulse-subtle {
     0%,
     100% {
@@ -433,12 +408,10 @@
 }
 
 @utility text-scroll-mix {
-  /* Establish baseline configurations */
   --start-color: oklch(0.623 0.214 259.81);
   --end-color: oklch(0.449 0.231 259.03);
   --scroll-ratio: 0;
 
-  /* Single-pass mix. Set --scroll-ratio from 0 → 1 inline or via JS. */
   color: color-mix(
     in oklch,
     var(--end-color) calc(var(--scroll-ratio) * 100%),

@@ -95,7 +95,7 @@ export const CASE_STUDY_STATUS = {
   design: 'Design',
   draft: 'Draft',
   planned: 'Planned',
-  published: 'Published'
+  published: 'Published',
 } as const satisfies Record<StatusType, string>;
 
 export const CASE_STUDY_STATUS_LABELS = {
@@ -107,8 +107,8 @@ export const CASE_STUDY_STATUS_LABELS = {
   development: CASE_STUDY_STATUS.development,
   design: CASE_STUDY_STATUS.design,
   draft: CASE_STUDY_STATUS.draft,
-  planned: CASE_STUDY_STATUS.planned, 
-  published: CASE_STUDY_STATUS.published
+  planned: CASE_STUDY_STATUS.planned,
+  published: CASE_STUDY_STATUS.published,
 } as const satisfies Record<StatusType, string>;
 
 export const BADGE_STYLES = {

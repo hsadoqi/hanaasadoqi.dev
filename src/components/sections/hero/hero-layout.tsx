@@ -1,4 +1,3 @@
-import { ScrollGradientText } from '@/components/shared/visual/scroll-gradient-text';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -25,7 +24,6 @@ export const HeroLayout = ({
         className,
       )}
     >
-      {/* Subtle background accent shapes */}
       <div className="bg-foreground/3 pointer-events-none absolute -top-40 -left-40 h-80 w-80 rounded-full blur-3xl" />
       <div className="bg-foreground/3 pointer-events-none absolute -right-40 -bottom-40 h-80 w-80 rounded-full blur-3xl" />
 
@@ -36,19 +34,17 @@ export const HeroLayout = ({
       />
 
       <div className="relative z-10 flex flex-col items-end justify-between gap-8 md:flex-row md:gap-12">
-        {/* Identities - Right aligned, vertical stack */}
         <div className="space-y-3 md:ml-auto md:text-right">
           {identities.map((line, i) => (
             <p
               key={i}
-              className="type-body-sm hover:text-foreground motion-safe:transition-colors motion-safe:duration-200 md:text-base"
+              className="type-body md:text-body-lg"
             >
               {line}
             </p>
           ))}
         </div>
 
-        {/* CTA - Bottom right */}
         <HeroCta cta={cta} />
       </div>
     </div>
@@ -66,7 +62,7 @@ const HeroContent = ({
 }) => {
   return (
     <div id="hero-content" className="relative z-10">
-      <p className="type-eyebrow mb-16">{greeting}</p>
+      <p className="type-eyebrow mb-12">{greeting}</p>
       <h1 className="type-hero max-w-6xl">
         {headlineParts.map((line, i) => {
           const isBrandHighlight =
@@ -74,14 +70,15 @@ const HeroContent = ({
             line.toLowerCase().includes('quest');
 
           return (
-            <span key={i} className="block">
-              {isBrandHighlight ? (
-                <ScrollGradientText id="hero-content">
-                  {line}
-                </ScrollGradientText>
-              ) : (
-                line
-              )}
+            <span
+              key={i}
+              className={cn('block', {
+                'from-foreground to-brand bg-gradient-to-r bg-clip-text text-transparent':
+                  isBrandHighlight,
+              })}
+              id="hero-content"
+            >
+              {line}
             </span>
           );
         })}

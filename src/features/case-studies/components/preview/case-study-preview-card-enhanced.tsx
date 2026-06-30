@@ -34,22 +34,25 @@ function CaseStudyPreviewCardEnhancedComponent({
   const primaryImage = showImage && images?.[0];
 
   return (
-    <Link href={caseStudyLink} className="group block motion-safe:transition-all motion-safe:duration-300">
+    <Link
+      href={caseStudyLink}
+      className="group block motion-safe:transition-all motion-safe:duration-300"
+    >
       <article
         className={cn(
           'bg-card/50 border-border/30 flex flex-col overflow-hidden rounded-lg border motion-safe:transition-all motion-safe:duration-300',
-          'hover:border-brand/50 hover:bg-card/80 hover:shadow-lg group-hover:shadow-lg',
-          'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4'
+          'hover:border-brand/50 hover:bg-card/80 group-hover:shadow-lg hover:shadow-lg',
+          'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4',
         )}
       >
         {/* Image Section */}
         {primaryImage && (
-          <div className="relative h-40 w-full overflow-hidden bg-foreground/5">
+          <div className="bg-foreground/5 relative h-40 w-full overflow-hidden">
             <Image
               src={primaryImage.src}
               alt={primaryImage.alt || title}
               fill
-              className="object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-105"
+              className="object-cover group-hover:scale-105 motion-safe:transition-transform motion-safe:duration-300"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           </div>
@@ -66,10 +69,10 @@ function CaseStudyPreviewCardEnhancedComponent({
                 variant="primary"
               />
             </div>
-            <h3 className="type-card-title break-words group-hover:text-brand motion-safe:transition-colors">
+            <h3 className="type-card-title group-hover:text-brand break-words motion-safe:transition-colors">
               {title}
             </h3>
-            <p className="type-body-sm mt-2 text-foreground/70 break-words">
+            <p className="type-body-sm text-foreground/70 mt-2 break-words">
               {subtitle}
             </p>
           </div>
@@ -78,11 +81,13 @@ function CaseStudyPreviewCardEnhancedComponent({
           <div className="flex flex-col gap-2 text-sm">
             <div className="flex items-center justify-between">
               <span className="type-caption text-foreground/60">Project:</span>
-              <span className="type-caption font-medium text-foreground">{projectSlug}</span>
+              <span className="type-caption text-foreground font-medium">
+                {projectSlug}
+              </span>
             </div>
             <div className="flex items-center justify-between">
               <span className="type-caption text-foreground/60">Scope:</span>
-              <span className="type-caption font-medium text-foreground line-clamp-1">
+              <span className="type-caption text-foreground line-clamp-1 font-medium">
                 {description}
               </span>
             </div>
@@ -109,5 +114,5 @@ function CaseStudyPreviewCardEnhancedComponent({
 }
 
 export const CaseStudyPreviewCardEnhanced = memo(
-  CaseStudyPreviewCardEnhancedComponent
+  CaseStudyPreviewCardEnhancedComponent,
 );
