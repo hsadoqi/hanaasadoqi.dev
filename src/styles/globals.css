@@ -134,11 +134,11 @@
 }
 
 @layer base {
-  * {
+  /* * {
     @apply border-border outline-ring/50;
-  }
+  } */
   html {
-    @apply scroll-smooth font-sans;
+    @apply scroll-smooth font-sans min-h-svh min-w-svw size-full;
     scroll-padding-top: 5rem;
   }
   body {

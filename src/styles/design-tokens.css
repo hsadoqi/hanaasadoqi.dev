@@ -99,6 +99,66 @@
   border-color: hsl(var(--border) / 0.7);
 }
 
+/* TYPOGRAPHY SYSTEM
+  Semantic roles for page hierarchy, readable body copy, and compact metadata
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@utility type-hero {
+  @apply font-heading text-foreground text-4xl leading-[1.08] font-semibold tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl;
+}
+
+@utility type-page-title {
+  @apply font-heading text-foreground text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl;
+}
+
+@utility type-show-title {
+  @apply font-heading text-foreground text-3xl leading-[1.12] font-semibold tracking-tight text-balance sm:text-[2.25rem] lg:text-[2.5rem];
+}
+
+@utility type-section-title {
+  @apply font-heading text-foreground text-[1.5rem] leading-tight font-medium tracking-tight text-balance sm:text-[1.75rem];
+}
+
+/* @utility type-section-subtitle {
+  @apply font-heading text-foreground text-[1.75rem] leading-tight font-semibold tracking-tight text-balance sm:text-[2rem];
+} */
+
+@utility type-panel-title {
+  @apply font-heading text-foreground text-xl leading-tight font-semibold tracking-tight text-balance sm:text-2xl;
+}
+
+@utility type-card-title {
+  @apply text-foreground text-lg leading-snug font-semibold tracking-tight text-balance;
+}
+
+@utility type-card-title-sm {
+  @apply text-foreground text-[18px] leading-snug font-semibold tracking-tight text-balance;
+}
+
+@utility type-body-lg {
+  @apply text-secondary-content text-base leading-8 sm:text-lg;
+}
+
+@utility type-body {
+  @apply text-secondary-content text-base leading-7;
+}
+
+@utility type-body-sm {
+  @apply text-secondary-content text-sm leading-6;
+}
+
+@utility type-caption {
+  @apply text-tertiary-content text-xs leading-5;
+}
+
+@utility type-eyebrow {
+  @apply text-tertiary-content text-xs leading-none font-semibold tracking-[0.18em] uppercase;
+}
+
+@utility type-meta {
+  @apply text-tertiary-content font-mono text-[11px] leading-none tabular-nums;
+}
+
 /* TEXT COLOR HIERARCHY
    5 semantic levels for information hierarchy
    ─────────────────────────────────────────────────────────────────────────── */
