@@ -15,6 +15,7 @@ type CarouselOptions = UseCarouselParameters[0];
 type CarouselPlugin = UseCarouselParameters[1];
 
 type CarouselProps = {
+  enableWheelScroll?: boolean;
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: 'horizontal' | 'vertical';
@@ -43,6 +44,7 @@ function useCarousel() {
 }
 
 function Carousel({
+  enableWheelScroll = false,
   orientation = 'horizontal',
   opts,
   setApi,
@@ -60,6 +62,8 @@ function Carousel({
   );
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
+  const wheelDeltaRef = React.useRef(0);
+  const wheelLastScrollAtRef = React.useRef(0);
 
   const onSelect = React.useCallback((api: CarouselApi) => {
     if (!api) return;
@@ -83,9 +87,62 @@ function Carousel({
       } else if (event.key === 'ArrowRight') {
         event.preventDefault();
         scrollNext();
+      } else if (event.key === 'Home') {
+        event.preventDefault();
+        api?.scrollTo(0);
+      } else if (event.key === 'End') {
+        event.preventDefault();
+        api?.scrollTo(api.scrollSnapList().length - 1);
       }
     },
-    [scrollPrev, scrollNext],
+    [api, scrollPrev, scrollNext],
+  );
+
+  const handleWheel = React.useCallback(
+    (event: React.WheelEvent<HTMLDivElement>) => {
+      if (!enableWheelScroll || !api || orientation !== 'horizontal') return;
+
+      const isHorizontalGesture =
+        Math.abs(event.deltaX) > Math.abs(event.deltaY);
+      const delta = isHorizontalGesture
+        ? event.deltaX
+        : event.shiftKey
+          ? event.deltaY
+          : 0;
+
+      if (delta === 0) return;
+
+      event.preventDefault();
+
+      const direction = Math.sign(delta);
+      const canScroll =
+        direction > 0 ? api.canScrollNext() : api.canScrollPrev();
+
+      if (!canScroll) {
+        wheelDeltaRef.current = 0;
+        return;
+      }
+
+      wheelDeltaRef.current += delta;
+
+      const now = Date.now();
+      if (
+        Math.abs(wheelDeltaRef.current) < 40 ||
+        now - wheelLastScrollAtRef.current < 180
+      ) {
+        return;
+      }
+
+      if (wheelDeltaRef.current > 0) {
+        api.scrollNext();
+      } else {
+        api.scrollPrev();
+      }
+
+      wheelDeltaRef.current = 0;
+      wheelLastScrollAtRef.current = now;
+    },
+    [api, enableWheelScroll, orientation],
   );
 
   React.useEffect(() => {
@@ -102,6 +159,7 @@ function Carousel({
 
     return () => {
       api?.off('select', onSelect);
+      api?.off('reInit', onSelect);
     };
   }, [api, onSelect]);
 
@@ -121,7 +179,14 @@ function Carousel({
     >
       <div
         onKeyDownCapture={handleKeyDown}
-        className={cn('relative', className)}
+        onWheelCapture={handleWheel}
+        className={cn(
+          'relative',
+          enableWheelScroll &&
+            orientation === 'horizontal' &&
+            'overscroll-x-contain',
+          className,
+        )}
         role="region"
         aria-roledescription="carousel"
         data-slot="carousel"
@@ -139,7 +204,10 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className={cn(
+        'overflow-hidden',
+        orientation === 'horizontal' && 'overscroll-x-contain',
+      )}
       data-slot="carousel-content"
     >
       <div

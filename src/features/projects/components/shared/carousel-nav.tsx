@@ -23,11 +23,12 @@ export function CarouselNav({
   onDotClick,
   layout = 'both',
   className = '',
-  introLabel = 'Select a role',
+  introLabel = 'Select a slide',
 }: CarouselNavProps) {
   const showDesktop = layout === 'desktop' || layout === 'both';
   const showMobile = layout === 'mobile' || layout === 'both';
-  const hasSelection = currentIndex >= 0;
+  const hasItems = totalItems > 0;
+  const hasSelection = hasItems && currentIndex >= 0;
 
   const counter = hasSelection
     ? `${String(currentIndex + 1).padStart(2, '0')} / ${String(totalItems).padStart(2, '0')}`
@@ -58,9 +59,9 @@ export function CarouselNav({
             <button
               type="button"
               onClick={onNext}
-              disabled={hasSelection && currentIndex === totalItems - 1}
+              disabled={!hasItems || currentIndex === totalItems - 1}
               className={buttonClassName}
-              aria-label={hasSelection ? 'Next slide' : 'Select first role'}
+              aria-label={hasSelection ? 'Next slide' : 'Select first slide'}
             >
               <ChevronRight aria-hidden="true" className="size-4" />
             </button>
