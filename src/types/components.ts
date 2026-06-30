@@ -25,7 +25,10 @@ export type StatusType =
   | 'archived'
   | 'concept'
   | 'design'
-  | 'development';
+  | 'development'
+  | 'draft'
+  | 'planned'
+  | 'published';
 export type BadgeColor = 'blue' | 'green' | 'amber' | 'muted';
 export type CalloutType = 'note' | 'warning' | 'discovery';
 
@@ -62,4 +65,23 @@ export type StatusVariant =
   | 'archived'
   | 'design';
 
-export type StatusColorVariant = 'blue' | 'green' | 'pink' | 'gray';
+export type StatusColorVariant = 'blue' | 'green' | 'amber' | 'muted';
+export type ArtifactType =
+  | 'live-site'
+  | 'github'
+  | 'storybook'
+  | 'video'
+  | 'figma'
+  | 'documentation'
+  | 'case-study'
+  | 'blog-post'
+  | 'presentation'
+  | 'api-docs';
+
+export interface ArtifactLink {
+  type: ArtifactType;
+  href: string;
+  label?: string;
+  description?: string;
+  featured?: boolean;
+}

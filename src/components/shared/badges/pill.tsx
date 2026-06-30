@@ -24,7 +24,7 @@ export function Pill({
     default: 'bg-muted/30 border border-border/40 text-foreground/80',
     tech: 'bg-muted/30 border border-border/40 text-foreground/80',
     status: status
-      ? `status-badge-${status}`
+      ? 'border'
       : 'bg-muted/30 border border-border/40 text-foreground/80',
     focus: 'bg-muted/30 border border-border/40 text-foreground/80',
   };

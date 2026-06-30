@@ -15,16 +15,18 @@ export function ConstraintBlock({
       <p className="type-body-sm">{description}</p>
       <div>
         <p className="type-caption mb-2 font-medium">Affected:</p>
-        <div className="flex flex-wrap gap-2">
-          {impact.map((item, i) => (
-            <span
-              key={i}
-              className="bg-muted/30 type-caption rounded px-2 py-1"
-            >
-              {item}
-            </span>
-          ))}
-        </div>
+        {impact && (
+          <div className="flex flex-wrap gap-2">
+            {impact.map((item, i) => (
+              <span
+                key={i}
+                className="bg-muted/30 type-caption rounded px-2 py-1"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

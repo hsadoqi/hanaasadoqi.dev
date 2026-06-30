@@ -9,6 +9,14 @@
 @theme inline {
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
+  --color-badge-subtle-bg: var(--badge-subtle-bg);
+  --color-badge-subtle-text: var(--badge-subtle-text);
+  --color-badge-subtle-border: var(--badge-subtle-border);
+  --color-badge-outline-bg: var(--badge-outline-bg);
+  --color-badge-outline-text: var(--badge-outline-text);
+  --color-badge-outline-border: var(--badge-outline-border);
+  --color-badge-solid-bg: var(--badge-solid-bg);
+  --color-badge-solid-text: var(--badge-solid-text);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-instrument-sans);
@@ -30,7 +38,6 @@
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
-  --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -50,6 +57,56 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-accent-success: var(--success);
+  --color-accent-success-foreground: var(--success-foreground);
+  --color-accent-success-subtle: var(--success-bg-subtle);
+  --color-accent-success-text-subtle: var(--success-text-subtle);
+  --color-accent-success-border-subtle: var(--success-border-subtle);
+  --color-accent-warning: var(--warning);
+  --color-accent-warning-foreground: var(--warning-foreground);
+  --color-accent-warning-subtle: var(--warning-bg-subtle);
+  --color-accent-warning-text-subtle: var(--warning-text-subtle);
+  --color-accent-warning-border-subtle: var(--warning-border-subtle);
+  --color-accent-info: var(--info);
+  --color-accent-info-foreground: var(--info-foreground);
+  --color-accent-info-subtle: var(--info-bg-subtle);
+  --color-accent-info-text-subtle: var(--info-text-subtle);
+  --color-accent-info-border-subtle: var(--info-border-subtle);
+  --color-accent-destructive: var(--destructive);
+  --color-accent-destructive-foreground: var(--destructive-foreground);
+  --color-accent-destructive-subtle: var(--destructive-bg-subtle);
+  --color-accent-destructive-text-subtle: var(--destructive-text-subtle);
+  --color-accent-destructive-border-subtle: var(--destructive-border-subtle);
+  --color-accent-emerald: var(--accent-emerald);
+  --color-accent-emerald-foreground: var(--accent-emerald-foreground);
+  --color-accent-emerald-subtle: var(--accent-emerald-bg-subtle);
+  --color-accent-emerald-text-subtle: var(--accent-emerald-text-subtle);
+  --color-accent-emerald-border-subtle: var(--accent-emerald-border-subtle);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-gold-foreground: var(--accent-gold-foreground);
+  --color-accent-gold-subtle: var(--accent-gold-bg-subtle);
+  --color-accent-gold-text-subtle: var(--accent-gold-text-subtle);
+  --color-accent-gold-border-subtle: var(--accent-gold-border-subtle);
+  --color-accent-sky: var(--accent-sky);
+  --color-accent-sky-foreground: var(--accent-sky-foreground);
+  --color-accent-sky-subtle: var(--accent-sky-bg-subtle);
+  --color-accent-sky-text-subtle: var(--accent-sky-text-subtle);
+  --color-accent-sky-border-subtle: var(--accent-sky-border-subtle);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-purple-foreground: var(--accent-purple-foreground);
+  --color-accent-purple-subtle: var(--accent-purple-bg-subtle);
+  --color-accent-purple-text-subtle: var(--accent-purple-text-subtle);
+  --color-accent-purple-border-subtle: var(--accent-purple-border-subtle);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-pink-foreground: var(--accent-pink-foreground);
+  --color-accent-pink-subtle: var(--accent-pink-bg-subtle);
+  --color-accent-pink-text-subtle: var(--accent-pink-text-subtle);
+  --color-accent-pink-border-subtle: var(--accent-pink-border-subtle);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-violet-foreground: var(--accent-violet-foreground);
+  --color-accent-violet-subtle: var(--accent-violet-bg-subtle);
+  --color-accent-violet-text-subtle: var(--accent-violet-text-subtle);
+  --color-accent-violet-border-subtle: var(--accent-violet-border-subtle);
 }
 
 :root {
@@ -61,8 +118,16 @@
   --font-geist-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
     'Courier New', monospace;
-  --brand: #1d4ed8;
-  --brand-foreground: #fafafa;
+  --brand: oklch(0.449 0.231 259.03);
+  --brand-foreground: oklch(0.985 0 0);
+  --badge-subtle-bg: oklch(0.95 0.02 259.03);
+  --badge-subtle-text: oklch(0.4 0.2 259.03);
+  --badge-subtle-border: oklch(0.9 0.04 259.03);
+  --badge-outline-bg: transparent;
+  --badge-outline-text: oklch(0.449 0.231 259.03);
+  --badge-outline-border: oklch(0.8 0.1 259.03);
+  --badge-solid-bg: oklch(0.449 0.231 259.03);
+  --badge-solid-text: oklch(0.985 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -77,7 +142,6 @@
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
@@ -95,11 +159,69 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --accent-emerald: oklch(0.45 0.18 160);
+  --accent-emerald-foreground: oklch(0.985 0 0);
+  --accent-emerald-bg-subtle: oklch(0.96 0.02 160);
+  --accent-emerald-text-subtle: oklch(0.38 0.14 160);
+  --accent-emerald-border-subtle: oklch(0.9 0.04 160);
+  --accent-gold: oklch(0.52 0.15 75);
+  --accent-gold-foreground: oklch(0.145 0 0);
+  --accent-gold-bg-subtle: oklch(0.96 0.03 75);
+  --accent-gold-text-subtle: oklch(0.4 0.12 75);
+  --accent-gold-border-subtle: oklch(0.91 0.05 75);
+  --accent-sky: oklch(0.45 0.2 225);
+  --accent-sky-foreground: oklch(0.985 0 0);
+  --accent-sky-bg-subtle: oklch(0.95 0.02 225);
+  --accent-sky-text-subtle: oklch(0.38 0.16 225);
+  --accent-sky-border-subtle: oklch(0.9 0.05 225);
+  --accent-purple: oklch(0.45 0.23 295);
+  --accent-purple-foreground: oklch(0.985 0 0);
+  --accent-purple-bg-subtle: oklch(0.95 0.02 295);
+  --accent-purple-text-subtle: oklch(0.38 0.18 295);
+  --accent-purple-border-subtle: oklch(0.9 0.05 295);
+  --accent-pink: oklch(0.45 0.22 350);
+  --accent-pink-foreground: oklch(0.985 0 0);
+  --accent-pink-bg-subtle: oklch(0.95 0.02 350);
+  --accent-pink-text-subtle: oklch(0.38 0.18 350);
+  --accent-pink-border-subtle: oklch(0.91 0.05 350);
+  --accent-violet: oklch(0.45 0.23 275);
+  --accent-violet-foreground: oklch(0.985 0 0);
+  --accent-violet-bg-subtle: oklch(0.95 0.02 275);
+  --accent-violet-text-subtle: oklch(0.38 0.18 275);
+  --accent-violet-border-subtle: oklch(0.9 0.05 275);
+  --success: oklch(0.45 0.18 142);
+  --success-foreground: oklch(0.985 0 0);
+  --success-bg-subtle: oklch(0.96 0.02 142);
+  --success-text-subtle: oklch(0.38 0.14 142);
+  --success-border-subtle: oklch(0.9 0.04 142);
+  --warning: oklch(0.55 0.16 83);
+  --warning-foreground: oklch(0.145 0 0);
+  --warning-bg-subtle: oklch(0.96 0.03 83);
+  --warning-text-subtle: oklch(0.42 0.13 83);
+  --warning-border-subtle: oklch(0.91 0.05 83);
+  --info: oklch(0.45 0.18 195);
+  --info-foreground: oklch(0.985 0 0);
+  --info-bg-subtle: oklch(0.95 0.02 195);
+  --info-text-subtle: oklch(0.38 0.14 195);
+  --info-border-subtle: oklch(0.9 0.04 195);
+  --destructive: oklch(0.45 0.22 27.3);
+  --destructive-foreground: oklch(0.985 0 0);
+  --destructive-bg-subtle: oklch(0.95 0.02 27.3);
+  --destructive-text-subtle: oklch(0.38 0.18 27.3);
+  --destructive-border-subtle: oklch(0.91 0.04 27.3);
 }
 
 .dark {
-  --brand: #3b82f6;
-  --brand-foreground: #fafafa;
+  --brand: oklch(0.623 0.214 259.81);
+  --brand-foreground: oklch(0.08 0 0);
+  --badge-subtle-bg: oklch(0.25 0.08 259.81);
+  --badge-subtle-text: oklch(0.85 0.08 259.81);
+  --badge-subtle-border: oklch(0.35 0.1 259.81);
+  --badge-outline-bg: transparent;
+  --badge-outline-text: oklch(0.623 0.214 259.81);
+  --badge-outline-border: oklch(0.45 0.15 259.81);
+  --badge-solid-bg: oklch(0.623 0.214 259.81);
+  --badge-solid-text: oklch(0.145 0 0);
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -114,7 +236,6 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
@@ -131,14 +252,61 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --accent-emerald: oklch(0.62 0.16 160);
+  --accent-emerald-foreground: oklch(0.145 0 0);
+  --accent-emerald-bg-subtle: oklch(0.24 0.06 160);
+  --accent-emerald-text-subtle: oklch(0.82 0.07 160);
+  --accent-emerald-border-subtle: oklch(0.32 0.08 160);
+  --accent-gold: oklch(0.7 0.14 75);
+  --accent-gold-foreground: oklch(0.145 0 0);
+  --accent-gold-bg-subtle: oklch(0.26 0.06 75);
+  --accent-gold-text-subtle: oklch(0.85 0.08 75);
+  --accent-gold-border-subtle: oklch(0.36 0.08 75);
+  --accent-sky: oklch(0.62 0.18 225);
+  --accent-sky-foreground: oklch(0.145 0 0);
+  --accent-sky-bg-subtle: oklch(0.24 0.07 225);
+  --accent-sky-text-subtle: oklch(0.82 0.07 225);
+  --accent-sky-border-subtle: oklch(0.32 0.08 225);
+  --accent-purple: oklch(0.62 0.21 295);
+  --accent-purple-foreground: oklch(0.145 0 0);
+  --accent-purple-bg-subtle: oklch(0.24 0.08 295);
+  --accent-purple-text-subtle: oklch(0.85 0.08 295);
+  --accent-purple-border-subtle: oklch(0.34 0.1 295);
+  --accent-pink: oklch(0.62 0.2 350);
+  --accent-pink-foreground: oklch(0.145 0 0);
+  --accent-pink-bg-subtle: oklch(0.24 0.07 350);
+  --accent-pink-text-subtle: oklch(0.85 0.08 350);
+  --accent-pink-border-subtle: oklch(0.34 0.09 350);
+  --accent-violet: oklch(0.62 0.21 275);
+  --accent-violet-foreground: oklch(0.145 0 0);
+  --accent-violet-bg-subtle: oklch(0.24 0.08 275);
+  --accent-violet-text-subtle: oklch(0.85 0.08 275);
+  --accent-violet-border-subtle: oklch(0.34 0.1 275);
+  --success: oklch(0.62 0.16 142);
+  --success-foreground: oklch(0.145 0 0);
+  --success-bg-subtle: oklch(0.24 0.06 142);
+  --success-text-subtle: oklch(0.82 0.07 142);
+  --success-border-subtle: oklch(0.32 0.08 142);
+  --warning: oklch(0.72 0.15 83);
+  --warning-foreground: oklch(0.145 0 0);
+  --warning-bg-subtle: oklch(0.26 0.06 83);
+  --warning-text-subtle: oklch(0.85 0.08 83);
+  --warning-border-subtle: oklch(0.36 0.08 83);
+  --info: oklch(0.62 0.16 195);
+  --info-foreground: oklch(0.145 0 0);
+  --info-bg-subtle: oklch(0.24 0.06 195);
+  --info-text-subtle: oklch(0.82 0.07 195);
+  --info-border-subtle: oklch(0.32 0.08 195);
+  --destructive: oklch(0.62 0.19 27.3);
+  --destructive-foreground: oklch(0.145 0 0);
+  --destructive-bg-subtle: oklch(0.24 0.07 27.3);
+  --destructive-text-subtle: oklch(0.85 0.08 27.3);
+  --destructive-border-subtle: oklch(0.34 0.09 27.3);
 }
 
 @layer base {
-  /* * {
-    @apply border-border outline-ring/50;
-  } */
   html {
-    @apply scroll-smooth font-sans min-h-svh min-w-svw size-full;
+    @apply size-full min-h-svh min-w-svw scroll-smooth font-sans;
     scroll-padding-top: 5rem;
   }
   body {
@@ -179,6 +347,76 @@
   .brand-gradient {
     @apply from-foreground to-brand bg-gradient-to-r bg-clip-text text-transparent;
   }
+
+  .brand-subtle {
+    @apply bg-badge-subtle-bg text-badge-subtle-text border-badge-subtle-border border;
+  }
+
+  .brand-outline {
+    @apply bg-badge-outline-bg text-badge-outline-text border-badge-outline-border border;
+  }
+
+  .brand-solid {
+    @apply bg-badge-solid-bg text-badge-solid-text;
+  }
+
+  .accent-sky-solid {
+    @apply bg-accent-sky text-accent-sky-foreground;
+  }
+
+  .accent-sky-outline {
+    @apply text-accent-sky-foreground border-accent-sky-border-subtle hover:bg-accent-sky-subtle hover:text-accent-sky-text-subtle border bg-transparent;
+  }
+
+  .accent-gold-outline {
+    @apply text-accent-gold-foreground border-accent-gold-border-subtle hover:bg-accent-gold-subtle hover:text-accent-gold-text-subtle border bg-transparent;
+  }
+
+  .accent-emerald-outline {
+    @apply text-accent-emerald-foreground border-accent-emerald-border-subtle hover:bg-accent-emerald-subtle hover:text-accent-emerald-text-subtle border bg-transparent;
+  }
+
+  .accent-violet-outline {
+    @apply text-accent-violet-foreground border-accent-violet-border-subtle hover:bg-accent-violet-subtle hover:text-accent-violet-text-subtle border bg-transparent;
+  }
+
+  /* [data-status="draft"]{
+    @apply accent-gold-outline;
+  } */
+
+  .interactive-glow {
+    @apply motion-safe:transition-all motion-safe:duration-300;
+  }
+
+  .interactive-glow:hover {
+    filter: drop-shadow(0 0 12px var(--brand));
+  }
+
+  /* Card glow effect */
+  .card-glow {
+    @apply motion-safe:transition-all motion-safe:duration-300;
+  }
+
+  .card-glow:hover {
+    filter: drop-shadow(
+      0 0 8px color-mix(in oklch, var(--brand) 30%, transparent)
+    );
+  }
+
+  /* Pulse animation for active elements */
+  @keyframes pulse-subtle {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .pulse-subtle {
+    animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
 }
 
 @utility no-scrollbar {
@@ -192,4 +430,18 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+@utility text-scroll-mix {
+  /* Establish baseline configurations */
+  --start-color: oklch(0.623 0.214 259.81);
+  --end-color: oklch(0.449 0.231 259.03);
+  --scroll-ratio: 0;
+
+  /* Single-pass mix. Set --scroll-ratio from 0 → 1 inline or via JS. */
+  color: color-mix(
+    in oklch,
+    var(--end-color) calc(var(--scroll-ratio) * 100%),
+    var(--start-color)
+  );
 }

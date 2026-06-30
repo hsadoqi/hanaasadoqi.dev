@@ -1,12 +1,13 @@
 /* Status badge tokens
    Scoped to data-status so component classes keep layout/border behavior.
-   Defaults target dark surfaces; prefers-color-scheme and .light override for light UI.
+   Color values come from globals.css accent tokens and inherit light/dark modes.
 */
 
 [data-status] {
-  --status-bg: oklch(0.25 0 0 / 0.48);
-  --status-fg: oklch(0.68 0 0);
-  --status-border: oklch(1 0 0 / 0.1);
+  --status-bg: var(--badge-subtle-bg);
+  --status-fg: var(--badge-subtle-text);
+  --status-border: var(--badge-subtle-border);
+  --status-dot: var(--status-fg);
 
   background-color: var(--status-bg);
   border-color: var(--status-border);
@@ -14,180 +15,81 @@
 }
 
 [data-status] > [aria-hidden='true'] {
-  background-color: currentColor;
+  background-color: var(--status-dot);
 }
 
 [data-status='active'],
+[data-status='available'],
+[data-status='completed'],
+[data-status='green'],
 [data-status='live'],
-[data-status='launched'],
-[data-status='shipped'],
-[data-status='green'] {
-  --status-bg: oklch(0.24 0.05 145 / 0.24);
-  --status-fg: oklch(0.72 0.14 145);
-  --status-border: oklch(0.72 0.14 145 / 0.22);
+[data-status='published'],
+[data-status='shipped'] {
+  --status-bg: var(--accent-emerald-bg-subtle);
+  --status-fg: var(--accent-emerald-text-subtle);
+  --status-border: var(--accent-emerald-border-subtle);
+  --status-dot: var(--accent-emerald);
 }
 
-[data-status='in-progress'],
+[data-status='launched'] {
+  --status-bg: var(--badge-solid-bg);
+  --status-fg: var(--badge-solid-text);
+  --status-border: var(--badge-solid-bg);
+  --status-dot: var(--badge-solid-text);
+}
+
+[data-status='blue'],
 [data-status='development'],
 [data-status='in-development'],
-[data-status='blue'] {
-  --status-bg: oklch(0.3 0.04 230 / 0.28);
-  --status-fg: oklch(0.72 0.08 230);
-  --status-border: oklch(0.72 0.08 230 / 0.22);
+[data-status='in-progress'] {
+  --status-bg: var(--accent-sky-bg-subtle);
+  --status-fg: var(--accent-sky-text-subtle);
+  --status-border: var(--accent-sky-border-subtle);
+  --status-dot: var(--accent-sky);
 }
 
+[data-status='amber'],
 [data-status='brainstorming'],
 [data-status='draft'] {
-  --status-bg: oklch(0.3 0.06 72 / 0.28);
-  --status-fg: oklch(0.78 0.12 72);
-  --status-border: oklch(0.78 0.12 72 / 0.24);
+  --status-bg: var(--accent-gold-bg-subtle);
+  --status-fg: var(--accent-gold-text-subtle);
+  --status-border: var(--accent-gold-border-subtle);
+  --status-dot: var(--accent-gold);
 }
 
 [data-status='design'],
 [data-status='pink'] {
-  --status-bg: oklch(0.3 0.07 340 / 0.28);
-  --status-fg: oklch(0.78 0.12 340);
-  --status-border: oklch(0.78 0.12 340 / 0.22);
+  --status-bg: var(--accent-pink-bg-subtle);
+  --status-fg: var(--accent-pink-text-subtle);
+  --status-border: var(--accent-pink-border-subtle);
+  --status-dot: var(--accent-pink);
+}
+
+[data-status='paused'],
+[data-status='purple'],
+[data-status='violet'] {
+  --status-bg: var(--accent-violet-bg-subtle);
+  --status-fg: var(--accent-violet-text-subtle);
+  --status-border: var(--accent-violet-border-subtle);
+  --status-dot: var(--accent-violet);
 }
 
 [data-status='concept'],
-[data-status='planned'],
-[data-status='gray'] {
-  --status-bg: oklch(0.25 0 0 / 0.5);
-  --status-fg: oklch(0.68 0 0);
-  --status-border: oklch(0.72 0 0 / 0.16);
+[data-status='gray'],
+[data-status='muted'],
+[data-status='planned'] {
+  --status-bg: var(--badge-subtle-bg);
+  --status-fg: var(--badge-subtle-text);
+  --status-border: var(--badge-subtle-border);
+  --status-dot: var(--brand);
 }
 
-[data-status='paused'] {
-  --status-bg: oklch(0.28 0.03 285 / 0.26);
-  --status-fg: oklch(0.74 0.07 285);
-  --status-border: oklch(0.74 0.07 285 / 0.2);
-}
-
-[data-status='archived'] {
-  --status-bg: oklch(0.22 0 0 / 0.42);
-  --status-fg: oklch(0.58 0 0);
-  --status-border: oklch(0.58 0 0 / 0.16);
+[data-status='archived'],
+[data-status='unavailable'] {
+  --status-bg: var(--muted);
+  --status-fg: var(--muted-foreground);
+  --status-border: var(--border);
+  --status-dot: var(--muted-foreground);
 
   text-decoration-line: line-through;
-}
-
-@media (prefers-color-scheme: light) {
-  [data-status] {
-    --status-bg: oklch(0.92 0 0 / 0.58);
-    --status-fg: oklch(0.48 0 0);
-    --status-border: oklch(0.48 0 0 / 0.14);
-  }
-
-  [data-status='active'],
-  [data-status='live'],
-  [data-status='launched'],
-  [data-status='shipped'],
-  [data-status='green'] {
-    --status-bg: oklch(0.95 0.04 145 / 0.62);
-    --status-fg: oklch(0.4 0.16 145);
-    --status-border: oklch(0.4 0.16 145 / 0.18);
-  }
-
-  [data-status='in-progress'],
-  [data-status='development'],
-  [data-status='in-development'],
-  [data-status='blue'] {
-    --status-bg: oklch(0.94 0.04 230 / 0.62);
-    --status-fg: oklch(0.36 0.14 230);
-    --status-border: oklch(0.36 0.14 230 / 0.18);
-  }
-
-  [data-status='brainstorming'],
-  [data-status='draft'] {
-    --status-bg: oklch(0.95 0.05 72 / 0.62);
-    --status-fg: oklch(0.46 0.14 72);
-    --status-border: oklch(0.46 0.14 72 / 0.18);
-  }
-
-  [data-status='design'],
-  [data-status='pink'] {
-    --status-bg: oklch(0.95 0.05 340 / 0.62);
-    --status-fg: oklch(0.46 0.15 340);
-    --status-border: oklch(0.46 0.15 340 / 0.18);
-  }
-
-  [data-status='concept'],
-  [data-status='planned'],
-  [data-status='gray'] {
-    --status-bg: oklch(0.92 0 0 / 0.58);
-    --status-fg: oklch(0.48 0 0);
-    --status-border: oklch(0.48 0 0 / 0.14);
-  }
-
-  [data-status='paused'] {
-    --status-bg: oklch(0.94 0.04 285 / 0.6);
-    --status-fg: oklch(0.43 0.12 285);
-    --status-border: oklch(0.43 0.12 285 / 0.18);
-  }
-
-  [data-status='archived'] {
-    --status-bg: oklch(0.9 0 0 / 0.58);
-    --status-fg: oklch(0.44 0 0);
-    --status-border: oklch(0.44 0 0 / 0.14);
-  }
-}
-
-.light [data-status] {
-  --status-bg: oklch(0.92 0 0 / 0.58);
-  --status-fg: oklch(0.48 0 0);
-  --status-border: oklch(0.48 0 0 / 0.14);
-}
-
-.light [data-status='active'],
-.light [data-status='live'],
-.light [data-status='launched'],
-.light [data-status='shipped'],
-.light [data-status='green'] {
-  --status-bg: oklch(0.95 0.04 145 / 0.62);
-  --status-fg: oklch(0.4 0.16 145);
-  --status-border: oklch(0.4 0.16 145 / 0.18);
-}
-
-.light [data-status='in-progress'],
-.light [data-status='development'],
-.light [data-status='in-development'],
-.light [data-status='blue'] {
-  --status-bg: oklch(0.94 0.04 230 / 0.62);
-  --status-fg: oklch(0.36 0.14 230);
-  --status-border: oklch(0.36 0.14 230 / 0.18);
-}
-
-.light [data-status='brainstorming'],
-.light [data-status='draft'] {
-  --status-bg: oklch(0.95 0.05 72 / 0.62);
-  --status-fg: oklch(0.46 0.14 72);
-  --status-border: oklch(0.46 0.14 72 / 0.18);
-}
-
-.light [data-status='design'],
-.light [data-status='pink'] {
-  --status-bg: oklch(0.95 0.05 340 / 0.62);
-  --status-fg: oklch(0.46 0.15 340);
-  --status-border: oklch(0.46 0.15 340 / 0.18);
-}
-
-.light [data-status='concept'],
-.light [data-status='planned'],
-.light [data-status='gray'] {
-  --status-bg: oklch(0.92 0 0 / 0.58);
-  --status-fg: oklch(0.48 0 0);
-  --status-border: oklch(0.48 0 0 / 0.14);
-}
-
-.light [data-status='paused'] {
-  --status-bg: oklch(0.94 0.04 285 / 0.6);
-  --status-fg: oklch(0.43 0.12 285);
-  --status-border: oklch(0.43 0.12 285 / 0.18);
-}
-
-.light [data-status='archived'] {
-  --status-bg: oklch(0.9 0 0 / 0.58);
-  --status-fg: oklch(0.44 0 0);
-  --status-border: oklch(0.44 0 0 / 0.14);
 }

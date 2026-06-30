@@ -4,7 +4,7 @@ import {
   StatusType,
   TagVariant,
 } from './components';
-import { CaseStudy } from './data';
+import { CaseStudy, RelatedCaseStudy } from './data';
 
 export type PreviewCaseStudyProps = Pick<
   CaseStudy,
@@ -57,4 +57,5 @@ export type CaseStudyPreviewData = PreviewData & {
 
 export type ProjectPreviewData = PreviewData & {
   relatedCaseStudies: string[];
+  caseStudies?: RelatedCaseStudy[];
 };
