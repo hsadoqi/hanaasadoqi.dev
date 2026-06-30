@@ -65,7 +65,7 @@
 }
 
 @utility type-hero {
-  @apply font-heading text-foreground text-4xl leading-[1.08] font-semibold tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl;
+  @apply font-heading text-foreground text-3xl leading-[1.08] font-semibold tracking-tight text-balance  md:text-4xl lg:text-5xl;
 }
 
 @utility type-page-title {

@@ -19,6 +19,7 @@ export const HeroLayout = ({
   return (
     <div
       id="hero"
+      aria-labelledby="hero-heading"
       className={cn(
         'relative flex min-h-screen flex-col justify-between overflow-hidden px-6 py-16 md:px-12 md:py-24',
         className,
@@ -61,9 +62,9 @@ const HeroContent = ({
   supportingLine?: string;
 }) => {
   return (
-    <div id="hero-content" className="relative z-10">
+    <div className="relative z-10">
       <p className="type-eyebrow mb-12">{greeting}</p>
-      <h1 className="type-hero max-w-6xl">
+      <h1 className="type-hero max-w-6xl" id="hero-heading">
         {headlineParts.map((line, i) => {
           const isBrandHighlight =
             line.toLowerCase().includes('side') ||
@@ -76,7 +77,6 @@ const HeroContent = ({
                 'from-foreground to-brand bg-gradient-to-r bg-clip-text text-transparent':
                   isBrandHighlight,
               })}
-              id="hero-content"
             >
               {line}
             </span>
@@ -90,47 +90,6 @@ const HeroContent = ({
     </div>
   );
 };
-
-// const HeroContent = ({
-//   greeting,
-//   headlineParts,
-//   supportingLine,
-// }: {
-//   greeting: string;
-//   headlineParts: string[];
-//   supportingLine?: string;
-// }) => {
-//   return (
-//     <div className="relative z-10">
-//       {/* Greeting */}
-//       <p className="type-eyebrow mb-16">{greeting}</p>
-
-//       {/* Headline with brand color gradient on "side quests" */}
-//       <h1 className="type-hero max-w-6xl">
-//         {headlineParts.map((line, i) => {
-//           const isBrandHighlight =
-//             line.toLowerCase().includes('side') ||
-//             line.toLowerCase().includes('quest');
-//           return (
-//             <span
-//               key={i}
-//               className={`block ${
-//                 isBrandHighlight
-//                   ? 'from-foreground to-brand bg-gradient-to-r bg-clip-text text-transparent'
-//                   : ''
-//               }`}
-//             >
-//               {line}
-//             </span>
-//           );
-//         })}
-//       </h1>
-//       {supportingLine ? (
-//         <p className="type-body-lg mt-10 max-w-2xl">{supportingLine}</p>
-//       ) : null}
-//     </div>
-//   );
-// };
 
 export const HeroCta = ({ cta }: { cta: string }) => {
   return (

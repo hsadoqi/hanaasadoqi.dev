@@ -31,7 +31,6 @@ export default function Home() {
         identities={identities}
         cta={cta}
       />
-      {/* Subtle transition marker between hero and the rest of the site */}
       <div
         className="-mb-8 flex items-center justify-center"
         aria-hidden="true"
