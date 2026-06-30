@@ -34,6 +34,7 @@ export function FeaturedWorkSection() {
           {
             label: 'View All',
             link: '/projects',
+            variant: 'ghost',
           },
         ],
       }}

@@ -44,7 +44,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        'border-border/20 from-background via-background to-background border-b bg-gradient-to-b px-6 py-16 sm:px-8 sm:py-24 lg:px-12 lg:py-28',
+        'border-border/20 from-background via-background to-background border-b bg-gradient-to-b px-4 py-16 sm:py-24 md:px-8 lg:px-12 lg:py-28',
         id && 'scroll-mt-24',
         variant === 'surface' &&
           'bg-card/80 shadow-ring/5 rounded-3xl border shadow-sm',
@@ -59,7 +59,7 @@ export function Section({
     >
       <div
         className={cn(
-          'mx-auto w-full px-4 sm:px-6 lg:px-8',
+          'mx-auto w-full md:px-8',
           {
             'max-w-7xl': !fullScreen,
           },

@@ -82,7 +82,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <ProjectCardFooter
         link={{
           href: `/projects/${project.slug}`,
-          label: 'Discover more',
+          label: 'Discover',
           isExternal: false,
           isDisabled: false,
         }}
@@ -100,7 +100,7 @@ function ProjectCardFooter({
   title: string;
 }) {
   return (
-    <footer className="border-border/30 mt-5 shrink-0 border-t pt-4">
+    <footer className="border-border/30 mt-5 flex shrink-0 border-t pt-4">
       {link.isDisabled ? (
         <span className="type-caption inline-flex font-medium">
           {link.label}
@@ -110,7 +110,7 @@ function ProjectCardFooter({
           href={link.href}
           target={link.isExternal ? '_blank' : undefined}
           rel={link.isExternal ? 'noopener noreferrer' : undefined}
-          className="type-caption text-foreground/60 hover:text-foreground focus-visible:ring-ring inline-flex items-center gap-1.5 rounded font-medium focus-visible:ring-1 focus-visible:outline-none motion-safe:transition-colors motion-safe:duration-200"
+          className="type-caption text-foreground/60 hover:text-foreground focus-visible:ring-ring inline-flex flex-1 items-center justify-end gap-1.5 rounded font-medium focus-visible:ring-1 focus-visible:outline-none motion-safe:transition-colors motion-safe:duration-200"
           aria-label={`${link.label} for ${title}`}
         >
           {link.label}
@@ -137,10 +137,12 @@ function ProjectCardHeader({
 }) {
   return (
     <header className="relative flex shrink-0 flex-col">
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <StatusBadge status={status}>{status}</StatusBadge>
-      </div>
-      <h3 className="type-card-title-sm mb-2">{title}</h3>
+      <span className="flex flex-1 items-center justify-between">
+        <h3 className="type-card-title-sm mb-2">{title}</h3>
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <StatusBadge status={status}>{status}</StatusBadge>
+        </div>
+      </span>
       {meta && <p className="type-caption mb-4">{meta}</p>}
     </header>
   );

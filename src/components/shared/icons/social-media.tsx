@@ -55,5 +55,5 @@ export const socialMediaIcons = [
     label: 'Email Me',
     href: 'mailto:hello@hanaasadoqi.dev',
     icon: MailIcon,
-  }
+  },
 ];
