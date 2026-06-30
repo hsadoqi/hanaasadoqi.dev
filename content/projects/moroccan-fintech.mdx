@@ -1,0 +1,55 @@
+---
+title: 'Moroccan Fintech'
+slug: 'moroccan-fintech'
+description: 'A platform foundation for finance products that share compliance, tenancy, auditability, and workflow primitives.'
+category: 'platform'
+maturity: 'concept'
+status: 'design'
+statusVariant: 'blue'
+dates:
+  year: 2024
+  started: '2024-01-01'
+  updated: '2026-06-30'
+role: 'Systems architecture and product modeling.'
+tags:
+  - 'Fintech'
+  - 'Compliance'
+  - 'Platform architecture'
+  - 'Workflow systems'
+scope:
+  - 'Shared compliance primitives'
+  - 'Tenant identity'
+  - 'Workflow foundations'
+featured: false
+links:
+  - label: 'Back to Portfolio'
+    url: '/'
+  - label: 'All Projects'
+    url: '/projects'
+  - label: 'All Case Studies'
+    url: '/case-studies'
+problem: 'Multiple finance products need shared compliance and tenant infrastructure without forcing every product into the same workflow.'
+solution: 'A shared foundation for tenant identity, permissions, audit events, document metadata, and workflow status.'
+outcomes:
+  - 'Identified tenant identity, permissions, audit events, evidence links, and workflow status as reusable platform primitives.'
+proof: 'The project identifies tenant identity, permissions, audit events, evidence links, and workflow status as the first shared primitives.'
+techStack:
+  - 'Next.js'
+  - 'TypeScript'
+  - 'Postgres'
+  - 'Platform modeling'
+relatedCaseStudies: []
+---
+
+## Platform foundation
+
+This project is about separating shared financial infrastructure from product-specific workflow behavior. The shared layer should own tenant identity, permissions, audit events, document metadata, and workflow status.
+
+<ProcessDiagram
+  label="Shared fintech platform primitives"
+  caption="Product-specific workflows sit on top of shared compliance and audit infrastructure."
+/>
+
+## Boundary rule
+
+Shared primitives are extracted only when multiple products need the same contract. Product-specific behavior stays local until reuse is real.

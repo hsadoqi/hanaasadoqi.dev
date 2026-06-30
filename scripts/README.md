@@ -6,8 +6,11 @@ This directory contains validation scripts for project content integrity.
 
 Validates that:
 
-1. Every internal `/projects/[slug]` link in `src/data/projects-data.ts` has a matching case-study JSON file in `src/data/projects-show/`
-2. Every case-study JSON file is accounted for in the project index data (or explicitly allowed as unreferenced)
+1. Every project MDX file has a unique slug matching its content path.
+2. Every case-study MDX file has a unique slug matching its content path.
+3. Every case-study `projectSlug` points at an existing project.
+4. Every project `relatedCaseStudies` entry points at an existing case study.
+5. Every case study is represented by its owning project's `relatedCaseStudies`.
 
 ### Running the Validator
 
@@ -17,13 +20,14 @@ pnpm validate:content
 
 ### What It Checks
 
-- **Contract 1**: All `caseStudySlug` references in `projects-data.ts` must have a corresponding `.json` file
-  - Example: if `caseStudySlug: 'generafi'`, then `src/data/projects-show/generafi.json` must exist
+- **Contract 1**: Project and case-study slugs must match their MDX content paths
+  - Example: `content/projects/generafi.mdx` must use `slug: 'generafi'`
   - **Failure**: Script exits with code 1
 
-- **Contract 2**: All JSON files in `src/data/projects-show/` should be referenced
-  - (Warnings only; does not fail)
-  - Useful for detecting orphaned content
+- **Contract 2**: Case-study ownership must be consistent in both directions
+  - A case study's `projectSlug` must reference a real project
+  - A project's `relatedCaseStudies` should include every owned case study
+  - Missing reverse links are warnings; invalid slugs are failures
 
 ### Integration
 

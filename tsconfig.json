@@ -20,6 +20,7 @@
       }
     ],
     "paths": {
+      "content-collections": ["./.content-collections/generated"],
       "@/*": ["./src/*"],
       "@/components/*": ["./src/components/*"],
       "@/data/*": ["./src/data/*"],

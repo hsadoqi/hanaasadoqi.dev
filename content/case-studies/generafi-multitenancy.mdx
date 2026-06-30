@@ -1,0 +1,52 @@
+---
+title: 'Generafi Multitenancy'
+slug: 'generafi-multitenancy'
+description: 'A case study on tenant-scoped architecture, permissions, and auditability for Moroccan payroll workflows.'
+category: 'platform'
+maturity: 'active'
+status: 'in-progress'
+statusVariant: 'green'
+dates:
+  year: 2024
+  published: '2026-06-30'
+role: 'Architecture and domain modeling.'
+tags:
+  - 'Multi-tenancy'
+  - 'Permissions'
+  - 'Auditability'
+scope:
+  - 'Tenant isolation'
+  - 'Permission boundaries'
+  - 'Audit trails'
+featured: true
+links:
+  - label: 'View Generafi'
+    url: '/projects/generafi'
+  - label: 'All Projects'
+    url: '/projects'
+  - label: 'All Case Studies'
+    url: '/case-studies'
+projectSlug: 'generafi'
+problem: "Generafi needs shared infrastructure economics while keeping each tenant's payroll, permissions, and audit history isolated."
+solution: 'Tenant-scoped data access, explicit permission checks, and auditable rule versions at the database and application boundaries.'
+outcomes:
+  - 'Captured the core tradeoff between shared infrastructure economics and strict tenant isolation.'
+proof: 'The case study captures the core tradeoff behind shared infrastructure and tenant isolation.'
+techStack:
+  - 'Postgres'
+  - 'TypeScript'
+  - 'RBAC'
+---
+
+## Core constraint
+
+The product needs the economics of a shared platform, but payroll data demands strict isolation. That makes tenant identity a core data-model concern, not just a session property.
+
+<Callout tone="warning" title="Risk">
+  Application-only filtering is too easy to bypass accidentally. Tenant scope
+  needs to be visible at every boundary where data is queried or mutated.
+</Callout>
+
+## Direction
+
+The architecture keeps tenant identifiers attached to domain records, scopes queries by tenant, and treats audit events as part of the product experience.

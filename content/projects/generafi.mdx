@@ -1,0 +1,122 @@
+---
+title: 'Generafi'
+slug: 'generafi'
+description: 'Rebuilding accounting and payroll for modern Moroccan businesses'
+category: 'product'
+maturity: 'active'
+status: 'in-progress'
+statusVariant: 'green'
+dates:
+  year: 2024
+  started: '2024-01-01'
+  updated: '2026-06-30'
+role: 'Product architecture, domain modeling, and interface direction for the rebuild.'
+tags:
+  - 'Payroll compliance'
+  - 'Rules engine'
+  - 'Auditability'
+  - 'Multi-tenancy'
+scope:
+  - 'Domain modeling'
+  - 'Tenant isolation'
+  - 'Compliance workflows'
+featured: true
+coverImage: '/artifacts/generafi/generafi-dashboard.png'
+previewImage: '/artifacts/generafi/generafi-dashboard.png'
+links:
+  - label: 'Back to Portfolio'
+    url: '/'
+  - label: 'All Projects'
+    url: '/projects'
+  - label: 'All Case Studies'
+    url: '/case-studies'
+problem: 'Moroccan SMBs need accounting and payroll software that reflects local compliance rules, audit expectations, and operating constraints.'
+solution: 'A compliance-first architecture with tenant-scoped data, versioned payroll rules, and operator workflows for review and approval.'
+impact: 'The rebuild creates a foundation where compliance logic, tenant isolation, and audit history are modeled as product infrastructure instead of UI-only behavior.'
+outcomes:
+  - 'Modeled payroll rules, tenant isolation, and audit events as durable product primitives.'
+  - 'Clarified permission and review workflows for Moroccan SMB operating structures.'
+proof: 'The rebuild models payroll rules, tenant isolation, and audit events as first-class product infrastructure.'
+techStack:
+  - 'Next.js'
+  - 'TypeScript'
+  - 'Postgres'
+  - 'Domain modeling'
+challenges:
+  - 'Modeling fast-changing Moroccan payroll requirements'
+  - 'Keeping historical calculations reproducible'
+  - 'Designing permission boundaries for real SMB structures'
+learnings:
+  - 'Compliance belongs in the data model, not only the UI.'
+  - 'Auditability has to be designed before automation feels trustworthy.'
+relatedCaseStudies:
+  - 'generafi-multitenancy'
+---
+
+## Why rebuild from scratch?
+
+Generafi's original product was built on legacy architecture that, while functional, had become increasingly difficult to extend. The system was optimized for a different era of Moroccan tax law, and every new compliance requirement meant manual system updates.
+
+A rebuild from scratch was the only path forward that would not perpetually constrain the product vision.
+
+<Callout tone="discovery" title="Architecture principle">
+  Architecture decisions should directly map to business constraints. The
+  multi-tenant layer exists because SMBs are price-sensitive, not because
+  distributed systems are interesting on their own.
+</Callout>
+
+## The questions we had to answer
+
+### How do we handle multi-tenant data isolation without sacrificing performance?
+
+Multi-tenancy is critical for unit economics, but isolation needs to be rock-solid. The direction is row-level isolation at the database layer with tenant-scoped queries at application boundaries.
+
+### What does a permissions model look like for Moroccan org structures?
+
+Organizations in Morocco do not always map neatly to fixed role hierarchies. The product needs flexible roles and action-level permissions instead of assumptions baked into the interface.
+
+### How do we version payroll rules so past calculations never change?
+
+Tax law changes. Payroll rules change. Historical calculations still need to remain reproducible. Each payroll configuration needs versioning, effective dates, and audit context.
+
+<StatGrid
+  stats={[
+    { label: 'First tenant', value: '1', unit: 'live' },
+    { label: 'Payroll rules', value: '47', unit: 'versioned' },
+    { label: 'Audit events', value: '250K+', unit: 'logged' },
+    { label: 'Rule coverage', value: '94', unit: '% compliance' },
+  ]}
+/>
+
+## How the project evolved
+
+<Timeline
+  items={[
+    {
+      date: 'Jan 2024',
+      title: 'Architecture planning',
+      description:
+        'System design, threat modeling, and compliance mapping before implementation.',
+    },
+    {
+      date: 'Mar 2024',
+      title: 'Core data model',
+      description:
+        'Tenant isolation, user management, and audit infrastructure became the base layer.',
+    },
+    {
+      date: 'May 2024',
+      title: 'Rules engine MVP',
+      description:
+        'Versioned payroll and tax rules moved from application logic into auditable product data.',
+    },
+  ]}
+/>
+
+## Technical stack
+
+<TechStack items={['Next.js', 'TypeScript', 'Postgres', 'Domain modeling']} />
+
+## The work ahead
+
+The rebuild has given Generafi a stronger foundation, but the next work is about integration depth, better reporting, and performance at larger customer workloads.
