@@ -3,7 +3,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Serif } from 'next/font/google';
 import '@/styles/globals.css';
 import { PageShell } from '@/components/layout';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from '@vercel/analytics/next';
 
 const siteUrl = 'https://hanaasadoqi.dev';
 
