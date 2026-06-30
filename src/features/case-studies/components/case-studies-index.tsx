@@ -10,6 +10,7 @@ import {
 } from '@/components/shared';
 import { StatusBadge } from '@/components/shared/badges';
 import type { CaseStudy } from '@/types';
+import { formatContentMeta } from '@/lib/content-meta';
 
 type CaseStudiesIndexProps = {
   caseStudies: CaseStudy[];
@@ -157,42 +158,66 @@ function CaseStudyCard({
   projectLabel: string;
 }) {
   const href = `/projects/${caseStudy.project_slug}/${caseStudy.slug}`;
+  const isComingSoon = caseStudy.isComingSoon;
+
+  const content = (
+    <article className="flex h-full flex-col gap-5">
+      <div className="flex items-start justify-between gap-4">
+        <StatusBadge status={caseStudy.status.value}>
+          {caseStudy.status.value}
+        </StatusBadge>
+        <span className="type-meta uppercase">{projectLabel}</span>
+      </div>
+
+      <div>
+        <h2 className="type-card-title group-hover:text-foreground/80">
+          {caseStudy.title}
+        </h2>
+        {formatContentMeta(caseStudy) && (
+          <p className="type-caption text-muted-foreground mt-2">
+            {formatContentMeta(caseStudy)}
+          </p>
+        )}
+        <p className="type-body-sm mt-3 line-clamp-3">{caseStudy.subtitle}</p>
+      </div>
+
+      <div className="mt-auto flex flex-wrap gap-2">
+        {caseStudy.tags.slice(0, 4).map((tag) => (
+          <span
+            key={tag}
+            className="border-border/40 type-caption rounded-full border px-2.5 py-1"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <span className="type-body-sm text-foreground/60 group-hover:text-foreground mt-1 font-medium">
+        {isComingSoon ? (
+          'Coming soon'
+        ) : (
+          <>
+            View case study <span aria-hidden="true">→</span>
+          </>
+        )}
+      </span>
+    </article>
+  );
+
+  if (isComingSoon) {
+    return (
+      <div className="border-border/30 bg-background block rounded-lg border p-6 opacity-75">
+        {content}
+      </div>
+    );
+  }
 
   return (
     <Link
       href={href}
       className="group border-border/40 bg-background hover:border-border/70 hover:bg-muted/20 focus-visible:ring-ring block rounded-lg border p-6 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
     >
-      <article className="flex h-full flex-col gap-5">
-        <div className="flex items-start justify-between gap-4">
-          <StatusBadge status={caseStudy.status.value}>
-            {caseStudy.status.value}
-          </StatusBadge>
-          <span className="type-meta uppercase">{projectLabel}</span>
-        </div>
-
-        <div>
-          <h2 className="type-card-title group-hover:text-foreground/80">
-            {caseStudy.title}
-          </h2>
-          <p className="type-body-sm mt-3 line-clamp-3">{caseStudy.subtitle}</p>
-        </div>
-
-        <div className="mt-auto flex flex-wrap gap-2">
-          {caseStudy.tags.slice(0, 4).map((tag) => (
-            <span
-              key={tag}
-              className="border-border/40 type-caption rounded-full border px-2.5 py-1"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <span className="type-body-sm text-foreground/60 group-hover:text-foreground mt-1 font-medium">
-          View case study <span aria-hidden="true">→</span>
-        </span>
-      </article>
+      {content}
     </Link>
   );
 }

@@ -1,62 +1,40 @@
-import { readdir, readFile } from 'fs/promises';
-import { join } from 'path';
+import { allCaseStudies } from 'content-collections';
 import type { CaseStudy } from '@/types';
+import {
+  isListedContent,
+  isPublicContent,
+  isRoutableContent,
+} from '@/lib/content-visibility';
 
-function getCaseStudiesDir() {
-  return join(
-    process.cwd(),
-    'src',
-    'features',
-    'case-studies',
-    'data',
-    'final-studies',
-  );
+const caseStudies = allCaseStudies as CaseStudy[];
+
+function sortCaseStudies(items: CaseStudy[]) {
+  return [...items].sort((a, b) => a.title.localeCompare(b.title));
 }
 
 export async function loadCaseStudies(): Promise<string[]> {
-  try {
-    const dirPath = getCaseStudiesDir();
-    const entries = await readdir(dirPath);
-    return entries
-      .filter((entry): entry is string => typeof entry === 'string')
-      .filter((entry) => entry.endsWith('.json') && !entry.includes('TEMPLATE'))
-      .map((entry) => entry.replace(/\.json$/, ''));
-  } catch (error) {
-    console.error('Error loading case studies:', error);
-    return [];
-  }
+  return caseStudies
+    .filter(isRoutableContent)
+    .map((caseStudy) => caseStudy.slug)
+    .sort();
 }
 
 export async function loadAllCaseStudies(): Promise<CaseStudy[]> {
-  try {
-    const caseStudiesDir = getCaseStudiesDir();
-    const files = await readdir(caseStudiesDir);
-    const jsonFiles = files.filter(
-      (file) => file.endsWith('.json') && !file.includes('TEMPLATE'),
-    );
+  return sortCaseStudies(caseStudies.filter(isListedContent));
+}
 
-    const caseStudies: CaseStudy[] = [];
-    for (const file of jsonFiles) {
-      try {
-        const filePath = join(caseStudiesDir, file);
-        const content = await readFile(filePath, 'utf-8');
-        const caseStudy = JSON.parse(content) as CaseStudy;
-        caseStudies.push(caseStudy);
-      } catch (err) {
-        console.error(`Failed to load case study from ${file}:`, err);
-      }
-    }
+export async function loadRoutableCaseStudies(): Promise<CaseStudy[]> {
+  return sortCaseStudies(caseStudies.filter(isRoutableContent));
+}
 
-    return caseStudies.sort((a, b) => a.title.localeCompare(b.title));
-  } catch (error) {
-    console.error('Failed to load case studies directory:', error);
-    throw new Error('Failed to load case studies');
-  }
+export async function loadPublicCaseStudies(): Promise<CaseStudy[]> {
+  return sortCaseStudies(caseStudies.filter(isPublicContent));
 }
 
 export async function loadCaseStudyBySlug(slug: string): Promise<CaseStudy> {
-  const caseStudies = await loadAllCaseStudies();
-  const caseStudy = caseStudies.find((c) => c.slug === slug);
+  const caseStudy = caseStudies.find(
+    (c) => c.slug === slug && isRoutableContent(c),
+  );
   if (!caseStudy) {
     throw new Error(`Case study "${slug}" not found`);
   }
@@ -66,6 +44,9 @@ export async function loadCaseStudyBySlug(slug: string): Promise<CaseStudy> {
 export async function loadCaseStudiesByProject(
   projectSlug: string,
 ): Promise<CaseStudy[]> {
-  const caseStudies = await loadAllCaseStudies();
-  return caseStudies.filter((c) => c.project_slug === projectSlug);
+  return sortCaseStudies(
+    caseStudies.filter(
+      (c) => c.project_slug === projectSlug && isListedContent(c),
+    ),
+  );
 }

@@ -6,6 +6,8 @@ import {
   type CaseStudyCard,
 } from '../components/show/case-studies-carousel';
 import { EmptyState, ErrorState } from '@/components/shared';
+import { MDXContent } from '@/components/mdx';
+import { formatContentMeta } from '@/lib/content-meta';
 import type { BadgeColor } from '@/types';
 import type { Project } from '@/types';
 
@@ -53,6 +55,8 @@ export default async function ProjectShowPage({
       subtitle: cs.subtitle,
       status: cs.status.value,
       tags: cs.tags,
+      meta: formatContentMeta(cs),
+      isComingSoon: cs.isComingSoon,
     }));
   } catch (err) {
     error = err instanceof Error ? err.message : 'Unknown error';
@@ -88,6 +92,11 @@ export default async function ProjectShowPage({
             <div>
               <span className="type-eyebrow">{projectData.hero.eyebrow}</span>
               <h1 className="type-show-title mt-3">{projectData.title}</h1>
+              {formatContentMeta(projectData) && (
+                <p className="type-caption mt-3">
+                  {formatContentMeta(projectData)}
+                </p>
+              )}
               <p className="type-body-lg mt-4 max-w-2xl">
                 {projectData.subtitle}
               </p>
@@ -154,6 +163,12 @@ export default async function ProjectShowPage({
               <div className="max-w-none">
                 <p className="type-body">{projectData.impact}</p>
               </div>
+            </div>
+          )}
+
+          {projectData.mdx && (
+            <div className="prose-portfolio space-y-10">
+              <MDXContent code={projectData.mdx} />
             </div>
           )}
         </div>

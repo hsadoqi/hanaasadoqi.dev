@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import {
-  loadAllCaseStudies,
   loadCaseStudyBySlug,
+  loadRoutableCaseStudies,
 } from '../lib/case-studies-loader';
 import { loadProjectBySlug } from '../../projects/lib/projects-loader';
 import { EmptyState, ErrorState } from '@/components/shared';
+import { MDXContent } from '@/components/mdx';
+import { formatContentMeta } from '@/lib/content-meta';
 import type { BadgeColor, CaseStudy, Project } from '@/types';
 
 // Import the rendering components from the old case study page
@@ -14,7 +16,7 @@ import { RenderSection } from '@/components/shared/blocks/render-section';
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const caseStudies = await loadAllCaseStudies();
+  const caseStudies = await loadRoutableCaseStudies();
 
   return caseStudies.map((caseStudy) => ({
     slug: caseStudy.project_slug,
@@ -122,6 +124,9 @@ export default async function CaseStudyPage({
             <div>
               <span className="type-eyebrow">{data.hero.eyebrow}</span>
               <h1 className="type-show-title mt-2">{data.title}</h1>
+              {formatContentMeta(data) && (
+                <p className="type-caption mt-3">{formatContentMeta(data)}</p>
+              )}
               <p className="type-body-lg mt-4 max-w-2xl">{data.subtitle}</p>
             </div>
 
@@ -193,6 +198,11 @@ export default async function CaseStudyPage({
           {data.sections.map((section, idx) => (
             <RenderSection key={idx} section={section} />
           ))}
+          {data.mdx && (
+            <div className="prose-portfolio space-y-10">
+              <MDXContent code={data.mdx} />
+            </div>
+          )}
         </div>
       </section>
 
