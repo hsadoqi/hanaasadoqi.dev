@@ -11,10 +11,10 @@ export function ReflectionBlock({
 }: ReflectionBlockProps) {
   return (
     <div className="border-border/30 bg-muted/10 mb-4 space-y-3 rounded-lg border p-6">
-      <p className="text-muted-foreground/60 text-sm italic">{title}</p>
-      <p className="text-foreground text-base leading-relaxed">{insight}</p>
+      <p className="type-body-sm italic">{title}</p>
+      <p className="type-body text-foreground">{insight}</p>
       {transferable && (
-        <p className="text-muted-foreground/60 border-border/20 border-t pt-2 text-xs">
+        <p className="type-caption border-border/20 border-t pt-2">
           Transfer: {transferable}
         </p>
       )}

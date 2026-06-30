@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { MarginLine } from './margin-line';
+import { MarginLine, type MarginLineProps } from './margin-line';
 import { SectionHeader, type SectionHeaderProps } from './section-header';
 import { SectionAlign, SectionJustify, SectionVariant } from '@/types';
 import { alignMap, justifyMap } from './types';
@@ -14,9 +14,11 @@ export type SectionProps = React.HTMLAttributes<HTMLElement> & {
   /** Vertical distribution of children (main-axis in column flex). Only applies when flex is active. */
   justify?: SectionJustify;
   showMarginLine?: boolean;
-  marginLineText?: string;
+  marginLineText?: React.ReactNode;
+  marginLineProps?: Omit<MarginLineProps, 'text' | 'children'>;
   containerClassName?: string;
   header?: SectionHeaderProps;
+  // centered?: boolean;
 };
 
 export function Section({
@@ -29,6 +31,7 @@ export function Section({
   children,
   showMarginLine = false,
   marginLineText = '',
+  marginLineProps,
   containerClassName,
   header,
   'aria-labelledby': ariaLabelledBy,
@@ -41,7 +44,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        'border-border/20 from-background via-background to-background border-b bg-gradient-to-b px-6 py-12 sm:px-8 sm:py-16 lg:px-12',
+        'border-border/20 from-background via-background to-background border-b bg-gradient-to-b px-6 py-16 sm:px-8 sm:py-24 lg:px-12 lg:py-28',
         id && 'scroll-mt-24',
         variant === 'surface' &&
           'bg-card/80 shadow-ring/5 rounded-3xl border shadow-sm',
@@ -56,7 +59,10 @@ export function Section({
     >
       <div
         className={cn(
-          'mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8',
+          'mx-auto w-full px-4 sm:px-6 lg:px-8',
+          {
+            'max-w-7xl': !fullScreen,
+          },
           containerClassName,
         )}
       >
@@ -64,11 +70,13 @@ export function Section({
           <SectionHeader
             {...header}
             id={headerId}
-            className={cn('mb-12', header.className)}
+            className={cn('mb-14 sm:mb-16', header.className)}
           />
         ) : null}
         {children}
-        {showMarginLine && <MarginLine text={marginLineText} />}
+        {showMarginLine && (
+          <MarginLine text={marginLineText} {...marginLineProps} />
+        )}
       </div>
     </section>
   );

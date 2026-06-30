@@ -18,9 +18,9 @@ export function RenderSection({ section }: { section: CaseStudySection }) {
       return (
         <div>
           <SectionTitle>{section.title}</SectionTitle>
-          <div className="text-muted-foreground/80 space-y-4">
+          <div className="space-y-4">
             {section.paragraphs.map((para, idx) => (
-              <p key={idx} className="text-base leading-relaxed">
+              <p key={idx} className="type-body">
                 {para}
               </p>
             ))}
@@ -67,15 +67,13 @@ export function RenderSection({ section }: { section: CaseStudySection }) {
               </CalloutNote>
             )}
             <div>
-              <h3 className="text-foreground mb-3 text-lg font-semibold">
+              <h3 className="type-card-title mb-3">
                 Design Decision — {section.designDecision.title}
               </h3>
-              <p className="text-muted-foreground/80 mb-3 text-sm">
+              <p className="type-body-sm mb-3">
                 {section.designDecision.description}
               </p>
-              <p className="text-muted-foreground/60 text-xs">
-                Why: {section.designDecision.why}
-              </p>
+              <p className="type-caption">Why: {section.designDecision.why}</p>
             </div>
           </div>
         </div>
@@ -172,18 +170,12 @@ export function RenderSection({ section }: { section: CaseStudySection }) {
         <div>
           <SectionTitle>{section.title}</SectionTitle>
           <div className="space-y-4">
-            <p className="text-muted-foreground/80 text-base leading-relaxed">
-              {section.intro}
-            </p>
+            <p className="type-body">{section.intro}</p>
             <div className="space-y-4">
               {section.items.map((item, idx) => (
                 <div key={idx} className="border-border/40 border-l pl-4">
-                  <h4 className="text-foreground font-semibold">
-                    {item.title}
-                  </h4>
-                  <p className="text-muted-foreground/70 mt-1 text-sm">
-                    {item.description}
-                  </p>
+                  <h4 className="type-card-title-sm">{item.title}</h4>
+                  <p className="type-body-sm mt-1">{item.description}</p>
                 </div>
               ))}
             </div>

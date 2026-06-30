@@ -5,7 +5,7 @@ import { ThemeToggle } from '@/components/shared/theme/theme-toggle';
 import Image from 'next/image';
 
 const customNavLinks = [
-  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/#projects', label: 'Projects' },
   { href: '/#writing', label: 'Writing' },
   { href: '/#experience', label: 'Experience' },
   { href: '/#about', label: 'About' },
@@ -43,7 +43,7 @@ export function Navbar({
               key={link.href}
               href={link.href}
               variant="ghost"
-              className="text-muted-foreground hover:bg-brand-foreground hover:text-brand h-full px-3 py-2 text-sm font-medium"
+              className="type-body-sm text-muted-foreground hover:bg-muted hover:text-foreground h-full px-3 py-2 font-medium motion-safe:transition-colors"
             >
               {link.label}
             </LinkButton>

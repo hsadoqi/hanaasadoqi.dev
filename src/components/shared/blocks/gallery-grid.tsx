@@ -19,13 +19,9 @@ export function GalleryGrid({ items, columns = 2 }: GalleryGridProps) {
       {items.map((item, i) => (
         <div key={i} className="space-y-2">
           <div className="bg-muted/30 border-border/30 flex aspect-square w-full items-center justify-center rounded-lg border">
-            <p className="text-muted-foreground/40 text-center font-mono text-xs">
-              {item.label}
-            </p>
+            <p className="type-meta text-center">{item.label}</p>
           </div>
-          {item.caption && (
-            <p className="text-muted-foreground/60 text-xs">{item.caption}</p>
-          )}
+          {item.caption && <p className="type-caption">{item.caption}</p>}
         </div>
       ))}
     </div>

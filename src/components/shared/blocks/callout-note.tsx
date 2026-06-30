@@ -12,7 +12,7 @@ export function CalloutNote({ children, type = 'note' }: CalloutNoteProps) {
 
   return (
     <div className={`border-l-2 ${styles[type]} my-6 rounded-r px-4 py-3`}>
-      <p className="text-muted-foreground/80 text-sm">{children}</p>
+      <p className="type-body-sm">{children}</p>
     </div>
   );
 }

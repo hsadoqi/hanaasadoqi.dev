@@ -8,5 +8,6 @@ export { TimelineItem } from './timeline-item';
 export { MetricCard } from './metric-card';
 export { ReflectionBlock } from './reflection-block';
 export { CalloutNote } from './callout-note';
+export { SectionMarker } from './section-marker';
 export { GalleryGrid } from './gallery-grid';
 export { RenderSection } from './render-section';

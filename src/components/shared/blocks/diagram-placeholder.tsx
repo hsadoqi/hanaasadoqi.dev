@@ -16,12 +16,10 @@ export function DiagramPlaceholder({
         style={{ height: `${height}px` }}
       >
         <div className="text-center">
-          <p className="text-muted-foreground/40 font-mono text-sm">{label}</p>
+          <p className="type-meta">{label}</p>
         </div>
       </div>
-      {caption && (
-        <p className="text-muted-foreground/50 text-xs italic">{caption}</p>
-      )}
+      {caption && <p className="type-caption italic">{caption}</p>}
     </div>
   );
 }

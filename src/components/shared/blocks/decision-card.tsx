@@ -26,12 +26,8 @@ export function DecisionCard({
         className="hover:bg-muted/20 focus-visible:ring-ring flex w-full items-start justify-between gap-4 p-6 text-left focus-visible:ring-2 focus-visible:outline-none motion-safe:transition-colors motion-safe:duration-200"
       >
         <span className="space-y-2">
-          <span className="text-foreground block text-sm font-semibold sm:text-base">
-            {title}
-          </span>
-          <span className="text-muted-foreground/70 block text-sm">
-            {teaser}
-          </span>
+          <span className="type-card-title-sm block">{title}</span>
+          <span className="type-body-sm block">{teaser}</span>
         </span>
         <span
           className="text-muted-foreground/50 flex-shrink-0 text-xl leading-none"
@@ -56,16 +52,14 @@ function DecisionDetails({
   answer: string;
 }) {
   return (
-    <div className="border-border/20 text-muted-foreground/70 space-y-3 border-t px-6 pt-4 pb-6 text-sm">
+    <div className="border-border/20 type-body-sm space-y-3 border-t px-6 pt-4 pb-6">
       <p>{answer}</p>
       {alternatives?.length ? (
         <div>
-          <p className="text-muted-foreground/60 mb-2 text-xs font-medium">
-            We considered:
-          </p>
+          <p className="type-caption mb-2 font-medium">We considered:</p>
           <ul className="space-y-1">
             {alternatives.map((alt, i) => (
-              <li key={i} className="text-muted-foreground/60 ml-4 text-xs">
+              <li key={i} className="type-caption ml-4">
                 • {alt}
               </li>
             ))}
