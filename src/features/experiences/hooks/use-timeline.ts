@@ -9,9 +9,14 @@ const clampIndex = (index: number, total: number) =>
 
 export function useTimeline(total: number, initialIndex = -1) {
   const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const [focusedIndex, setFocusedIndex] = useState(clampIndex(0, total));
   const prefersReducedMotion = usePrefersReducedMotion();
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const timelineContainerRef = useRef<HTMLDivElement | null>(null);
+  const isSectionActiveRef = useRef(false);
+  const hasAutoOpenedRef = useRef(initialIndex >= 0);
   const pendingScrollIndexRef = useRef<number | null>(null);
+  const pendingFocusIndexRef = useRef<number | null>(null);
 
   const setIndex = useCallback(
     (nextIndex: number) => {
@@ -19,51 +24,137 @@ export function useTimeline(total: number, initialIndex = -1) {
       setActiveIndex((currentIndex) =>
         clamped === currentIndex ? currentIndex : clamped,
       );
+      setFocusedIndex(clamped);
       pendingScrollIndexRef.current = clamped;
+      pendingFocusIndexRef.current = clamped;
     },
     [total],
   );
 
   const goToIndex = useCallback((index: number) => setIndex(index), [setIndex]);
-  const prev = useCallback(
-    () => setIndex(activeIndex - 1),
+  const prev = useCallback(() => {
+    if (activeIndex < 0) return;
+    setIndex(activeIndex - 1);
+  }, [activeIndex, setIndex]);
+  const next = useCallback(
+    () => setIndex(activeIndex < 0 ? 0 : activeIndex + 1),
     [activeIndex, setIndex],
   );
-  const next = useCallback(
-    () => setIndex(activeIndex + 1),
-    [activeIndex, setIndex],
+
+  const handleFocusIndex = useCallback(
+    (index: number) => setFocusedIndex(clampIndex(index, total)),
+    [total],
+  );
+
+  const shouldIgnoreGlobalKey = useCallback((target: EventTarget | null) => {
+    if (!(target instanceof HTMLElement)) return false;
+    if (target.closest('[data-timeline-dot]')) return true;
+    if (
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement ||
+      target.isContentEditable
+    ) {
+      return true;
+    }
+
+    return !!target.closest('button:not([data-timeline-dot])');
+  }, []);
+
+  const handleTimelineKey = useCallback(
+    (key: string) => {
+      if (key === 'ArrowLeft' || key === 'ArrowUp') {
+        if (activeIndex < 0) return true;
+        setIndex(activeIndex - 1);
+        return true;
+      }
+
+      if (key === 'ArrowRight' || key === 'ArrowDown') {
+        setIndex(activeIndex < 0 ? 0 : activeIndex + 1);
+        return true;
+      }
+
+      if (key === 'Home') {
+        setIndex(0);
+        return true;
+      }
+
+      if (key === 'End') {
+        setIndex(total - 1);
+        return true;
+      }
+
+      if (key === 'Enter' || key === ' ' || key === 'Spacebar') {
+        setIndex(focusedIndex);
+        return true;
+      }
+
+      return false;
+    },
+    [activeIndex, focusedIndex, setIndex, total],
   );
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault();
-        prev();
-      }
+      const target = event.target;
+      const isTimelineControl =
+        target instanceof HTMLElement && target.closest('[data-timeline-dot]');
 
-      if (event.key === 'ArrowRight') {
-        event.preventDefault();
-        next();
-      }
+      if (!isTimelineControl) return;
 
-      if (event.key === 'Home') {
+      if (handleTimelineKey(event.key)) {
         event.preventDefault();
-        goToIndex(0);
-      }
-
-      if (event.key === 'End') {
-        event.preventDefault();
-        goToIndex(total - 1);
       }
     },
-    [goToIndex, next, prev, total],
+    [handleTimelineKey],
   );
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isActive =
+          entry.isIntersecting && entry.intersectionRatio >= 0.45;
+        isSectionActiveRef.current = isActive;
+
+        if (isActive && !hasAutoOpenedRef.current && total > 0) {
+          hasAutoOpenedRef.current = true;
+          setActiveIndex(0);
+          setFocusedIndex(0);
+          pendingScrollIndexRef.current = 0;
+        }
+      },
+      { threshold: [0, 0.45, 0.7] },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [total]);
+
+  useEffect(() => {
+    const handleWindowKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (!isSectionActiveRef.current) return;
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+        return;
+      }
+      if (shouldIgnoreGlobalKey(event.target)) return;
+
+      if (handleTimelineKey(event.key)) {
+        event.preventDefault();
+      }
+    };
+
+    window.addEventListener('keydown', handleWindowKeyDown);
+    return () => window.removeEventListener('keydown', handleWindowKeyDown);
+  }, [handleTimelineKey, shouldIgnoreGlobalKey]);
 
   useEffect(() => {
     const container = timelineContainerRef.current;
     const scrollIndex = pendingScrollIndexRef.current;
 
-    if (!container || activeIndex < 0 || scrollIndex === null) return;
+    if (!container || scrollIndex === null) return;
 
     const buttons = Array.from(
       container.querySelectorAll<HTMLButtonElement>('[data-timeline-dot]'),
@@ -91,12 +182,30 @@ export function useTimeline(total: number, initialIndex = -1) {
     });
 
     pendingScrollIndexRef.current = null;
-  }, [activeIndex, prefersReducedMotion]);
+  }, [activeIndex, focusedIndex, prefersReducedMotion]);
+
+  useEffect(() => {
+    const container = timelineContainerRef.current;
+    const focusIndex = pendingFocusIndexRef.current;
+
+    if (!container || focusIndex === null) return;
+
+    const buttons = Array.from(
+      container.querySelectorAll<HTMLButtonElement>('[data-timeline-dot]'),
+    );
+    const focusButton = buttons[focusIndex];
+
+    focusButton?.focus();
+    pendingFocusIndexRef.current = null;
+  }, [focusedIndex]);
 
   return {
     activeIndex,
+    focusedIndex,
+    sectionRef,
     timelineContainerRef,
     handleKeyDown,
+    handleFocusIndex,
     prev,
     next,
     goToIndex,
