@@ -1,5 +1,8 @@
 import type { ComponentProps } from 'react';
 
+import Link from 'next/link';
+
+import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils';
 
 type IconProps = ComponentProps<'svg'>;
@@ -57,3 +60,30 @@ export const socialMediaIcons = [
     icon: MailIcon,
   },
 ];
+
+export const SocialMediaIcons = () => (
+  <div
+    className="hero-enter hero-enter-delay-2 flex w-full gap-2"
+    aria-label="Social links"
+  >
+    {socialMediaIcons.map((item) => {
+      const Icon = item.icon;
+
+      return (
+        <Button
+          key={item.href}
+          aria-label={item.label}
+          size="lg"
+          variant="ghost"
+          className="text-muted-foreground hover:bg-muted hover:text-brand size-10 transition-colors duration-300 ease-linear hover:motion-safe:-translate-y-0.5 focus-visible:motion-safe:-translate-y-0.5 sm:size-12"
+          asChild
+        >
+          <Link href={item.href}>
+            <Icon className="size-5 sm:size-6" />
+            <span className="sr-only">{item.label}</span>
+          </Link>
+        </Button>
+      );
+    })}
+  </div>
+);
