@@ -24,17 +24,15 @@ export function CaseStudiesCarousel({
     <div className="space-y-6">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <h2 className="text-foreground text-2xl font-bold text-balance sm:text-3xl">
-            Related case studies
-          </h2>
-          <p className="text-muted-foreground/70 mt-2 text-sm">
+          <h2 className="type-section-title">Related case studies</h2>
+          <p className="type-body-sm mt-2">
             Technical decisions and product lessons from this project.
           </p>
         </div>
 
         <Link
           href="/case-studies"
-          className="text-muted-foreground hover:text-foreground focus-visible:ring-ring w-fit rounded text-sm font-medium focus-visible:ring-2 focus-visible:outline-none"
+          className="type-body-sm hover:text-foreground focus-visible:ring-ring w-fit rounded font-medium focus-visible:ring-2 focus-visible:outline-none"
         >
           View all case studies <span aria-hidden="true">→</span>
         </Link>
@@ -47,13 +45,11 @@ export function CaseStudiesCarousel({
             href={`/projects/${projectSlug}/${study.slug}`}
             className="border-border/40 bg-background hover:border-border/70 focus-visible:ring-ring min-w-[min(82vw,320px)] snap-start rounded-lg border p-5 transition-colors focus-visible:ring-2 focus-visible:outline-none"
           >
-            <div className="space-y-4">
+            <div className="max-h-[300px] max-w-[250px] space-y-4">
               <StatusBadge status={study.status}>{study.status}</StatusBadge>
               <div>
-                <h3 className="text-foreground text-base font-semibold">
-                  {study.title}
-                </h3>
-                <p className="text-muted-foreground/70 mt-2 line-clamp-3 text-sm leading-relaxed">
+                <h3 className="type-card-title-sm">{study.title}</h3>
+                <p className="type-body-sm mt-2 line-clamp-3">
                   {study.subtitle}
                 </p>
               </div>

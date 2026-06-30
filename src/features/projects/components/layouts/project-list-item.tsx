@@ -26,17 +26,21 @@ export function ProjectListItem({ project, featured }: ProjectListItemProps) {
       <div className="min-w-0 flex-1 space-y-2">
         <div className="flex items-center gap-3">
           <StatusBadge status={display.status}>{display.status}</StatusBadge>
+          {display.caseStudyCount > 0 && (
+            <span className="border-brand/20 bg-brand/5 text-brand hidden shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium md:inline-flex">
+              {display.caseStudyCount}{' '}
+              {display.caseStudyCount === 1 ? 'study' : 'studies'}
+            </span>
+          )}
           <h3
-            className={`text-foreground truncate text-base font-semibold motion-safe:transition-colors ${
+            className={`type-card-title-sm truncate motion-safe:transition-colors ${
               !display.link.isDisabled ? 'group-hover:text-foreground/80' : ''
             }`}
           >
             {display.title}
           </h3>
         </div>
-        <p className="text-muted-foreground/70 line-clamp-2 text-sm leading-relaxed">
-          {display.subtitle}
-        </p>
+        <p className="type-body-sm line-clamp-2">{display.subtitle}</p>
       </div>
 
       <ProjectTagList
@@ -47,7 +51,7 @@ export function ProjectListItem({ project, featured }: ProjectListItemProps) {
       />
 
       <span
-        className={`text-xs font-medium sm:w-32 sm:text-right ${
+        className={`type-caption font-medium sm:w-32 sm:text-right ${
           display.link.isDisabled
             ? 'text-muted-foreground/50'
             : 'text-foreground/60 group-hover:text-foreground'

@@ -14,6 +14,10 @@ export function getProjectDisplay(project: ProjectDisplayItem) {
   const link = getProjectLink(project);
   const tags = project.tags ?? [];
   const techStack = project.techStack ?? [];
+  const relatedCaseStudySlugs =
+    'relatedCaseStudies' in project ? (project.relatedCaseStudies ?? []) : [];
+  const projectSlug =
+    'project_slug' in project ? project.project_slug : project.slug;
 
   return {
     title: project.title,
@@ -27,6 +31,10 @@ export function getProjectDisplay(project: ProjectDisplayItem) {
     focus: tags,
     techStack,
     isFeaturedProject,
+    caseStudyCount: relatedCaseStudySlugs.length,
+    caseStudyHref: relatedCaseStudySlugs[0]
+      ? `/projects/${projectSlug}/${relatedCaseStudySlugs[0]}`
+      : undefined,
   };
 }
 

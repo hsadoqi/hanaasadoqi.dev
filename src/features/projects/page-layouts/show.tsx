@@ -86,19 +86,15 @@ export default async function ProjectShowPage({
         <div className="mx-auto max-w-4xl">
           <div className="space-y-6">
             <div>
-              <span className="text-muted-foreground/50 font-mono text-xs tracking-widest uppercase">
-                {projectData.hero.eyebrow}
-              </span>
-              <h1 className="text-foreground mt-3 text-4xl font-bold text-balance sm:text-5xl lg:text-6xl">
-                {projectData.title}
-              </h1>
-              <p className="text-muted-foreground/80 mt-4 max-w-2xl text-base leading-relaxed sm:text-lg">
+              <span className="type-eyebrow">{projectData.hero.eyebrow}</span>
+              <h1 className="type-show-title mt-3">{projectData.title}</h1>
+              <p className="type-body-lg mt-4 max-w-2xl">
                 {projectData.subtitle}
               </p>
             </div>
 
             {/* Status badges */}
-            <div className="inline-flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {projectData.hero.badges.map((badge, idx) => {
                 const colorMap: Record<BadgeColor, string> = {
                   blue: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
@@ -115,6 +111,14 @@ export default async function ProjectShowPage({
                   </span>
                 );
               })}
+              {relatedCaseStudies.length > 0 && (
+                <span className="border-brand/20 bg-brand/5 text-brand rounded border px-3 py-1 text-xs font-medium">
+                  {relatedCaseStudies.length}{' '}
+                  {relatedCaseStudies.length === 1
+                    ? 'case study available'
+                    : 'case studies available'}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -123,39 +127,35 @@ export default async function ProjectShowPage({
       {/* Content Sections */}
       <section className="border-border/40 border-b px-6 py-16 sm:px-8 sm:py-24 lg:px-12">
         <div className="mx-auto max-w-4xl space-y-16">
-          {/* Description */}
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-foreground text-2xl font-bold text-balance sm:text-3xl">
-                Overview
-              </h2>
-              <p className="text-muted-foreground/70 mt-2 text-sm">
-                Understanding the project
-              </p>
+          {(projectData.problem || projectData.solution) && (
+            <div className="grid gap-4 md:grid-cols-2">
+              {projectData.problem && (
+                <div className="border-border/40 bg-background/50 rounded-lg border p-5">
+                  <p className="type-eyebrow mb-3">Problem</p>
+                  <p className="type-body-sm">{projectData.problem}</p>
+                </div>
+              )}
+              {projectData.solution && (
+                <div className="border-border/40 bg-background/50 rounded-lg border p-5">
+                  <p className="type-eyebrow mb-3">Solution</p>
+                  <p className="type-body-sm">{projectData.solution}</p>
+                </div>
+              )}
             </div>
-            <div className="prose prose-sm dark:prose-invert prose-p:text-muted-foreground/80 prose-p:leading-relaxed max-w-none">
-              <p className="text-muted-foreground/80 text-base leading-relaxed">
-                {projectData.description}
-              </p>
-            </div>
-          </div>
+          )}
 
           {/* Impact */}
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-foreground text-2xl font-bold text-balance sm:text-3xl">
-                Impact & Vision
-              </h2>
-              <p className="text-muted-foreground/70 mt-2 text-sm">
-                Why this matters
-              </p>
+          {projectData.impact && (
+            <div className="space-y-6">
+              <div>
+                <h2 className="type-section-title">Impact & Vision</h2>
+                <p className="type-body-sm mt-2">Why this matters</p>
+              </div>
+              <div className="max-w-none">
+                <p className="type-body">{projectData.impact}</p>
+              </div>
             </div>
-            <div className="prose prose-sm dark:prose-invert prose-p:text-muted-foreground/80 prose-p:leading-relaxed max-w-none">
-              <p className="text-muted-foreground/80 text-base leading-relaxed">
-                {projectData.impact}
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -175,12 +175,10 @@ export default async function ProjectShowPage({
       <section className="border-border/40 border-t px-6 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div className="space-y-4 text-center">
-            <p className="text-muted-foreground/50 font-mono text-xs tracking-widest uppercase">
-              Back to portfolio
-            </p>
+            <p className="type-eyebrow">Back to portfolio</p>
             <Link
               href="/projects"
-              className="inline-block text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              className="type-body-sm inline-block font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
             >
               View all projects →
             </Link>

@@ -1,14 +1,16 @@
 'use client';
 
 import { projects } from '@/features/projects/data';
-import { FeaturedProjectCard } from '../show/featured-project-card';
 import { ProjectCard as CarouselProjectCard } from '../show/carousel-project-card';
 import { Section } from '@/components/layout/section';
 import { CarouselNav } from '@/features/projects/components/shared/carousel-nav';
 import { useCarousel } from '@/hooks/use-carousel';
 
 export function FeaturedWorkSection() {
-  const total = projects.length;
+  const featured = projects.filter((project) => project.featured);
+  const other = projects.filter((project) => !project.featured);
+  const allProjects = [...featured, ...other];
+  const total = allProjects.length;
   const {
     activeIndex,
     handleKeyDown,
@@ -22,17 +24,23 @@ export function FeaturedWorkSection() {
 
   return (
     <Section
-      id="case-studies"
+      id="projects"
       header={{
         eyebrow: 'Projects',
         title: 'Featured Work',
         description:
-          'Not everything ships. But everything gets thought through.',
+          'Not everything ships. But everything gets thought through. Like, a lot.',
+        ctaLinks: [
+          {
+            label: 'View All',
+            link: '/projects',
+          },
+        ],
       }}
       className="overflow-hidden"
     >
       {/* Header with Navigation — desktop */}
-      <div className="mb-10 flex flex-col gap-6 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mb-5 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div className="hidden sm:block">
           <CarouselNav
             currentIndex={activeIndex}
@@ -51,7 +59,7 @@ export function FeaturedWorkSection() {
         aria-roledescription="carousel"
         onKeyDown={handleKeyDown}
         tabIndex={0}
-        className="focus-visible:ring-ring relative focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset"
+        className="border-border/20 bg-background/35 focus-visible:ring-ring relative rounded-2xl border py-5 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset"
       >
         {/* Left fade — visible when not at start */}
         {showLeftFade && (
@@ -63,39 +71,24 @@ export function FeaturedWorkSection() {
 
         <div
           ref={railRef}
-          className="flex snap-x snap-mandatory scroll-px-6 [scrollbar-width:none] gap-3 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth px-6 pb-3 [-webkit-overflow-scrolling:touch] sm:scroll-px-8 sm:gap-4 sm:px-8 lg:scroll-px-12 lg:px-12 [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory scroll-px-6 [scrollbar-width:none] gap-3 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth px-6 pb-3 [-webkit-overflow-scrolling:touch] sm:scroll-px-8 sm:gap-4 sm:px-8 lg:scroll-px-10 lg:px-10 [&::-webkit-scrollbar]:hidden"
           aria-live="polite"
         >
-          {/* Featured card */}
-          {/* <div
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`1 of ${total}: ${featured.title} (featured)`}
-            className="flex-none"
-          >
-            <FeaturedProjectCard featured={featured} />
-          </div> */}
-
-          {/* Secondary cards */}
-          {projects.map((study, i) => (
+          {allProjects.map((project, i) => (
             <div
-              key={study.title}
+              key={project.title}
               role="group"
               aria-roledescription="slide"
-              aria-label={`${i + 1} of ${total}: ${study.title}`}
+              aria-label={`${i + 1} of ${total}: ${project.title}`}
               className="flex-none"
             >
-              {study.featured ? (
-                <FeaturedProjectCard featured={study} />
-              ) : (
-                <CarouselProjectCard project={study} index={i} />
-              )}
+              <CarouselProjectCard project={project} />
             </div>
           ))}
 
           {/* Trailing spacer so last card can snap cleanly */}
           <div
-            className="w-6 flex-none shrink-0 sm:w-8 lg:w-12"
+            className="w-1 flex-none shrink-0 sm:w-2 lg:w-4"
             aria-hidden="true"
           />
         </div>

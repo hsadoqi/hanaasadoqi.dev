@@ -29,7 +29,7 @@ export function ProjectTagList({
         </Pill>
       ))}
       {hiddenCount > 0 && (
-        <span className="text-muted-foreground/60 text-xs">
+        <span className="type-caption">
           +{hiddenCount}
           {overflowLabel === 'more' ? ' more' : ''}
         </span>

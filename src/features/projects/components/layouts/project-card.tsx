@@ -30,18 +30,24 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
           {isFeatured && <FeaturedBadge status={display.status} />}
         </div>
 
+        {display.caseStudyCount > 0 && (
+          <div className="border-brand/20 bg-brand/5 text-brand inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium">
+            <span aria-hidden="true">↳</span>
+            {display.caseStudyCount}{' '}
+            {display.caseStudyCount === 1 ? 'case study' : 'case studies'}
+          </div>
+        )}
+
         {/* Title & Subtitle */}
         <div className="space-y-2">
           <h3
-            className={`text-foreground leading-snug motion-safe:transition-colors ${
+            className={`type-card-title-sm motion-safe:transition-colors ${
               !display.link.isDisabled ? 'group-hover:text-foreground/80' : ''
-            } text-base font-semibold`}
+            }`}
           >
             {display.title}
           </h3>
-          <p className="text-muted-foreground/70 text-sm leading-relaxed">
-            {display.subtitle}
-          </p>
+          <p className="type-body-sm">{display.subtitle}</p>
         </div>
 
         {/* Focus Areas */}
@@ -56,7 +62,7 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
         />
 
         <span
-          className={`inline-flex text-xs font-medium ${
+          className={`type-caption inline-flex font-medium ${
             display.link.isDisabled
               ? 'text-muted-foreground/50'
               : 'text-foreground/60 group-hover:text-foreground'

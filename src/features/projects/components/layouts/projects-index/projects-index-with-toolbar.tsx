@@ -61,13 +61,11 @@ export function ProjectsIndexWithToolbar({
   return (
     <div className="space-y-8">
       <header className="max-w-3xl space-y-4">
-        <p className="text-muted-foreground text-sm font-medium tracking-[0.25em] uppercase">
-          Projects
-        </p>
-        <h1 className="text-foreground text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+        <p className="type-eyebrow">Projects</p>
+        <h1 className="type-show-title">
           Project work, systems thinking, and the case studies behind them.
         </h1>
-        <p className="text-muted-foreground max-w-2xl text-base leading-8">
+        <p className="type-body max-w-2xl">
           Browse the projects, filter by focus area, and jump directly into the
           most relevant case study when one is available.
         </p>
@@ -80,12 +78,10 @@ export function ProjectsIndexWithToolbar({
         <div className="mx-auto max-w-6xl space-y-7">
           <div className="border-border/20 flex flex-col gap-4 border-b pb-6">
             <div>
-              <p className="text-muted-foreground text-xs font-medium tracking-[0.2em] uppercase">
-                Browse
-              </p>
+              <p className="type-eyebrow">Browse</p>
               <h2
                 id="projects-browser-heading"
-                className="text-foreground mt-1 text-xl font-semibold tracking-tight"
+                className="type-panel-title mt-2"
               >
                 {resultCount} project{resultCount === 1 ? '' : 's'}
               </h2>
@@ -114,16 +110,14 @@ export function ProjectsIndexWithToolbar({
             </div>
           ) : (
             <div className="border-border/20 bg-background/40 flex flex-col items-center justify-center rounded-lg border p-12 text-center backdrop-blur-sm">
-              <h3 className="text-foreground mb-2 text-lg font-semibold">
-                {emptyState.title}
-              </h3>
-              <p className="text-secondary-content mb-4 max-w-sm text-sm">
+              <h3 className="type-card-title mb-2">{emptyState.title}</h3>
+              <p className="type-body-sm mb-4 max-w-sm">
                 {emptyState.description}
               </p>
               {hasActiveControls ? (
                 <button
                   onClick={clearFilters}
-                  className="text-accent hover:text-accent/80 text-sm font-medium motion-safe:transition-colors"
+                  className="type-body-sm text-accent hover:text-accent/80 font-medium motion-safe:transition-colors"
                 >
                   Clear filters
                 </button>

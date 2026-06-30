@@ -12,6 +12,7 @@ interface CarouselNavProps {
   onDotClick?: (index: number) => void;
   layout?: 'desktop' | 'mobile' | 'both';
   className?: string;
+  introLabel?: string;
 }
 
 export function CarouselNav({
@@ -22,11 +23,15 @@ export function CarouselNav({
   onDotClick,
   layout = 'both',
   className = '',
+  introLabel = 'Select a role',
 }: CarouselNavProps) {
   const showDesktop = layout === 'desktop' || layout === 'both';
   const showMobile = layout === 'mobile' || layout === 'both';
+  const hasSelection = currentIndex >= 0;
 
-  const counter = `${String(currentIndex + 1).padStart(2, '0')} / ${String(totalItems).padStart(2, '0')}`;
+  const counter = hasSelection
+    ? `${String(currentIndex + 1).padStart(2, '0')} / ${String(totalItems).padStart(2, '0')}`
+    : introLabel;
   const buttonClassName =
     'inline-flex size-9 items-center justify-center rounded-md text-foreground/60 transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-40';
 
@@ -34,28 +39,28 @@ export function CarouselNav({
     <div className={className}>
       {showDesktop && (
         <div className="hidden items-center gap-4 md:flex">
-          <p
-            className="text-foreground/60 font-mono text-sm font-medium tabular-nums"
-            aria-live="polite"
-          >
-            {counter}
-          </p>
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={onPrevious}
-              disabled={currentIndex === 0}
+              disabled={!hasSelection || currentIndex === 0}
               className={buttonClassName}
               aria-label="Previous slide"
             >
               <ChevronLeft aria-hidden="true" className="size-4" />
             </button>
+            <p
+              className="text-foreground/60 font-mono text-sm font-medium tabular-nums"
+              aria-live="polite"
+            >
+              {counter}
+            </p>
             <button
               type="button"
               onClick={onNext}
-              disabled={currentIndex === totalItems - 1}
+              disabled={hasSelection && currentIndex === totalItems - 1}
               className={buttonClassName}
-              aria-label="Next slide"
+              aria-label={hasSelection ? 'Next slide' : 'Select first role'}
             >
               <ChevronRight aria-hidden="true" className="size-4" />
             </button>
@@ -72,7 +77,9 @@ export function CarouselNav({
               onClick={() => onDotClick?.(idx)}
               className="focus-visible:ring-ring flex size-8 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none"
               aria-label={`Go to slide ${idx + 1}`}
-              aria-current={idx === currentIndex ? 'true' : undefined}
+              aria-current={
+                hasSelection && idx === currentIndex ? 'true' : undefined
+              }
             >
               <span
                 className={cn(
