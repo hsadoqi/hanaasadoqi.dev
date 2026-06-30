@@ -2,15 +2,17 @@
 
 import { useState } from 'react';
 import { Section } from '@/components/layout/section';
+import { StatusBadge } from '@/components/shared/badges';
 import { writingArticles } from '../data';
 
 const MOBILE_INITIAL = 3;
 
-const statusColor: Record<'Published' | 'Draft' | 'Planned', string> = {
-  Published: 'bg-green-500/10 text-green-700 dark:text-green-300 font-medium',
-  Draft: 'bg-blue-500/10 text-blue-700 dark:text-blue-300 font-medium',
-  Planned: 'bg-amber-500/10 text-amber-700 dark:text-amber-300 font-medium',
-};
+const writingStatusVariant: Record<'Published' | 'Draft' | 'Planned', string> =
+  {
+    Published: 'live',
+    Draft: 'draft',
+    Planned: 'planned',
+  };
 
 export function WritingSection() {
   const [showAll, setShowAll] = useState(false);
@@ -23,9 +25,9 @@ export function WritingSection() {
     <Section
       id="writing"
       header={{
-        title: 'Thinking out loud',
-        description:
-          'Deep dives on engineering, design systems, and product thinking.',
+        eyebrow: 'Writing',
+        title: 'Musings, but Tech',
+        description: 'The fruit of many a night spent down rabbit holes. ',
       }}
     >
       <div className="space-y-0">
@@ -38,20 +40,19 @@ export function WritingSection() {
           >
             {/* Status badge + Title row */}
             <div className="flex items-start justify-between gap-4">
-              <h3 className="text-primary-content hover:text-foreground flex-1 text-base leading-snug font-semibold motion-safe:transition-colors motion-safe:duration-200 sm:text-lg">
+              <h3 className="type-card-title-sm hover:text-foreground flex-1 motion-safe:transition-colors motion-safe:duration-200 sm:text-lg">
                 {article.title}
               </h3>
-              <span
-                className={`flex-shrink-0 rounded-md px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap ${statusColor[article.status]}`}
+              <StatusBadge
+                status={writingStatusVariant[article.status]}
+                className="flex-shrink-0"
               >
                 {article.status}
-              </span>
+              </StatusBadge>
             </div>
 
             {/* Summary */}
-            <p className="text-secondary-content max-w-3xl text-sm leading-relaxed">
-              {article.summary}
-            </p>
+            <p className="type-body-sm max-w-3xl">{article.summary}</p>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 pt-2">
@@ -76,7 +77,7 @@ export function WritingSection() {
       {!showAll && remaining > 0 && (
         <button
           onClick={() => setShowAll(true)}
-          className="border-border/30 text-tertiary-content hover:text-secondary-content hover:border-border/50 hover:bg-background/60 focus-visible:ring-ring focus-visible:ring-offset-background mt-8 w-full rounded-md border px-4 py-3 text-sm font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:transition-all motion-safe:duration-200"
+          className="border-border/30 type-body-sm hover:text-secondary-content hover:border-border/50 hover:bg-background/60 focus-visible:ring-ring focus-visible:ring-offset-background mt-8 w-full rounded-md border px-4 py-3 font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:transition-all motion-safe:duration-200"
         >
           Show {remaining} more essays
         </button>
@@ -85,7 +86,7 @@ export function WritingSection() {
       {showAll && writingArticles.length > MOBILE_INITIAL && (
         <button
           onClick={() => setShowAll(false)}
-          className="border-border/30 text-tertiary-content hover:text-secondary-content hover:border-border/50 hover:bg-background/60 focus-visible:ring-ring focus-visible:ring-offset-background mt-8 w-full rounded-md border px-4 py-3 text-sm font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:transition-all motion-safe:duration-200"
+          className="border-border/30 type-body-sm hover:text-secondary-content hover:border-border/50 hover:bg-background/60 focus-visible:ring-ring focus-visible:ring-offset-background mt-8 w-full rounded-md border px-4 py-3 font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:transition-all motion-safe:duration-200"
         >
           Show less
         </button>

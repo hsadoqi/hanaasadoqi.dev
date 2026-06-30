@@ -106,17 +106,15 @@ export function SystemsSection() {
                   : 'text-muted-foreground hover:bg-background/60 hover:text-foreground',
               )}
             >
-              <span className="block text-sm font-semibold">{item.label}</span>
-              <span className="mt-1 block text-[11px] leading-relaxed opacity-70">
+              <span className="type-card-title-sm block">{item.label}</span>
+              <span className="type-caption mt-1 block opacity-80">
                 {item.description}
               </span>
             </button>
           ))}
         </div>
 
-        <p className="text-muted-foreground max-w-2xl text-sm leading-7">
-          {activeView.description}
-        </p>
+        <p className="type-body-sm max-w-2xl">{activeView.description}</p>
 
         {view === 'index' && <ConceptIndex items={systemCards} />}
         {view === 'glossary' && <ConceptGlossary items={systemCards} />}
@@ -157,7 +155,7 @@ function ConceptIndex({ items }: { items: SystemCard[] }) {
             >
               <span
                 className={cn(
-                  'text-muted-foreground/40 mt-1 font-mono text-[11px] tabular-nums',
+                  'type-meta mt-1',
                   isActive && 'text-muted-foreground/70',
                 )}
               >
@@ -165,7 +163,7 @@ function ConceptIndex({ items }: { items: SystemCard[] }) {
               </span>
               <span
                 className={cn(
-                  'text-foreground block origin-left text-xl leading-tight font-semibold tracking-tight',
+                  'type-card-title block origin-left',
                   'group-hover:scale-[1.03] motion-safe:transition-transform motion-safe:duration-200 sm:text-2xl',
                   isActive && 'text-brand scale-[1.03]',
                 )}
@@ -199,12 +197,10 @@ function ConceptGlossary({ items }: { items: SystemCard[] }) {
               aria-expanded={isOpen}
             >
               <span className="flex items-start gap-4">
-                <span className="text-muted-foreground/40 mt-1 font-mono text-[11px] tabular-nums">
+                <span className="type-meta mt-1">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                <span className="text-foreground text-lg leading-tight font-semibold tracking-tight sm:text-xl">
-                  {card.title}
-                </span>
+                <span className="type-card-title sm:text-xl">{card.title}</span>
               </span>
               <span
                 className={cn(
@@ -219,9 +215,7 @@ function ConceptGlossary({ items }: { items: SystemCard[] }) {
 
             {isOpen && (
               <div className="grid gap-5 px-5 pb-6 sm:grid-cols-[1fr_0.75fr] sm:px-6">
-                <p className="text-muted-foreground text-sm leading-7">
-                  {card.description}
-                </p>
+                <p className="type-body-sm">{card.description}</p>
                 <MetaStack card={card} />
               </div>
             )}
@@ -263,8 +257,8 @@ function ConceptLinkedMap({
                 : 'text-muted-foreground hover:border-border hover:bg-muted/20 hover:text-foreground',
             )}
           >
-            <span className="block text-sm font-semibold">{item.name}</span>
-            <span className="mt-2 block text-xs leading-6 opacity-75">
+            <span className="type-card-title-sm block">{item.name}</span>
+            <span className="type-caption mt-2 block opacity-85">
               {item.description}
             </span>
           </button>
@@ -273,10 +267,8 @@ function ConceptLinkedMap({
 
       <div className="space-y-5">
         <div>
-          <p className="text-muted-foreground text-[11px] font-semibold tracking-[0.18em] uppercase">
-            Concepts connected to {project.name}
-          </p>
-          <h3 className="text-foreground mt-2 text-2xl font-semibold tracking-tight">
+          <p className="type-eyebrow">Concepts connected to {project.name}</p>
+          <h3 className="type-panel-title mt-2 sm:text-2xl">
             Principles become useful when they point somewhere.
           </h3>
         </div>
@@ -287,12 +279,8 @@ function ConceptLinkedMap({
               key={card.title}
               className="border-border/40 hover:border-border rounded-xl border p-5 motion-safe:transition-colors"
             >
-              <h4 className="text-foreground text-base leading-snug font-semibold">
-                {card.title}
-              </h4>
-              <p className="text-muted-foreground mt-3 text-sm leading-6">
-                {card.example}
-              </p>
+              <h4 className="type-card-title-sm">{card.title}</h4>
+              <p className="type-body-sm mt-3">{card.example}</p>
               <div className="mt-4">
                 <TagList label="Writing hooks" items={card.writing} />
               </div>
@@ -319,7 +307,7 @@ function ConceptProofList({ items }: { items: SystemCard[] }) {
   return (
     <div className="space-y-6">
       <div className="border-border/40 bg-muted/20 rounded-xl border p-5 sm:p-6">
-        <p className="text-muted-foreground max-w-2xl text-sm leading-7">
+        <p className="type-body-sm max-w-2xl">
           This version intentionally withholds explanation until a concept can
           be backed by a project, essay, or decision note. It is the harshest
           option, but probably the strongest long-term portfolio pattern.
@@ -333,15 +321,9 @@ function ConceptProofList({ items }: { items: SystemCard[] }) {
             className="border-border/40 grid gap-5 rounded-xl border p-5 sm:grid-cols-[1fr_280px] sm:p-6"
           >
             <div>
-              <p className="text-muted-foreground/40 font-mono text-[11px] tabular-nums">
-                {String(index + 1).padStart(2, '0')}
-              </p>
-              <h3 className="text-foreground mt-2 text-xl leading-tight font-semibold tracking-tight">
-                {card.title}
-              </h3>
-              <p className="text-muted-foreground mt-3 max-w-2xl text-sm leading-7">
-                {card.example}
-              </p>
+              <p className="type-meta">{String(index + 1).padStart(2, '0')}</p>
+              <h3 className="type-card-title mt-2">{card.title}</h3>
+              <p className="type-body-sm mt-3 max-w-2xl">{card.example}</p>
             </div>
             <MetaStack card={card} />
           </article>
@@ -354,16 +336,10 @@ function ConceptProofList({ items }: { items: SystemCard[] }) {
 function DetailPanel({ card, eyebrow }: { card: SystemCard; eyebrow: string }) {
   return (
     <article className="border-border/50 bg-muted/20 sticky top-24 rounded-2xl border p-6 sm:p-7">
-      <p className="text-muted-foreground text-[11px] font-semibold tracking-[0.18em] uppercase">
-        {eyebrow}
-      </p>
-      <h3 className="text-foreground mt-3 text-2xl leading-tight font-semibold tracking-tight">
-        {card.title}
-      </h3>
-      <p className="text-muted-foreground mt-4 text-sm leading-7">
-        {card.description}
-      </p>
-      <p className="border-border/30 text-muted-foreground/70 mt-5 border-l-2 pl-4 text-sm leading-7 italic">
+      <p className="type-eyebrow">{eyebrow}</p>
+      <h3 className="type-panel-title mt-3 sm:text-2xl">{card.title}</h3>
+      <p className="type-body-sm mt-4">{card.description}</p>
+      <p className="border-border/30 type-body-sm mt-5 border-l-2 pl-4 italic">
         {card.example}
       </p>
       <div className="mt-6">
@@ -385,14 +361,12 @@ function MetaStack({ card }: { card: SystemCard }) {
 function TagList({ label, items }: { label: string; items: string[] }) {
   return (
     <div>
-      <p className="text-muted-foreground/50 mb-2 text-[11px] font-semibold tracking-[0.14em] uppercase">
-        {label}
-      </p>
+      <p className="type-eyebrow mb-2">{label}</p>
       <div className="flex flex-wrap gap-2">
         {items.map((item) => (
           <span
             key={item}
-            className="border-border/50 text-muted-foreground rounded-full border px-2.5 py-1 text-[11px] leading-none"
+            className="border-border/50 type-caption rounded-full border px-2.5 py-1 leading-none"
           >
             {item}
           </span>

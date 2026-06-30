@@ -101,13 +101,13 @@ export function AboutSection() {
       id="about"
       header={{
         eyebrow: 'About',
-        title: 'About Me',
+        title: 'Who, me?!',
       }}
     >
       <div className="grid items-start gap-12 lg:grid-cols-3 lg:gap-14">
         {/* Main narrative — 2 cols wide */}
         <div className="space-y-8 lg:col-span-2">
-          <div className="text-secondary-content space-y-6 text-base leading-relaxed">
+          <div className="type-body space-y-6">
             <p className="text-foreground font-medium">
               I didn&apos;t expect to end up in software.
             </p>
@@ -132,7 +132,7 @@ export function AboutSection() {
             </p>
             <div className="border-border/30 border-t pt-2">
               <p>I still think like a world builder.</p>
-              <p className="text-tertiary-content mt-3 text-sm italic">
+              <p className="type-body-sm mt-3 italic">
                 The worlds just happen to compile now.
               </p>
             </div>
@@ -142,7 +142,7 @@ export function AboutSection() {
         {/* Photo + Observations — 1 col */}
         <div className="sticky top-24 space-y-8 lg:col-span-1">
           {/* Photo */}
-          <div className="border-border/40 overflow-hidden rounded-2xl border shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+          <div className="border-border/40 shadow-elevation-2 overflow-hidden rounded-2xl border">
             <Image
               src="/images/bowie.png"
               alt="Portrait of Hanaa Sadoqi"
@@ -156,14 +156,12 @@ export function AboutSection() {
 
           {/* Observations */}
           <div className="space-y-4">
-            <p className="text-subtle-content text-xs font-semibold tracking-wider uppercase">
-              Quick takes
-            </p>
+            <p className="type-eyebrow">Quick takes</p>
             <ul className="space-y-2.5">
               {observations.map((obs, i) => (
                 <li
                   key={i}
-                  className="text-secondary-content hover:text-foreground flex gap-3 text-xs leading-relaxed motion-safe:transition-colors motion-safe:duration-200"
+                  className="type-caption hover:text-foreground flex gap-3 motion-safe:transition-colors motion-safe:duration-200"
                 >
                   <span className="text-brand/60 hover:text-brand mt-1.5 flex-shrink-0 font-medium motion-safe:transition-colors">
                     ·
