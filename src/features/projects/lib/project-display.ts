@@ -21,7 +21,7 @@ export function getProjectDisplay(project: ProjectDisplayItem) {
   const caseStudies =
     'caseStudies' in project ? (project.caseStudies ?? []) : [];
   const projectSlug =
-    'project_slug' in project ? project.project_slug : project.slug;
+    'projectSlug' in project ? project.projectSlug : project.slug;
 
   return {
     title: project.title,
@@ -50,7 +50,7 @@ export function getProjectLink(project: ProjectDisplayItem): ProjectLink {
   const isComingSoon = isDraftContent(project) || project.isComingSoon;
   const primaryCta = project.ctaItems?.[0];
   const projectSlug =
-    'project_slug' in project ? project.project_slug : project.slug;
+    'projectSlug' in project ? project.projectSlug : project.slug;
   const caseStudySlug =
     'caseStudies' in project ? project.caseStudies?.[0]?.slug : undefined;
   const relatedCaseStudySlug =
