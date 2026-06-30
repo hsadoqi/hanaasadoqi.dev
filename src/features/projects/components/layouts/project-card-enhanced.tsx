@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FeaturedBadge } from '@/components/shared/badges/featured-badge';
 import { StatusBadge } from '@/components/shared/badges';
 import { ProjectTagList } from '@/features/projects/components/shared/tag-list';
@@ -11,32 +12,49 @@ import {
 } from '@/features/projects/lib/project-display';
 import type { Project } from '@/types';
 
-export interface ProjectCardProps {
+export interface ProjectCardEnhancedProps {
   project: Project;
   featured?: boolean;
+  showImage?: boolean;
+  showCaseStudyBadge?: boolean;
+  caseStudyCount?: number;
 }
 
-export function ProjectCard({ project, featured }: ProjectCardProps) {
+export function ProjectCardEnhanced({
+  project,
+  featured,
+  showImage = true,
+  showCaseStudyBadge = true,
+  caseStudyCount = 0,
+}: ProjectCardEnhancedProps) {
   const display = getProjectDisplay(project);
   const isFeatured = display.isFeaturedProject && featured;
+  const thumbnail = project.images?.[0];
+  const hasCaseStudies = showCaseStudyBadge && caseStudyCount > 0;
+
   const content = (
     <article
-      className={`group inline-block w-full overflow-hidden rounded-lg border p-6 shadow-sm motion-safe:transition-all motion-safe:duration-200 ${display.link.isDisabled ? 'border-border/30 bg-card/40 opacity-75' : 'hover:border-border/70 hover:bg-card/80 focus-within:ring-ring focus-within:ring-2 focus-within:outline-none'} ${isFeatured ? 'border-border/60 bg-card/80' : 'border-border/50 bg-card/60'} `}
+      className={`group inline-block w-full overflow-hidden rounded-lg border shadow-sm motion-safe:transition-all motion-safe:duration-200 ${display.link.isDisabled ? 'border-border/30 bg-card/40 opacity-75' : 'hover:border-border/70 hover:bg-card/80 focus-within:ring-ring focus-within:ring-2 focus-within:outline-none'} ${isFeatured ? 'border-border/60 bg-card/80' : 'border-border/50 bg-card/60'}`}
       aria-label={`${display.title}: ${display.link.label}`}
     >
-      <div className="space-y-4">
+      {/* Image Thumbnail */}
+      {showImage && thumbnail && (
+        <div className="bg-background relative -m-0 h-40 overflow-hidden">
+          <Image
+            src={thumbnail.src}
+            alt={thumbnail.alt || display.title}
+            fill
+            className="object-cover group-hover:scale-105 motion-safe:transition-transform motion-safe:duration-300"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+      )}
+
+      <div className={`space-y-4 ${showImage && thumbnail ? 'p-6' : 'p-6'}`}>
         <div className="flex items-start justify-between gap-4">
           <StatusBadge status={display.status}>{display.status}</StatusBadge>
           {isFeatured && <FeaturedBadge status={display.status} />}
         </div>
-
-        {display.caseStudyCount > 0 && (
-          <div className="border-brand/20 bg-brand/5 text-brand inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium">
-            <span aria-hidden="true">↳</span>
-            {display.caseStudyCount}{' '}
-            {display.caseStudyCount === 1 ? 'case study' : 'case studies'}
-          </div>
-        )}
 
         {/* Title & Subtitle */}
         <div className="space-y-2">
@@ -47,9 +65,6 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
           >
             {display.title}
           </h3>
-          {display.meta && (
-            <p className="type-caption text-muted-foreground">{display.meta}</p>
-          )}
           <p className="type-body-sm">{display.subtitle}</p>
         </div>
 
@@ -64,8 +79,18 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
           className="pt-2"
         />
 
+        {/* Case Study Badge */}
+        {hasCaseStudies && (
+          <div className="text-brand/80 flex items-center gap-2 pt-2 text-sm">
+            <span>📖</span>
+            <span className="font-medium">
+              {caseStudyCount} case stud{caseStudyCount === 1 ? 'y' : 'ies'}
+            </span>
+          </div>
+        )}
+
         <span
-          className={`type-caption inline-flex font-medium ${
+          className={`type-caption inline-flex font-medium motion-safe:transition-colors motion-safe:duration-200 ${
             display.link.isDisabled
               ? 'text-muted-foreground/50'
               : 'text-foreground/60 group-hover:text-foreground'

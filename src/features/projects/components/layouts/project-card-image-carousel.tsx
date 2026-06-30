@@ -10,33 +10,77 @@ import {
   type ProjectLink,
 } from '@/features/projects/lib/project-display';
 import type { Project } from '@/types';
+import { HorizontalImageCarousel } from '@/components/shared/images/horizontal-image-carousel';
 
-export interface ProjectCardProps {
+export interface ProjectCardImageCarouselProps {
   project: Project;
   featured?: boolean;
 }
 
-export function ProjectCard({ project, featured }: ProjectCardProps) {
+export function ProjectCardImageCarousel({
+  project,
+  featured,
+}: ProjectCardImageCarouselProps) {
   const display = getProjectDisplay(project);
   const isFeatured = display.isFeaturedProject && featured;
+  const images = project.images || [];
+
+  if (!images || images.length === 0) {
+    // Fallback to standard card if no images
+    return (
+      <article
+        className={`group inline-block w-full overflow-hidden rounded-lg border p-6 shadow-sm motion-safe:transition-all motion-safe:duration-200 ${display.link.isDisabled ? 'border-border/30 bg-card/40 opacity-75' : 'hover:border-border/70 hover:bg-card/80 focus-within:ring-ring focus-within:ring-2 focus-within:outline-none'} ${isFeatured ? 'border-border/60 bg-card/80' : 'border-border/50 bg-card/60'}`}
+        aria-label={`${display.title}: ${display.link.label}`}
+      >
+        <div className="space-y-4">
+          <div className="flex items-start justify-between gap-4">
+            <StatusBadge status={display.status}>{display.status}</StatusBadge>
+            {isFeatured && <FeaturedBadge status={display.status} />}
+          </div>
+
+          <div className="space-y-2">
+            <h3 className="type-card-title-sm">{display.title}</h3>
+            <p className="type-body-sm">{display.subtitle}</p>
+          </div>
+
+          <ProjectTagList tags={display.focus} limit={2} />
+
+          <ProjectTagList
+            tags={display.techStack}
+            variant="tech"
+            limit={3}
+            className="pt-2"
+          />
+
+          <span className="type-caption text-foreground/60 inline-flex font-medium">
+            {display.link.label}
+            {!display.link.isDisabled && <span className="ml-1">→</span>}
+          </span>
+        </div>
+      </article>
+    );
+  }
+
   const content = (
     <article
-      className={`group inline-block w-full overflow-hidden rounded-lg border p-6 shadow-sm motion-safe:transition-all motion-safe:duration-200 ${display.link.isDisabled ? 'border-border/30 bg-card/40 opacity-75' : 'hover:border-border/70 hover:bg-card/80 focus-within:ring-ring focus-within:ring-2 focus-within:outline-none'} ${isFeatured ? 'border-border/60 bg-card/80' : 'border-border/50 bg-card/60'} `}
+      className={`group inline-block w-full overflow-hidden rounded-lg border shadow-sm motion-safe:transition-all motion-safe:duration-200 ${display.link.isDisabled ? 'border-border/30 bg-card/40 opacity-75' : 'hover:border-border/70 focus-within:ring-ring focus-within:ring-2 focus-within:outline-none'} ${isFeatured ? 'border-border/60 bg-card/80' : 'border-border/50 bg-card/60'}`}
       aria-label={`${display.title}: ${display.link.label}`}
     >
-      <div className="space-y-4">
+      {/* Image Carousel */}
+      <div className="relative">
+        <HorizontalImageCarousel
+          images={images}
+          autoAdvance={false}
+          containerClassName="w-full"
+          className="relative h-48 w-full"
+        />
+      </div>
+
+      <div className="space-y-4 p-6">
         <div className="flex items-start justify-between gap-4">
           <StatusBadge status={display.status}>{display.status}</StatusBadge>
           {isFeatured && <FeaturedBadge status={display.status} />}
         </div>
-
-        {display.caseStudyCount > 0 && (
-          <div className="border-brand/20 bg-brand/5 text-brand inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium">
-            <span aria-hidden="true">↳</span>
-            {display.caseStudyCount}{' '}
-            {display.caseStudyCount === 1 ? 'case study' : 'case studies'}
-          </div>
-        )}
 
         {/* Title & Subtitle */}
         <div className="space-y-2">
@@ -47,9 +91,6 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
           >
             {display.title}
           </h3>
-          {display.meta && (
-            <p className="type-caption text-muted-foreground">{display.meta}</p>
-          )}
           <p className="type-body-sm">{display.subtitle}</p>
         </div>
 
@@ -65,9 +106,9 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
         />
 
         <span
-          className={`type-caption inline-flex font-medium ${
+          className={`type-caption inline-flex font-medium motion-safe:transition-colors motion-safe:duration-200 ${
             display.link.isDisabled
-              ? 'text-muted-foreground/50'
+              ? 'text-subtle-content'
               : 'text-foreground/60 group-hover:text-foreground'
           }`}
         >

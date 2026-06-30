@@ -29,7 +29,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
       )}
       aria-label={`Project: ${project.title}`}
     >
-      <ProjectCardHeader status={project.status.value} title={project.title} />
+      <ProjectCardHeader
+        meta={display.meta}
+        status={project.status.value}
+        title={project.title}
+      />
 
       <div className="relative min-h-0 flex-1">
         <div
@@ -75,7 +79,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
           aria-hidden="true"
         />
       </div>
-      <ProjectCardFooter link={display.link} title={project.title} />
+      <ProjectCardFooter
+        link={{
+          href: `/projects/${project.slug}`,
+          label: 'Discover more',
+          isExternal: false,
+          isDisabled: false,
+        }}
+        title={project.title}
+      />
     </article>
   );
 }
@@ -115,9 +127,11 @@ function ProjectCardFooter({
 }
 
 function ProjectCardHeader({
+  meta,
   status,
   title,
 }: {
+  meta?: string;
   status: Project['status']['value'];
   title: string;
 }) {
@@ -126,7 +140,8 @@ function ProjectCardHeader({
       <div className="mb-4 flex items-center justify-between gap-3">
         <StatusBadge status={status}>{status}</StatusBadge>
       </div>
-      <h3 className="type-card-title-sm mb-4">{title}</h3>
+      <h3 className="type-card-title-sm mb-2">{title}</h3>
+      {meta && <p className="type-caption mb-4">{meta}</p>}
     </header>
   );
 }
@@ -168,6 +183,13 @@ function getRelatedItems(
   project: Project | CaseStudy,
 ): { href: string; label: string }[] {
   if (!('relatedCaseStudies' in project)) return [];
+
+  if (project.caseStudies && project.caseStudies.length > 0) {
+    return project.caseStudies.map((caseStudy) => ({
+      href: `/projects/${project.slug}/${caseStudy.slug}`,
+      label: caseStudy.title,
+    }));
+  }
 
   return project.relatedCaseStudies
     .map((slug) => {

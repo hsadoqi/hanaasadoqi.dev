@@ -38,6 +38,7 @@ export function FeaturedProjectCard({
         </div>
 
         <h3 className="type-panel-title mb-2">{featured.title}</h3>
+        {display.meta && <p className="type-caption mb-3">{display.meta}</p>}
         <p className="type-body-sm mb-6 text-balance">{featured.subtitle}</p>
       </header>
 

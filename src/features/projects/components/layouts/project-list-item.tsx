@@ -40,6 +40,9 @@ export function ProjectListItem({ project, featured }: ProjectListItemProps) {
             {display.title}
           </h3>
         </div>
+        {display.meta && (
+          <p className="type-caption text-muted-foreground">{display.meta}</p>
+        )}
         <p className="type-body-sm line-clamp-2">{display.subtitle}</p>
       </div>
 
