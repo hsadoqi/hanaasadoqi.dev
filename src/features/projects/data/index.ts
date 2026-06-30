@@ -1,27 +1,19 @@
-import type { Project } from '@/types';
-import blogData from './final-projects/blog.json';
-import generafiData from './final-projects/generafi.json';
-import moroccanFintechData from './final-projects/moroccan-fintech.json';
-import synapcityData from './final-projects/synapcity.json';
+import type { CaseStudy, Project } from '@/types';
+import { allCaseStudies, allProjects } from 'content-collections';
+import { isListedContent } from '@/lib/content-visibility';
+import { hydrateProjectCaseStudies } from '../lib/project-relations';
 
-function normalizeProject(data: unknown): Project {
-  const project = data as Partial<Project>;
+export const projects = hydrateProjectCaseStudies(
+  (allProjects as Project[]).filter(isListedContent),
+  (allCaseStudies as CaseStudy[]).filter(isListedContent),
+);
 
-  return {
-    ...project,
-    featured: project.featured ?? false,
-    tags: project.tags ?? [],
-    ctaItems: project.ctaItems ?? [],
-    linkItems: project.linkItems ?? [],
-    relatedCaseStudies: project.relatedCaseStudies ?? [],
-  } as Project;
-}
-
-export const projects: Project[] = [
-  blogData,
-  generafiData,
-  moroccanFintechData,
-  synapcityData,
-].map(normalizeProject);
-
-export { blogData, generafiData, moroccanFintechData, synapcityData };
+export const generafiData = projects.find(
+  (project) => project.slug === 'generafi',
+);
+export const moroccanFintechData = projects.find(
+  (project) => project.slug === 'moroccan-fintech',
+);
+export const synapcityData = projects.find(
+  (project) => project.slug === 'synapcity',
+);
