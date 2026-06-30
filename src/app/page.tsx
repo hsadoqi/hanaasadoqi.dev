@@ -8,14 +8,14 @@ import {
 import { ProjectsSection } from '@/features/projects/components/homepage/featured-work-section';
 
 const greeting = "Hi, I'm Hanaa. 👋";
-const headlineParts = ['Software engineer', 'on too many', 'side quests.'];
+const headlineParts = [
+  { text: 'Software engineer', mobileLines: ['Software', 'engineer'] },
+  { text: 'on too many' },
+  { text: 'side quests.', highlight: true },
+];
 const supportingLine =
   "I like building solutions for the kinds of problems people shouldn't have to think about.";
-const identities = [
-  'Recovering mechanical engineer.',
-  'Professional overthinker.',
-  'Resigned Insomniac.',
-];
+
 const cta = 'View Projects';
 export default function Home() {
   return (
@@ -28,7 +28,6 @@ export default function Home() {
         greeting={greeting}
         headlineParts={headlineParts}
         supportingLine={supportingLine}
-        identities={identities}
         cta={cta}
       />
       <div

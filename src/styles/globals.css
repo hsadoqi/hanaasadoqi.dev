@@ -406,15 +406,3 @@
     display: none;
   }
 }
-
-@utility text-scroll-mix {
-  --start-color: oklch(0.623 0.214 259.81);
-  --end-color: oklch(0.449 0.231 259.03);
-  --scroll-ratio: 0;
-
-  color: color-mix(
-    in oklch,
-    var(--end-color) calc(var(--scroll-ratio) * 100%),
-    var(--start-color)
-  );
-}

@@ -1,16 +1,15 @@
 import { HeroLayout } from './hero-layout';
+import type { HeroHeadlinePart } from './hero-layout';
 
 export const Hero = ({
   greeting,
   headlineParts,
   supportingLine,
-  identities,
   cta,
 }: {
   greeting: string;
-  headlineParts: string[];
+  headlineParts: HeroHeadlinePart[];
   supportingLine?: string;
-  identities: string[];
   cta: string;
 }) => {
   return (
@@ -18,7 +17,6 @@ export const Hero = ({
       greeting={greeting}
       headlineParts={headlineParts}
       supportingLine={supportingLine}
-      identities={identities}
       cta={cta}
       className={'justify-evenly'}
     />
