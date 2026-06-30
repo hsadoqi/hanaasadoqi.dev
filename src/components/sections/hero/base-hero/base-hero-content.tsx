@@ -7,10 +7,7 @@ export const BaseHeroContent = ({
 }) => {
   return (
     <>
-      <h1
-        id="hero-heading"
-        className="text-foreground text-4xl leading-[1.05] tracking-tight md:text-5xl lg:text-6xl"
-      >
+      <h1 id="hero-heading" className="type-page-title">
         {headlineParts.map((line, i) => (
           <span key={i} className="block">
             {line}
@@ -22,7 +19,7 @@ export const BaseHeroContent = ({
         {identities.map((line, i) => (
           <p
             key={i}
-            className="text-muted-foreground hover:text-foreground font-sans text-sm tracking-widest uppercase transition-colors"
+            className="type-eyebrow hover:text-foreground transition-colors"
           >
             {line}
           </p>

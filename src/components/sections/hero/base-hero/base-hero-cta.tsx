@@ -4,7 +4,7 @@ export const BaseHeroCta = ({ cta }: { cta: string }) => {
   return (
     <LinkButton
       variant="link"
-      href="#case-studies"
+      href="#projects"
       className="group hover:text-brand/80 transition-colors hover:no-underline"
     >
       <span className="group-hover:text-brand inline-block transition-[color,transform] duration-300 ease-in-out group-hover:translate-y-0.5">
