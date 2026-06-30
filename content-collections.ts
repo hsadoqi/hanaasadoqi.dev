@@ -1,5 +1,5 @@
-import { compileMDX } from '@content-collections/mdx';
 import { defineCollection, defineConfig } from '@content-collections/core';
+import { compileMDX } from '@content-collections/mdx';
 import { z } from 'zod';
 
 const statusSchema = z.enum([
@@ -79,7 +79,7 @@ const baseSchema = z.object({
   links: z.array(linkSchema).default([]),
   problem: z.string().optional(),
   solution: z.string().optional(),
-  impact: z.string().optional(),
+  impactSummary: z.array(z.string()).default([]),
   proof: z.string().optional(),
   techStack: z.array(z.string()).default([]),
   outcomes: z.array(z.string()).default([]),
@@ -214,6 +214,7 @@ const projects = defineCollection({
   name: 'projects',
   directory: 'content/projects',
   include: '**/*.mdx',
+  exclude: '**/*TEMPLATE.mdx',
   schema: projectSchema,
   async transform(document, context) {
     const mdx = await compileMDX(context, document);

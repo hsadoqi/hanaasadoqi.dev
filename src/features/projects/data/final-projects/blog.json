@@ -91,17 +91,21 @@
         {
           "title": "Writing needs low friction",
           "description": "If publishing requires too much ceremony, the system will not get used.",
-          "impact": ["Content workflow", "File structure", "Preview ergonomics"]
+          "impactSummary": [
+            "Content workflow",
+            "File structure",
+            "Preview ergonomics"
+          ]
         },
         {
           "title": "Code examples need care",
           "description": "Technical writing depends on code blocks, inline explanations, and examples that stay readable on mobile.",
-          "impact": ["Typography", "Responsive design", "MDX components"]
+          "impactSummary": ["Typography", "Responsive design", "MDX components"]
         },
         {
           "title": "The blog should evolve independently",
           "description": "The portfolio and writing site serve different purposes and should not block each other's changes.",
-          "impact": ["Deployment", "Routing", "Component boundaries"]
+          "impactSummary": ["Deployment", "Routing", "Component boundaries"]
         }
       ]
     },

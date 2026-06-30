@@ -21,7 +21,7 @@
     }
   },
   "description": "A comprehensive initiative to modernize financial software infrastructure in Morocco. This project encompasses multiple interconnected systems—from accounting and payroll (Generafi) to marketplace and collaboration tools (Synapcity)—all designed around the principles of compliance-first architecture, multi-tenancy, and user-centric design. The goal is not to build another generic SaaS, but to deeply understand Moroccan business needs and build systems that actually work for emerging market constraints.",
-  "impact": "By creating thoughtful, context-aware financial software, we're enabling Moroccan businesses to operate more efficiently, maintain better compliance, and ultimately compete more effectively. Each case study in this project represents a learning opportunity—how to handle regulation, how to design for low-bandwidth environments, how to balance feature richness with operational simplicity.",
+  "impactSummary": "By creating thoughtful, context-aware financial software, we're enabling Moroccan businesses to operate more efficiently, maintain better compliance, and ultimately compete more effectively. Each case study in this project represents a learning opportunity—how to handle regulation, how to design for low-bandwidth environments, how to balance feature richness with operational simplicity.",
   "sections": [
     {
       "type": "context",
@@ -73,7 +73,7 @@
         {
           "title": "Local compliance is specific",
           "description": "Moroccan finance workflows include regulatory and operational details that generic SaaS primitives often miss.",
-          "impact": ["Domain modeling", "Reporting", "User trust"]
+          "impactSummary": ["Domain modeling", "Reporting", "User trust"]
         }
       ]
     },

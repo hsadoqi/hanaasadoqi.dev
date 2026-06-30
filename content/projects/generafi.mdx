@@ -6,6 +6,7 @@ category: 'product'
 maturity: 'active'
 status: 'in-progress'
 statusVariant: 'green'
+visibility: 'draft'
 dates:
   year: 2024
   started: '2024-01-01'
@@ -32,16 +33,16 @@ links:
     url: '/case-studies'
 problem: 'Moroccan SMBs need accounting and payroll software that reflects local compliance rules, audit expectations, and operating constraints.'
 solution: 'A compliance-first architecture with tenant-scoped data, versioned payroll rules, and operator workflows for review and approval.'
-impact: 'The rebuild creates a foundation where compliance logic, tenant isolation, and audit history are modeled as product infrastructure instead of UI-only behavior.'
+impactSummary:
+  - 'The rebuild creates a foundation where compliance logic, tenant isolation, and audit history are modeled as product infrastructure instead of UI-only behavior.'
 outcomes:
   - 'Modeled payroll rules, tenant isolation, and audit events as durable product primitives.'
   - 'Clarified permission and review workflows for Moroccan SMB operating structures.'
 proof: 'The rebuild models payroll rules, tenant isolation, and audit events as first-class product infrastructure.'
 techStack:
-  - 'Next.js'
-  - 'TypeScript'
-  - 'Postgres'
-  - 'Domain modeling'
+  - 'next'
+  - 'typescript'
+  - 'postgres'
 challenges:
   - 'Modeling fast-changing Moroccan payroll requirements'
   - 'Keeping historical calculations reproducible'

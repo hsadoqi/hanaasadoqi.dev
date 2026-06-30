@@ -112,8 +112,16 @@ visibility: 'public'
 Options:
 
 - `public`: appears in indexes, gets detail routes, and appears in the sitemap.
-- `hidden`: does not appear in indexes or the sitemap, but the direct detail route still works.
-- `draft`: appears in indexes as a disabled `Coming soon` card and does not get a detail route.
+- `hidden`: does not appear in indexes or the sitemap, but the direct detail route still works with `noindex` metadata.
+- `draft`: stays visible while developing locally. In production it is hidden from indexes and the sitemap; direct URLs show an intentional “not published yet” page instead of draft body content.
+
+Use `draft` for placeholder or incomplete content before deploying:
+
+```yaml
+visibility: 'draft'
+```
+
+Move it to `public` only when the project or case study is ready to represent your work.
 
 ## Add a Case Study
 

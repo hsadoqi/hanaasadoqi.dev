@@ -120,17 +120,17 @@
         {
           "title": "Source material is messy",
           "description": "Relevant context can live in chat, docs, tickets, meetings, and people's heads.",
-          "impact": ["Data ingestion", "Ranking", "Source attribution"]
+          "impactSummary": ["Data ingestion", "Ranking", "Source attribution"]
         },
         {
           "title": "Access control is product-critical",
           "description": "Search and summarization cannot reveal private source material through indirect references.",
-          "impact": ["Permissions", "Indexing", "Generated summaries"]
+          "impactSummary": ["Permissions", "Indexing", "Generated summaries"]
         },
         {
           "title": "Users should not need a new habit",
           "description": "The product needs to recover context from existing workflows before asking users to create new artifacts.",
-          "impact": [
+          "impactSummary": [
             "Integration strategy",
             "Onboarding",
             "Information architecture"
@@ -262,7 +262,7 @@
   "solution": "Model team knowledge as source-backed decisions, evidence, people, tasks, and open questions with inherited permission boundaries.",
   "role": "Product discovery, knowledge model design, and prototype architecture.",
   "proof": "The case study validates decision-centered object types, source links, workflow surfaces, and permission inheritance targets.",
-  "impact": "Source-backed knowledge modeling helps teams recover context without turning every message or document into another manual repository.",
+  "impactSummary": "Source-backed knowledge modeling helps teams recover context without turning every message or document into another manual repository.",
   "techStack": [
     "Knowledge modeling",
     "Permissions",

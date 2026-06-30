@@ -77,7 +77,7 @@ export interface ProjectItem {
   maturity: ProjectMaturity;
   problem?: string;
   solution?: string;
-  impact?: string;
+  impactSummary?: string[];
   role?: string;
   proof?: string;
   status: {

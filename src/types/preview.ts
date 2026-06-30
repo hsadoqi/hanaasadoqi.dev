@@ -49,7 +49,7 @@ export type PreviewData = {
 };
 
 export type CaseStudyPreviewData = PreviewData & {
-  impact: string;
+  impactSummary: string[];
   problem: string;
   solution: string;
   projectSlug: string;

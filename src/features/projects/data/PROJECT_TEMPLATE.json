@@ -7,7 +7,9 @@
   "solution": "The approach, product direction, or system design used to address the problem.",
   "role": "Your role and ownership on the project.",
   "proof": "A short evidence statement or outcome that shows why the work matters.",
-  "impact": "Why does this project matter? What's the real-world impact? How does it affect users or the business?",
+  "impactSummary": [
+    "Why does this project matter? What's the real-world impact? How does it affect users or the business?"
+  ],
   "featured": false,
   "status": {
     "value": "in-progress",
@@ -97,7 +99,7 @@
         {
           "title": "Constraint name",
           "description": "What this constraint is and why it was challenging",
-          "impact": [
+          "impactSummary": [
             "System 1 affected",
             "System 2 affected",
             "System 3 affected"

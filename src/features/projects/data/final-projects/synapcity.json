@@ -91,17 +91,17 @@
         {
           "title": "The source material is messy",
           "description": "Relevant context can live in Slack, docs, tickets, meeting notes, and people's heads. The system has to tolerate incomplete and uneven inputs.",
-          "impact": ["Data ingestion", "Ranking", "Source attribution"]
+          "impactSummary": ["Data ingestion", "Ranking", "Source attribution"]
         },
         {
           "title": "Access control is product-critical",
           "description": "Search and summarization cannot reveal private source material through indirect references.",
-          "impact": ["Permissions", "Indexing", "Generated summaries"]
+          "impactSummary": ["Permissions", "Indexing", "Generated summaries"]
         },
         {
           "title": "Users should not need a new habit",
           "description": "The product needs to recover context from existing workflows before asking users to create new artifacts.",
-          "impact": [
+          "impactSummary": [
             "Integration strategy",
             "Onboarding",
             "Information architecture"

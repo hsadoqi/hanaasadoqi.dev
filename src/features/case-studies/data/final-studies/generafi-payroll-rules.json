@@ -120,17 +120,21 @@
         {
           "title": "Compliance changes are recurring",
           "description": "The system has to assume tax and payroll rules will evolve several times a year.",
-          "impact": ["Rule schema", "Testing strategy", "Release workflow"]
+          "impactSummary": [
+            "Rule schema",
+            "Testing strategy",
+            "Release workflow"
+          ]
         },
         {
           "title": "Historical payroll must be reproducible",
           "description": "A past payroll run cannot silently change because a rule was edited later.",
-          "impact": ["Versioning", "Audit logs", "Reporting"]
+          "impactSummary": ["Versioning", "Audit logs", "Reporting"]
         },
         {
           "title": "Operators need confidence, not just automation",
           "description": "Finance teams need to see why a calculation happened before they trust the system.",
-          "impact": [
+          "impactSummary": [
             "Interface design",
             "Calculation explainability",
             "Support tooling"
@@ -260,7 +264,7 @@
   "solution": "Model payroll rules as versioned domain objects with tenant-scoped execution, audit events, and replayable calculation context.",
   "role": "Domain modeling, payroll rules architecture, and audit workflow design.",
   "proof": "The case study defines rule families, tenant boundaries, replay fixtures, and audit coverage targets for compliance-heavy payroll work.",
-  "impact": "A versioned rules model makes compliance changes safer while giving operators and auditors a clear record of how each payroll result was produced.",
+  "impactSummary": "A versioned rules model makes compliance changes safer while giving operators and auditors a clear record of how each payroll result was produced.",
   "techStack": ["Rules engine", "Postgres", "TypeScript", "Audit logging"],
   "challenges": [
     "Keeping historical calculations stable after rule changes",

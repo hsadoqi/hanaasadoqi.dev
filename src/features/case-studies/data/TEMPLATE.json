@@ -8,7 +8,9 @@
   "solution": "The approach, architecture, workflow, or design direction used to address the problem.",
   "role": "Your role and ownership in this case study.",
   "proof": "A short evidence statement, artifact, or outcome that supports the case study.",
-  "impact": "Why the case study matters for users, the product, the business, or future work.",
+  "impactSummary": [
+    "Why the case study matters for users, the product, the business, or future work."
+  ],
   "featured": false,
   "status": {
     "value": "in-progress",
@@ -98,7 +100,7 @@
         {
           "title": "Constraint name",
           "description": "What this constraint is and why it was challenging",
-          "impact": [
+          "impactSummary": [
             "System 1 affected",
             "System 2 affected",
             "System 3 affected"

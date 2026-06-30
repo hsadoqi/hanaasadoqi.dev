@@ -113,7 +113,7 @@
         {
           "title": "Product learning is still underway",
           "description": "The platform cannot assume every future workflow before the products have been validated.",
-          "impact": [
+          "impactSummary": [
             "Abstraction boundaries",
             "Roadmap sequencing",
             "Data model design"
@@ -122,12 +122,16 @@
         {
           "title": "Local compliance is specific",
           "description": "Moroccan finance workflows have regulatory and operational details that generic SaaS primitives often miss.",
-          "impact": ["Domain modeling", "Reporting", "User trust"]
+          "impactSummary": ["Domain modeling", "Reporting", "User trust"]
         },
         {
           "title": "Operational cost matters",
           "description": "The architecture has to support small customers without requiring enterprise-level infrastructure spend.",
-          "impact": ["Tenancy model", "Deployment strategy", "Monitoring"]
+          "impactSummary": [
+            "Tenancy model",
+            "Deployment strategy",
+            "Monitoring"
+          ]
         }
       ]
     },

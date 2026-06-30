@@ -89,7 +89,7 @@
         {
           "title": "Compliance changes constantly",
           "description": "Moroccan tax law updates multiple times per year. Every update ripples through payroll calculations, deductions, and reporting.",
-          "impact": [
+          "impactSummary": [
             "Data model",
             "Workflows",
             "Audit layer",
@@ -99,7 +99,7 @@
         {
           "title": "Currency precision matters",
           "description": "Working with Moroccan Dirhams and international conversions requires exact precision. Floating point errors are not acceptable.",
-          "impact": [
+          "impactSummary": [
             "Database schema",
             "All calculations",
             "Reporting accuracy"
@@ -108,7 +108,7 @@
         {
           "title": "Audit trail is non-negotiable",
           "description": "Every transaction must be auditable down to who changed what and when. For payroll, this is both legal requirement and customer expectation.",
-          "impact": ["All mutations", "Database design", "API contracts"]
+          "impactSummary": ["All mutations", "Database design", "API contracts"]
         }
       ]
     },

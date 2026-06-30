@@ -4,9 +4,17 @@ import {
   loadRoutableCaseStudies,
 } from '../lib/case-studies-loader';
 import { loadProjectBySlug } from '../../projects/lib/projects-loader';
-import { EmptyState, ErrorState } from '@/components/shared';
+import {
+  ContentClosedState,
+  EmptyState,
+  ErrorState,
+} from '@/components/shared';
 import { MDXContent } from '@/components/mdx';
 import { formatContentMeta } from '@/lib/content-meta';
+import {
+  shouldIndexContent,
+  shouldRenderContent,
+} from '@/lib/content-visibility';
 import type { BadgeColor, CaseStudy, Project } from '@/types';
 
 // Import the rendering components from the old case study page
@@ -32,9 +40,19 @@ export async function generateMetadata({
   try {
     const resolvedParams = await params;
     const data = await loadCaseStudyBySlug(resolvedParams.caseStudySlug);
+    const isIndexable = shouldIndexContent(data);
+
     return {
-      title: data.title,
-      description: data.subtitle,
+      title: shouldRenderContent(data) ? data.title : `${data.title} - Soon`,
+      description: shouldRenderContent(data)
+        ? data.subtitle
+        : 'This case study is still being prepared.',
+      robots: isIndexable
+        ? undefined
+        : {
+            index: false,
+            follow: false,
+          },
     };
   } catch {
     return { title: 'Case Study Not Found' };
@@ -101,6 +119,27 @@ export default async function CaseStudyPage({
           href: `/projects/${resolvedParams.slug}`,
           label: 'Back to project →',
         }}
+      />
+    );
+  }
+
+  if (!shouldRenderContent(data)) {
+    return (
+      <ContentClosedState
+        contentType="case study"
+        title={`${data.title} is not published yet`}
+        description="This case study is still being written, so the draft content is intentionally hidden from the public portfolio."
+        actions={[
+          {
+            href: projectData
+              ? `/projects/${resolvedParams.slug}`
+              : '/projects',
+            label: projectData
+              ? `Back to ${projectData.title} →`
+              : 'View projects →',
+          },
+          { href: '/', label: 'Back home', variant: 'secondary' },
+        ]}
       />
     );
   }

@@ -43,7 +43,7 @@ export type ArchitectureSection = {
 export type Constraint = {
   title: string;
   description: string;
-  impact: string[];
+  impactSummary: string[];
 };
 
 export type ConstraintsSection = {
