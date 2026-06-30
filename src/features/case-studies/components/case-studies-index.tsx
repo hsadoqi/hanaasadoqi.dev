@@ -168,32 +168,28 @@ function CaseStudyCard({
           <StatusBadge status={caseStudy.status.value}>
             {caseStudy.status.value}
           </StatusBadge>
-          <span className="text-muted-foreground/50 font-mono text-xs uppercase">
-            {projectLabel}
-          </span>
+          <span className="type-meta uppercase">{projectLabel}</span>
         </div>
 
         <div>
-          <h2 className="text-foreground group-hover:text-foreground/80 text-lg leading-snug font-semibold text-balance">
+          <h2 className="type-card-title group-hover:text-foreground/80">
             {caseStudy.title}
           </h2>
-          <p className="text-muted-foreground/75 mt-3 line-clamp-3 text-sm leading-relaxed">
-            {caseStudy.subtitle}
-          </p>
+          <p className="type-body-sm mt-3 line-clamp-3">{caseStudy.subtitle}</p>
         </div>
 
         <div className="mt-auto flex flex-wrap gap-2">
           {caseStudy.tags.slice(0, 4).map((tag) => (
             <span
               key={tag}
-              className="border-border/40 text-muted-foreground rounded-full border px-2.5 py-1 text-xs"
+              className="border-border/40 type-caption rounded-full border px-2.5 py-1"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <span className="text-foreground/60 group-hover:text-foreground mt-1 text-sm font-medium">
+        <span className="type-body-sm text-foreground/60 group-hover:text-foreground mt-1 font-medium">
           View case study <span aria-hidden="true">→</span>
         </span>
       </article>

@@ -112,7 +112,7 @@ export default async function CaseStudyPage({
           <div className="mb-8">
             <Link
               href={`/projects/${resolvedParams.slug}`}
-              className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              className="type-body-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
             >
               ← Back to {projectData?.title}
             </Link>
@@ -120,19 +120,13 @@ export default async function CaseStudyPage({
 
           <div className="space-y-6">
             <div>
-              <span className="text-muted-foreground/50 font-mono text-xs tracking-widest uppercase">
-                {data.hero.eyebrow}
-              </span>
-              <h1 className="text-foreground mt-2 text-3xl font-bold text-balance sm:text-4xl lg:text-5xl">
-                {data.title}
-              </h1>
-              <p className="text-muted-foreground/80 mt-4 max-w-2xl text-base sm:text-lg">
-                {data.subtitle}
-              </p>
+              <span className="type-eyebrow">{data.hero.eyebrow}</span>
+              <h1 className="type-show-title mt-2">{data.title}</h1>
+              <p className="type-body-lg mt-4 max-w-2xl">{data.subtitle}</p>
             </div>
 
             {/* Status badges */}
-            <div className="inline-flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {data.hero.badges.map((badge, idx) => {
                 const colorMap: Record<BadgeColor, string> = {
                   blue: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
@@ -149,6 +143,11 @@ export default async function CaseStudyPage({
                   </span>
                 );
               })}
+              {projectData && (
+                <span className="border-brand/20 bg-brand/5 text-brand rounded border px-3 py-1 text-xs font-medium">
+                  Part of {projectData.title}
+                </span>
+              )}
             </div>
 
             {/* Hero image placeholder */}
@@ -163,6 +162,34 @@ export default async function CaseStudyPage({
       {/* Content Section */}
       <section className="border-border/40 border-b px-6 py-16 sm:px-8 sm:py-24 lg:px-12">
         <div className="mx-auto max-w-4xl space-y-12">
+          {(data.problem || data.solution || projectData) && (
+            <div className="grid gap-4 md:grid-cols-3">
+              {data.problem && (
+                <div className="border-border/40 bg-background/50 rounded-lg border p-5">
+                  <p className="type-eyebrow mb-3">Problem</p>
+                  <p className="type-body-sm">{data.problem}</p>
+                </div>
+              )}
+              {data.solution && (
+                <div className="border-border/40 bg-background/50 rounded-lg border p-5">
+                  <p className="type-eyebrow mb-3">Approach</p>
+                  <p className="type-body-sm">{data.solution}</p>
+                </div>
+              )}
+              {projectData && (
+                <div className="border-border/40 bg-background/50 rounded-lg border p-5">
+                  <p className="type-eyebrow mb-3">Project context</p>
+                  <p className="type-body-sm">{projectData.subtitle}</p>
+                  <Link
+                    href={`/projects/${resolvedParams.slug}`}
+                    className="type-caption text-foreground hover:text-brand mt-4 inline-flex font-medium motion-safe:transition-colors"
+                  >
+                    View project <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
           {data.sections.map((section, idx) => (
             <RenderSection key={idx} section={section} />
           ))}
@@ -173,15 +200,21 @@ export default async function CaseStudyPage({
       <section className="px-6 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div className="space-y-4 text-center">
-            <p className="text-muted-foreground/50 font-mono text-xs tracking-widest uppercase">
-              Back to project
-            </p>
-            <Link
-              href={`/projects/${resolvedParams.slug}`}
-              className="inline-block text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-            >
-              View {projectData?.title} →
-            </Link>
+            <p className="type-eyebrow">Back to project</p>
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                href={`/projects/${resolvedParams.slug}`}
+                className="type-body-sm inline-block font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              >
+                View {projectData?.title} →
+              </Link>
+              <Link
+                href="/case-studies"
+                className="type-body-sm text-muted-foreground hover:text-foreground inline-block font-medium"
+              >
+                All case studies →
+              </Link>
+            </div>
           </div>
         </div>
       </section>

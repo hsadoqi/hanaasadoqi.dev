@@ -73,12 +73,8 @@ function CaseStudyPreviewCardComponent({
             />
           </div>
 
-          <h3 className="text-foreground text-2xl leading-tight font-semibold tracking-tight text-balance break-words">
-            {title}
-          </h3>
-          <p className="text-muted-foreground mt-3 text-sm leading-7 break-words">
-            {subtitle}
-          </p>
+          <h3 className="type-panel-title break-words">{title}</h3>
+          <p className="type-body-sm mt-3 break-words">{subtitle}</p>
 
           <dl className="border-border/50 mt-7 grid gap-4 border-t pt-6 sm:grid-cols-2">
             {metadata.map((item) => (
@@ -99,7 +95,7 @@ function CaseStudyPreviewCardComponent({
           <CaseStudyTags tags={tags} />
           <Link
             href={caseStudyLink}
-            className="text-primary focus:ring-primary/50 mt-6 ml-auto inline-flex rounded px-2 py-1 text-sm font-medium transition-colors hover:underline focus:ring-2 focus:ring-offset-2 focus:outline-none"
+            className="type-body-sm text-primary focus:ring-primary/50 mt-6 ml-auto inline-flex rounded px-2 py-1 font-medium transition-colors hover:underline focus:ring-2 focus:ring-offset-2 focus:outline-none"
             aria-label={`View ${title} case study`}
           >
             View case study

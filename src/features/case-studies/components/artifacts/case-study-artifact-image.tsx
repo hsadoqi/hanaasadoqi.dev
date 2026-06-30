@@ -66,7 +66,7 @@ export default function CaseStudyArtifactImage({
         />
       </div>
       {showCaption && caption && (
-        <figcaption className="border-border/50 text-muted-foreground border-t px-3 py-2 text-[11px] leading-relaxed">
+        <figcaption className="border-border/50 type-caption border-t px-3 py-2">
           {caption}
         </figcaption>
       )}

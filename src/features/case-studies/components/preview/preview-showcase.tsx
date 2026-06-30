@@ -7,13 +7,11 @@ export function PreviewShowcase() {
     <section className="border-border/50 bg-background border-t py-20 sm:py-28">
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
         <header className="mb-12 max-w-2xl">
-          <p className="text-muted-foreground mb-3 text-sm tracking-[0.28em] uppercase">
-            Projects
-          </p>
-          <h2 className="text-foreground text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl">
+          <p className="type-eyebrow mb-3">Projects</p>
+          <h2 className="type-section-title">
             Work shown through artifacts, not decoration.
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-xl text-sm leading-7">
+          <p className="type-body-sm mt-4 max-w-xl">
             A homepage project section can use cropped interface evidence to
             show what made each system difficult before asking someone to read
             the full case study.
