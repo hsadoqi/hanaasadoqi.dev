@@ -10,7 +10,7 @@ import {
   type IndexViewSortOption,
   type IndexViewView,
 } from '@/components/shared';
-import { StatusBadge } from '@/components/shared/badges';
+import { StatusBadge } from '@/components/shared/display/badges';
 import type { CaseStudy } from '@/types';
 import { GridIcon, ListIcon } from 'lucide-react';
 
@@ -103,7 +103,7 @@ export function CaseStudiesIndex({
         render: (items) => (
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {items.map((caseStudy) => (
-              <CaseStudyCard
+              <CaseStudyIndexCard
                 key={caseStudy.slug}
                 caseStudy={caseStudy}
                 projectLabel={
@@ -122,7 +122,7 @@ export function CaseStudiesIndex({
         render: (items) => (
           <div className="border-border/30 overflow-hidden rounded-lg border">
             {items.map((caseStudy) => (
-              <CaseStudyListItem
+              <CaseStudyIndexListItem
                 key={caseStudy.slug}
                 caseStudy={caseStudy}
                 projectLabel={
@@ -171,7 +171,7 @@ export function CaseStudiesIndex({
   );
 }
 
-function CaseStudyCard({
+function CaseStudyIndexCard({
   caseStudy,
   projectLabel,
 }: {
@@ -179,12 +179,12 @@ function CaseStudyCard({
   projectLabel: string;
 }) {
   return (
-    <CaseStudyLink
+    <CaseStudyIndexLink
       caseStudy={caseStudy}
       className="group border-border/40 bg-background hover:border-border/70 hover:bg-muted/20 focus-visible:ring-ring block h-full rounded-lg border p-6 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
     >
       <article className="flex h-full flex-col gap-5">
-        <CaseStudyHeader caseStudy={caseStudy} projectLabel={projectLabel} />
+        <CaseStudyIndexMeta caseStudy={caseStudy} projectLabel={projectLabel} />
 
         <div>
           <h2 className="type-card-title group-hover:text-foreground/80">
@@ -198,17 +198,17 @@ function CaseStudyCard({
           <p className="type-body-sm mt-3 line-clamp-3">{caseStudy.subtitle}</p>
         </div>
 
-        <CaseStudyTags tags={caseStudy.tags} />
+        <CaseStudyTopicList tags={caseStudy.tags} />
 
         <span className="type-body-sm text-foreground/60 group-hover:text-foreground mt-auto ml-auto font-medium">
           View <span aria-hidden="true">-&gt;</span>
         </span>
       </article>
-    </CaseStudyLink>
+    </CaseStudyIndexLink>
   );
 }
 
-function CaseStudyListItem({
+function CaseStudyIndexListItem({
   caseStudy,
   projectLabel,
 }: {
@@ -216,13 +216,16 @@ function CaseStudyListItem({
   projectLabel: string;
 }) {
   return (
-    <CaseStudyLink
+    <CaseStudyIndexLink
       caseStudy={caseStudy}
       className="group border-border/30 hover:bg-muted/20 focus-visible:ring-ring block border-b p-5 transition-colors last:border-b-0 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
     >
       <article className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
         <div className="min-w-0 space-y-3">
-          <CaseStudyHeader caseStudy={caseStudy} projectLabel={projectLabel} />
+          <CaseStudyIndexMeta
+            caseStudy={caseStudy}
+            projectLabel={projectLabel}
+          />
           <div>
             <h2 className="type-card-title-sm group-hover:text-foreground/80">
               {caseStudy.title}
@@ -231,18 +234,18 @@ function CaseStudyListItem({
               {caseStudy.subtitle}
             </p>
           </div>
-          <CaseStudyTags tags={caseStudy.tags} />
+          <CaseStudyTopicList tags={caseStudy.tags} />
         </div>
 
         <span className="type-caption text-muted-foreground group-hover:text-foreground font-medium whitespace-nowrap">
           View <span aria-hidden="true">-&gt;</span>
         </span>
       </article>
-    </CaseStudyLink>
+    </CaseStudyIndexLink>
   );
 }
 
-function CaseStudyHeader({
+function CaseStudyIndexMeta({
   caseStudy,
   projectLabel,
 }: {
@@ -261,7 +264,7 @@ function CaseStudyHeader({
   );
 }
 
-function CaseStudyTags({ tags }: { tags: string[] }) {
+function CaseStudyTopicList({ tags }: { tags: string[] }) {
   return (
     <div className="flex flex-wrap gap-2">
       {tags.slice(0, 4).map((tag) => (
@@ -276,7 +279,7 @@ function CaseStudyTags({ tags }: { tags: string[] }) {
   );
 }
 
-function CaseStudyLink({
+function CaseStudyIndexLink({
   caseStudy,
   children,
   className,

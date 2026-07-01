@@ -6,7 +6,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
-import { CarouselNav } from '@/features/projects/components/shared/carousel-nav';
+import { CarouselNav } from '@/components/shared/navigation';
 import { projects } from '@/features/projects/data';
 import { useCarouselState } from '@/hooks/use-carousel-state';
 import Link from 'next/link';

@@ -10,7 +10,7 @@ import {
 } from '@/lib/content/content-visibility';
 import type { Project } from '@/types';
 import { loadCaseStudiesByProject } from '../../../case-studies/lib/case-studies-loader';
-import { type CaseStudyCard } from '../../components/show/case-studies-carousel';
+import { type RelatedCaseStudyCard } from '../../components/show/case-studies-carousel';
 import {
   getProjectShowSlugs,
   loadProjectBySlug,
@@ -61,7 +61,7 @@ export default async function ProjectShowPage({
 }) {
   const resolvedParams = await params;
   let projectData: Project | null = null;
-  let relatedCaseStudies: CaseStudyCard[] = [];
+  let relatedCaseStudies: RelatedCaseStudyCard[] = [];
   let error: string | null = null;
 
   try {

@@ -5,18 +5,24 @@ export function TechStackIcons({
   items,
   className,
   containerClassName,
+  labelClassName,
+  showLabel = true,
   showTooltip = true,
 }: {
-  items: Omit<TechStackIcon, 'src'>[];
+  items: TechStackIcon[];
   className?: string;
   containerClassName?: string;
+  labelClassName?: string;
+  showLabel?: boolean;
   showTooltip?: boolean;
 }) {
   if (items.length === 0) return null;
 
   return (
     <div className={containerClassName}>
-      <p className="type-eyebrow mb-2">Tech stack</p>
+      {showLabel && (
+        <p className={labelClassName ?? 'type-eyebrow mb-2'}>Tech stack</p>
+      )}
       <div
         className="border-border/30 bg-background flex items-center gap-0.5 rounded-md border p-2"
         aria-label={`Tech stack: ${items.map((item) => item.name).join(', ')}`}

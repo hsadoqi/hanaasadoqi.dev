@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import type { StatusType } from '@/types';
-import { StatusBadge } from '@/components/shared/badges';
-import { ProjectTagList } from '../shared/tag-list';
+import { PillList, StatusBadge } from '@/components/shared/display/badges';
 
-export type CaseStudyCard = {
+export type RelatedCaseStudyCard = {
   slug: string;
   title: string;
   subtitle: string;
@@ -14,7 +13,7 @@ export type CaseStudyCard = {
 };
 
 type CaseStudiesCarouselProps = {
-  caseStudies: CaseStudyCard[];
+  caseStudies: RelatedCaseStudyCard[];
   projectSlug: string;
 };
 
@@ -56,7 +55,7 @@ export function CaseStudiesCarousel({
                   {study.subtitle}
                 </p>
               </div>
-              <ProjectTagList tags={study.tags} limit={3} />
+              <PillList items={study.tags} limit={3} />
               {study.isComingSoon && (
                 <span className="type-caption text-muted-foreground inline-flex font-medium">
                   Coming soon

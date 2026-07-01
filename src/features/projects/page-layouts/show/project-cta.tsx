@@ -1,7 +1,7 @@
-import { Link } from 'lucide-react';
+import Link from 'next/link';
 import {
   CaseStudiesCarousel,
-  CaseStudyCard,
+  type RelatedCaseStudyCard,
 } from '../../components/show/case-studies-carousel';
 
 export const ProjectCta = () => (
@@ -24,7 +24,7 @@ export const RelatedCaseStudies = ({
   relatedCaseStudies,
   projectSlug,
 }: {
-  relatedCaseStudies: CaseStudyCard[];
+  relatedCaseStudies: RelatedCaseStudyCard[];
   projectSlug: string;
 }) => (
   <section

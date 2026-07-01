@@ -13,9 +13,9 @@ import {
   TimelineItem,
   TradeOffCard,
 } from '@/components/shared/blocks';
+import { BeforeAfterSlider } from '@/components/shared/display';
 import { cn } from '@/lib/utils';
 import type { ComponentProps, ReactNode } from 'react';
-import { BeforeAfterSlider } from '../shared/display/before-after-slider';
 import { CodeBlock, Pre } from './code-block';
 import { MermaidDiagram } from './mermaid-diagram';
 

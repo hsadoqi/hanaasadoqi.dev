@@ -16,9 +16,8 @@ import {
   shouldRenderContent,
 } from '@/lib/content/content-visibility';
 import type { CaseStudy, Project } from '@/types';
-import { ContentShowHero } from '@/components/shared/views/show-view/content-show-hero';
+import { ContentShowHero } from '@/components/shared/display/views/show-view/content-show-hero';
 
-// Import the rendering components from the old case study page
 import { DiagramPlaceholder } from '@/components/shared/blocks';
 import { RenderSection } from '@/components/shared/blocks/render-section';
 

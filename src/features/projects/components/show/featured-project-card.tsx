@@ -1,11 +1,11 @@
 'use client';
 
 import { LinkButton } from '@/components';
-import { StatusBadge } from '@/components/shared/badges';
 import {
   prepareIcons,
   TechStackIcons,
 } from '@/components/shared/icons/tech-stack';
+import ProjectCardHeader from '@/features/projects/components/shared/project-card-primitives/header';
 import { getProjectDisplay } from '@/features/projects/lib/project-display';
 import type { CaseStudy, Project } from '@/features/projects/types';
 import { isDraftContent } from '@/lib/content/content-visibility';
@@ -13,7 +13,6 @@ import Link from 'next/link';
 
 type FeaturedProject = CaseStudy | Project;
 type ProjectDisplay = ReturnType<typeof getProjectDisplay>;
-type TechStackIcon = ReturnType<typeof prepareIcons>[number];
 
 export function FeaturedProjectCard({
   featured,
@@ -30,39 +29,28 @@ export function FeaturedProjectCard({
       className="group border-border/40 bg-background/40 text-card-foreground shadow-elevation-2 hover:shadow-elevation-3 hover:border-border/70 relative flex h-[min(76svh,660px)] min-h-[540px] max-w-[min(84vw,520px)] min-w-[min(84vw,520px)] snap-start flex-col rounded-2xl border p-7 backdrop-blur-sm motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-out hover:motion-safe:-translate-y-1.5 sm:max-w-[560px] sm:min-w-[560px] md:max-w-[640px] md:min-w-[640px] md:p-9 lg:max-w-[720px] lg:min-w-[720px]"
       aria-label={`Featured project: ${featured.title}`}
     >
-      <FeaturedProjectHeader
-        displayMeta={display.meta}
-        featured={featured}
-        techStackIcons={techStackIcons}
+      <ProjectCardHeader
+        title={featured.title}
+        meta={display.meta}
+        subtitle={featured.subtitle}
+        status={featured.status.value}
+        isFeatured
+        showFeaturedBadge={false}
+        titleClassName="type-panel-title"
+        subtitleClassName="mb-4 text-balance"
+        badgeTrailing={
+          <TechStackIcons
+            items={techStackIcons}
+            className="opacity-70"
+            showLabel={false}
+          />
+        }
       />
+
       <FeaturedProjectDetails featured={featured} />
+
       <FeaturedProjectFooter display={display} featured={featured} />
     </article>
-  );
-}
-
-function FeaturedProjectHeader({
-  displayMeta,
-  featured,
-  techStackIcons,
-}: {
-  displayMeta?: string;
-  featured: FeaturedProject;
-  techStackIcons: TechStackIcon[];
-}) {
-  return (
-    <header className="shrink-0">
-      <div className="mb-5 flex items-center justify-between gap-3">
-        <StatusBadge status={featured.status.value}>
-          {featured.status.value}
-        </StatusBadge>
-        <TechStackIcons items={techStackIcons} />
-      </div>
-
-      <h3 className="type-panel-title mb-2">{featured.title}</h3>
-      {displayMeta && <p className="type-caption mb-3">{displayMeta}</p>}
-      <p className="type-body-sm mb-6 text-balance">{featured.subtitle}</p>
-    </header>
   );
 }
 
@@ -143,7 +131,7 @@ function ProjectDetailList({
   );
 }
 
-function FeaturedProjectFooter({
+export function FeaturedProjectFooter({
   display,
   featured,
 }: {

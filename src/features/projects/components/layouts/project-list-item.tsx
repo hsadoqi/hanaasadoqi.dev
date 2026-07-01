@@ -1,7 +1,7 @@
 'use client';
 
-import { StatusBadge } from '@/components/shared/badges';
-import { ProjectTagList } from '@/features/projects/components/shared/tag-list';
+import { PillList } from '@/components/shared/display/badges';
+import { StatusBadge } from '@/components/shared/display/badges';
 import {
   getProjectDisplay,
   type ProjectLink,
@@ -9,6 +9,8 @@ import {
 import type { Project } from '@/types';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import ProjectCardHeader from '@/features/projects/components/shared/project-card-primitives/header';
+import ProjectCardFooter from '@/features/projects/components/shared/project-card-primitives/footer';
 
 export interface ProjectListItemProps {
   project: Project;
@@ -25,14 +27,18 @@ export function ProjectListItem({ project, featured }: ProjectListItemProps) {
     >
       <div className="min-w-0 flex-1 space-y-2">
         <div className="flex flex-wrap justify-between gap-2 sm:items-center sm:gap-3">
-          <div className="flex items-center gap-2">
-            <h3
-              className={`type-card-title-sm motion-safe:transition-colors ${
+          <div className="flex min-w-0 items-start gap-2">
+            <ProjectCardHeader
+              title={display.title}
+              meta={display.meta}
+              subtitle={display.subtitle}
+              status={display.status}
+              showBadges={false}
+              titleClassName={
                 !display.link.isDisabled ? 'group-hover:text-foreground/80' : ''
-              }`}
-            >
-              {display.title}
-            </h3>
+              }
+              subtitleClassName="line-clamp-2"
+            />
             {display.caseStudyCount > 0 && (
               <span className="border-brand/20 bg-brand/5 text-brand inline-flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium">
                 {display.caseStudyCount}{' '}
@@ -42,33 +48,24 @@ export function ProjectListItem({ project, featured }: ProjectListItemProps) {
           </div>
           <StatusBadge status={display.status}>{display.status}</StatusBadge>
         </div>
-        {display.meta && (
-          <p className="type-caption text-muted-foreground">{display.meta}</p>
-        )}
-        <p className="type-body-sm line-clamp-2">{display.subtitle}</p>
       </div>
 
-      <ProjectTagList
-        tags={display.tags}
+      <PillList
+        items={display.tags}
         limit={2}
         className="hidden flex-shrink-0 lg:flex"
         overflowLabel="count"
       />
 
-      <span
-        className={`type-caption font-medium lg:w-32 lg:text-right ${
-          display.link.isDisabled
-            ? 'text-muted-foreground/50'
-            : 'text-foreground/60 group-hover:text-foreground'
-        }`}
-      >
-        {display.link.label}
-        {!display.link.isDisabled && (
-          <span aria-hidden="true" className="ml-1">
-            {display.link.isExternal ? '↗' : '→'}
-          </span>
-        )}
-      </span>
+      <ProjectCardFooter
+        linkLabel={display.link.label}
+        linkDisabled={display.link.isDisabled}
+        linkExternal={display.link.isExternal}
+        className="lg:w-32 lg:justify-end lg:text-right"
+        linkClassName={
+          display.link.isDisabled ? undefined : 'group-hover:text-foreground'
+        }
+      />
     </div>
   );
 

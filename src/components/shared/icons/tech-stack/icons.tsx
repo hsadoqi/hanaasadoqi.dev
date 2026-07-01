@@ -1,3 +1,4 @@
+import { cn } from '@/lib';
 import Image from 'next/image';
 
 export type TechStackIconProps = {
@@ -6,16 +7,16 @@ export type TechStackIconProps = {
   className?: string;
 };
 
-const imageIconClassName = 'size-4 object-contain';
+const imageIconClassName = 'h-4 w-4 object-contain';
 
 export const BaseIcon = ({ src, alt, className }: TechStackIconProps) =>
-  src && (
+  !!src && (
     <Image
       src={src}
       alt={alt || ''}
       width={20}
       height={20}
-      className={className ?? imageIconClassName}
+      className={cn(className, imageIconClassName)}
     />
   );
 

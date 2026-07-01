@@ -1,14 +1,14 @@
 import { formatContentMeta } from '@/lib/content/content-meta';
 import type { Project } from '@/types';
-import { type CaseStudyCard } from '../../components/show/case-studies-carousel';
-import { ContentShowHero } from '@/components/shared/views/show-view/content-show-hero';
+import { type RelatedCaseStudyCard } from '../../components/show/case-studies-carousel';
+import { ContentShowHero } from '@/components/shared/display/views/show-view/content-show-hero';
 
 export const ProjectMeta = ({
   project,
   relatedCaseStudies,
 }: {
   project: Project | null;
-  relatedCaseStudies?: CaseStudyCard[];
+  relatedCaseStudies?: RelatedCaseStudyCard[];
 }) => {
   if (!project) return null;
   return (

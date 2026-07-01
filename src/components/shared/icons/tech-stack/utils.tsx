@@ -1,4 +1,3 @@
-import { BaseIcon } from './icons';
 import { techStackLibrary, TechStackIcon } from './library';
 
 export const normalizeTechStackKey = (item: string) =>
@@ -23,17 +22,6 @@ export const getTechStackIcon = (item: string) => {
 export const prepareIcons = (items: string[]): TechStackIcon[] =>
   items.flatMap((item) => {
     const iconObj = getTechStackIcon(item);
-    const Icon = ({ className }: { className?: string }) => (
-      <BaseIcon
-        src={iconObj?.icon as unknown as string}
-        className={className ?? 'size-4 object-contain'}
-      />
-    );
 
-    const techStackIcon: TechStackIcon | undefined = iconObj && {
-      ...iconObj,
-      icon: Icon,
-    };
-
-    return techStackIcon ? [techStackIcon] : [];
+    return iconObj ? [iconObj] : [];
   });
