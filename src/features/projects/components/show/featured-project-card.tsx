@@ -101,8 +101,8 @@ function FeaturedProjectDetails({ featured }: { featured: FeaturedProject }) {
         aria-label={`Details for ${featured.title}`}
         className="no-scrollbar focus-visible:ring-ring h-full overflow-y-auto rounded-md pr-3 focus-visible:ring-2 focus-visible:outline-none"
       >
-        <div className="grid grid-cols-1 gap-5 pb-6 sm:grid-cols-2">
-          <div className="space-y-5">
+        <div className="grid grid-cols-1 gap-6 pb-6 sm:grid-cols-2 sm:gap-7">
+          <div className="space-y-6">
             {featured.problem && (
               <ProjectDetailBlock label="The problem" text={featured.problem} />
             )}
@@ -114,7 +114,7 @@ function FeaturedProjectDetails({ featured }: { featured: FeaturedProject }) {
             )}
           </div>
 
-          <div className="space-y-5">
+          <div className="space-y-6">
             <ProjectDetailList
               items={featured.challenges ?? []}
               label="Key challenges"
