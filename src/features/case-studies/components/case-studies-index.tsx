@@ -230,8 +230,6 @@
 // }
 'use client';
 
-import Link from 'next/link';
-import { useMemo } from 'react';
 import {
   IndexView,
   type IndexViewFilter,
@@ -240,6 +238,8 @@ import {
 } from '@/components/shared';
 import { StatusBadge } from '@/components/shared/badges';
 import type { CaseStudy } from '@/types';
+import Link from 'next/link';
+import { useMemo } from 'react';
 
 type CaseStudiesIndexProps = {
   caseStudies: CaseStudy[];
@@ -355,7 +355,7 @@ export function CaseStudiesIndex({
         description:
           'Try clearing the filters or searching for architecture, permissions, payroll, graph, or workflow.',
       }}
-      eyebrow="Case Studies"
+      eyebrow="Deep Dives"
       filters={filters}
       itemLabelPlural="studies"
       itemLabelSingular="study"
@@ -373,7 +373,7 @@ export function CaseStudiesIndex({
         ],
       }}
       sortOptions={sortOptions}
-      title="Technical decisions across real projects"
+      title="Case Studies"
       views={views}
     />
   );
@@ -405,6 +405,11 @@ function CaseStudyCard({
           <h2 className="type-card-title group-hover:text-foreground/80">
             {caseStudy.title}
           </h2>
+          {caseStudy.readingTime && (
+            <p className="type-caption text-muted-foreground mt-2">
+              {caseStudy.readingTime.text}
+            </p>
+          )}
           <p className="type-body-sm mt-3 line-clamp-3">{caseStudy.subtitle}</p>
         </div>
 

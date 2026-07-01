@@ -1,15 +1,18 @@
 'use client';
 
-import type { ReactNode } from 'react';
-import Link from 'next/link';
-import { FeaturedBadge } from '@/components/shared/badges/featured-badge';
+import { TechStack } from '@/components/mdx';
 import { StatusBadge } from '@/components/shared/badges';
+import { FeaturedBadge } from '@/components/shared/badges/featured-badge';
+import { prepareIcons } from '@/components/shared/icons/tech-stack';
 import { ProjectTagList } from '@/features/projects/components/shared/tag-list';
 import {
   getProjectDisplay,
   type ProjectLink,
 } from '@/features/projects/lib/project-display';
 import type { Project } from '@/types';
+import Link from 'next/link';
+import type { ReactNode } from 'react';
+import { TechStackIcons } from '../show/featured-project-card';
 
 export interface ProjectCardProps {
   project: Project;
@@ -19,24 +22,17 @@ export interface ProjectCardProps {
 export function ProjectCard({ project, featured }: ProjectCardProps) {
   const display = getProjectDisplay(project);
   const isFeatured = display.isFeaturedProject && featured;
+  const techStackIcons = prepareIcons(project.techStack ?? []);
   const content = (
     <article
-      className={`group inline-block w-full overflow-hidden rounded-lg border p-6 shadow-sm motion-safe:transition-all motion-safe:duration-200 ${display.link.isDisabled ? 'border-border/30 bg-card/40 opacity-75' : 'hover:border-border/70 hover:bg-card/80 focus-within:ring-ring focus-within:ring-2 focus-within:outline-none'} ${isFeatured ? 'border-border/60 bg-card/80' : 'border-border/50 bg-card/60'} `}
+      className={`group inline-block w-full overflow-hidden rounded-lg border p-6 shadow-sm motion-safe:transition-all motion-safe:duration-200 ${display.link.isDisabled ? 'border-border/30 bg-card/40 opacity-75' : 'hover:border-border/70 hover:bg-card/80 focus-within:ring-ring focus-within:ring-2 focus-within:outline-none'} ${isFeatured ? 'border-border/60 bg-card/80' : 'border-border/50 bg-card/60'} h-full`}
       aria-label={`${display.title}: ${display.link.label}`}
     >
-      <div className="space-y-4">
+      <div className="flex h-full flex-col space-y-4">
         <div className="flex items-start justify-between gap-4">
           <StatusBadge status={display.status}>{display.status}</StatusBadge>
           {isFeatured && <FeaturedBadge status={display.status} />}
         </div>
-
-        {display.caseStudyCount > 0 && (
-          <div className="border-brand/20 bg-brand/5 text-brand inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium">
-            <span aria-hidden="true">↳</span>
-            {display.caseStudyCount}{' '}
-            {display.caseStudyCount === 1 ? 'case study' : 'case studies'}
-          </div>
-        )}
 
         {/* Title & Subtitle */}
         <div className="space-y-2">
@@ -57,27 +53,38 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
         <ProjectTagList tags={display.focus} limit={2} />
 
         {/* Tech Stack */}
-        <ProjectTagList
+        {/* <ProjectTagList
           tags={display.techStack}
           variant="tech"
           limit={3}
           className="pt-2"
-        />
+        /> */}
+        {display.caseStudyCount > 0 && (
+          <div className="border-brand/20 bg-brand/5 text-brand inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium">
+            <span aria-hidden="true">↳</span>
+            {display.caseStudyCount}{' '}
+            {display.caseStudyCount === 1 ? 'case study' : 'case studies'}
+          </div>
+        )}
 
-        <span
-          className={`type-caption inline-flex font-medium ${
-            display.link.isDisabled
-              ? 'text-muted-foreground/50'
-              : 'text-foreground/60 group-hover:text-foreground'
-          }`}
-        >
-          {display.link.label}
-          {!display.link.isDisabled && (
-            <span aria-hidden="true" className="ml-1">
-              {display.link.isExternal ? '↗' : '→'}
-            </span>
-          )}
-        </span>
+        <div className="flex-1" />
+        <div className="flex items-center justify-between gap-2">
+          <span
+            className={`type-caption inline-flex font-medium ${
+              display.link.isDisabled
+                ? 'text-muted-foreground/50'
+                : 'text-foreground/60 group-hover:text-foreground'
+            }`}
+          >
+            {display.link.label}
+            {!display.link.isDisabled && (
+              <span aria-hidden="true" className="ml-1">
+                {display.link.isExternal ? '↗' : '→'}
+              </span>
+            )}
+          </span>
+          <TechStackIcons items={techStackIcons} className="ml-auto" />
+        </div>
       </div>
     </article>
   );

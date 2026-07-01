@@ -63,7 +63,13 @@ function FeaturedProjectHeader({
   );
 }
 
-function TechStackIcons({ items }: { items: TechStackIcon[] }) {
+export function TechStackIcons({
+  items,
+  className,
+}: {
+  items: Omit<TechStackIcon, 'src'>[];
+  className?: string;
+}) {
   if (items.length === 0) return null;
 
   return (
@@ -74,7 +80,9 @@ function TechStackIcons({ items }: { items: TechStackIcon[] }) {
         aria-label={`Tech stack: ${items.map((item) => item.name).join(', ')}`}
       >
         {items.map((item) => {
-          const IconComponent = item.icon;
+          const IconComponent = item.icon as React.ComponentType<{
+            className?: string;
+          }>;
 
           return (
             <span
@@ -84,7 +92,7 @@ function TechStackIcons({ items }: { items: TechStackIcon[] }) {
               title={item.name}
               className="text-muted-foreground inline-flex size-8 items-center justify-center rounded-md"
             >
-              <IconComponent />
+              <IconComponent className={className} />
             </span>
           );
         })}

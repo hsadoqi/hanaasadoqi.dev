@@ -1,33 +1,197 @@
+import { PageShell } from '@/components/layout';
+import '@/styles/globals.css';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
 import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Serif } from 'next/font/google';
-import '@/styles/globals.css';
-import { PageShell } from '@/components/layout';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from '@vercel/analytics/next';
 
 const siteUrl = 'https://hanaasadoqi.dev';
 
+// const ibmPlexSans = localFont({
+//   src: [
+//     {
+//       path: '../../fonts/IBMPlexSans-Regular.ttf',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSans-Italic.ttf',
+//       weight: '400',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSans-Medium.ttf',
+//       weight: '500',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSans-MediumItalic.ttf',
+//       weight: '500',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSans-SemiBold.ttf',
+//       weight: '600',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSans-SemiBoldItalic.ttf',
+//       weight: '600',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSans-Bold.ttf',
+//       weight: '700',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSans-BoldItalic.ttf',
+//       weight: '700',
+//       style: 'italic',
+//     },
+//   ],
+//   variable: '--font-plex-sans',
+//   display: 'swap',
+// });
+
+// const ibmPlexSerif = localFont({
+//   src: [
+//     {
+//       path: '../../fonts/IBMPlexSerif-Regular.ttf',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSerif-Italic.ttf',
+//       weight: '400',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSerif-Medium.ttf',
+//       weight: '500',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSerif-MediumItalic.ttf',
+//       weight: '500',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSerif-SemiBold.ttf',
+//       weight: '600',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSerif-SemiBoldItalic.ttf',
+//       weight: '600',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSerif-Bold.ttf',
+//       weight: '700',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexSerif-BoldItalic.ttf',
+//       weight: '700',
+//       style: 'italic',
+//     },
+//   ],
+//   variable: '--font-plex-serif',
+//   display: 'swap',
+// });
+
+// const ibmPlexMono = localFont({
+//   src: [
+//     {
+//       path: '../../fonts/IBMPlexMono-Thin.ttf',
+//       weight: '100',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-ThinItalic.ttf',
+//       weight: '100',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-ExtraLight.ttf',
+//       weight: '200',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-ExtraLightItalic.ttf',
+//       weight: '200',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-Light.ttf',
+//       weight: '300',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-LightItalic.ttf',
+//       weight: '300',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-Regular.ttf',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-Medium.ttf',
+//       weight: '500',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-MediumItalic.ttf',
+//       weight: '500',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-SemiBold.ttf',
+//       weight: '600',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-SemiBoldItalic.ttf',
+//       weight: '600',
+//       style: 'italic',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-Bold.ttf',
+//       weight: '700',
+//       style: 'normal',
+//     },
+//     {
+//       path: '../../fonts/IBMPlexMono-BoldItalic.ttf',
+//       weight: '700',
+//       style: 'italic',
+//     },
+//   ],
+//   variable: '--font-plex-mono',
+//   display: 'swap',
+// });
+
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-instrument-sans',
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
+  variable: '--font-plex-sans',
 });
 
 const ibmPlexSerif = IBM_Plex_Serif({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-source-serif',
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
+  variable: '--font-plex-serif',
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-geist-mono',
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
   display: 'swap',
+  variable: '--font-plex-mono',
 });
 
 export const metadata: Metadata = {
