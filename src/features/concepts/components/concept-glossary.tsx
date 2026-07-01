@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import type { ConceptItem } from '../types';
-import ConceptMeta from './concept-meta';
+import { ConceptMeta } from './concept-meta';
 
 export function ConceptGlossary({ items }: { items: ConceptItem[] }) {
   const [openIndex, setOpenIndex] = useState(0);

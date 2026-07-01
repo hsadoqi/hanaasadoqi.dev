@@ -1,7 +1,7 @@
 import type {
   IndexViewFilter,
   IndexViewFilterOption,
-} from '@/components/shared/views/index-view/types';
+} from '@/components/shared/display/views/index-view/types';
 
 export const ALL_FILTER_VALUE = 'all';
 

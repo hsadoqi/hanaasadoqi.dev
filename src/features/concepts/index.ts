@@ -1,9 +1,9 @@
 export {
-  ConceptDetail,
+  ConceptBrowser,
+  ConceptConnectionMap,
   ConceptGlossary,
-  ConceptIndex,
-  ConceptLinkedMap,
-  ConceptProofList,
+  ConceptProofRanking,
+  SelectedConceptPanel,
 } from './components';
 
 export type { ConceptGroup, ConceptItem, ConceptReceipt } from './types';

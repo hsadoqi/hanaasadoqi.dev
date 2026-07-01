@@ -12,7 +12,8 @@
     "format:check": "prettier --check .",
     "typecheck": "pnpm content:build && tsc --noEmit",
     "validate:content": "node scripts/validate-project-data.mjs",
-    "shadcn:add": "pnpm dlx shadcn@latest add"
+    "shadcn:add": "pnpm dlx shadcn@latest add",
+    "clean": "rm -rf .next node_modules package-lock.json && pnpm install"
   },
   "dependencies": {
     "@content-collections/core": "^0.15.2",

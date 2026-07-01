@@ -1,13 +1,13 @@
 'use client';
 
 import { Section } from '@/components/layout/section';
-import { CarouselNav } from '@/features/projects/components/shared/carousel-nav';
+import { CarouselNav } from '@/components/shared/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo } from 'react';
 import { experiences } from '../../data';
 import { useTimeline } from '../../hooks/use-timeline';
-import { TimelineContainer } from './timeline-container';
-import { ExperienceDetailCard } from './timeline-detail-card';
+import { ExperienceTimelineRail } from './experience-timeline-rail';
+import { SelectedExperienceCard } from './selected-experience-card';
 
 const total = experiences.length;
 const timelineInstructionsId = 'experience-timeline-instructions';
@@ -138,7 +138,7 @@ export function ExperienceSection() {
               ref={timelineContainerRef}
               className="no-scrollbar flex flex-1 flex-col items-stretch justify-center overflow-x-auto overflow-y-hidden overscroll-x-contain py-4 pb-5 motion-safe:transition-all motion-safe:duration-500 sm:pb-8"
             >
-              <TimelineContainer
+              <ExperienceTimelineRail
                 experiences={experiences}
                 activeIndex={activeIndex}
                 focusedIndex={focusedIndex}
@@ -155,7 +155,7 @@ export function ExperienceSection() {
 
           <div className="motion-safe:transition-[min-height] motion-safe:duration-300">
             {activeIndex >= 0 && current ? (
-              <ExperienceDetailCard
+              <SelectedExperienceCard
                 key={activeIndex}
                 current={current}
                 slideDirection="none"

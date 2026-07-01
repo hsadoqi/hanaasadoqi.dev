@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Experience } from '../../types';
 
-export type ExperienceLabelProps = {
+export type ExperienceTimelineMarkerProps = {
   experience: Experience;
   isActive: boolean;
   isAbove: boolean;
@@ -24,14 +24,14 @@ const ACTIVE_SUBTITLE_CLASS =
   'text-foreground/90 font-semibold tracking-widest uppercase';
 const INACTIVE_SUBTITLE_CLASS = 'text-muted-foreground/65';
 
-export const ExperienceLabel = ({
+export const ExperienceTimelineMarker = ({
   experience,
   isActive,
   isAbove,
   isFocused,
   onClick,
   onFocus,
-}: ExperienceLabelProps) => {
+}: ExperienceTimelineMarkerProps) => {
   const slotWidth = isActive ? ACTIVE_SLOT_WIDTH : INACTIVE_SLOT_WIDTH;
   const dotClassName = isActive ? ACTIVE_DOT_CLASS : INACTIVE_DOT_CLASS;
   const labelClassName = isActive ? ACTIVE_LABEL_CLASS : INACTIVE_LABEL_CLASS;

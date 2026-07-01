@@ -1,4 +1,4 @@
-export function ConceptTags({
+export function ConceptMetaTags({
   label,
   items,
 }: {

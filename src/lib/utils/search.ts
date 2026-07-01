@@ -1,4 +1,4 @@
-import type { IndexViewFilterValue } from '@/components/shared/views/index-view/types';
+import type { IndexViewFilterValue } from '@/components/shared/display/views/index-view/types';
 
 export function normalizeSearchValue(value: IndexViewFilterValue) {
   return (Array.isArray(value) ? value : [value])

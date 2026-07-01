@@ -1,4 +1,4 @@
-import type { IndexViewSortOption } from '@/components/shared/views/index-view/types';
+import type { IndexViewSortOption } from '@/components/shared/display/views/index-view/types';
 
 export function sortItems<T>(
   items: T[],

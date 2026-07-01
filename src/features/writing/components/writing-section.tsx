@@ -1,7 +1,7 @@
 'use client';
 
 import { Section } from '@/components/layout/section';
-import { StatusBadge } from '@/components/shared/badges';
+import { StatusBadge } from '@/components/shared/display/badges';
 import { useState } from 'react';
 import { writingArticles } from '../data';
 

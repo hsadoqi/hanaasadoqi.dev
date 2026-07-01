@@ -1,6 +1,10 @@
 import type { ConceptReceipt } from '../../types';
 
-export function ReceiptList({ receipts }: { receipts: ConceptReceipt[] }) {
+export function ConceptReceiptList({
+  receipts,
+}: {
+  receipts: ConceptReceipt[];
+}) {
   return (
     <div>
       <p className="text-muted-foreground/50 mb-2 text-[11px] font-semibold tracking-[0.14em] uppercase">

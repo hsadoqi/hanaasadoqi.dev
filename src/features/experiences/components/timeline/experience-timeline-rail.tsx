@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Experience } from '../../types';
-import { ExperienceLabel } from './timeline-label';
+import { ExperienceTimelineMarker } from './experience-timeline-marker';
 
-type TimelineContainerProps = {
+type ExperienceTimelineRailProps = {
   experiences: Experience[];
   activeIndex: number;
   focusedIndex: number;
@@ -11,10 +11,10 @@ type TimelineContainerProps = {
   progressWidth: string;
 };
 
-export const TimelineContainer = React.forwardRef<
+export const ExperienceTimelineRail = React.forwardRef<
   HTMLDivElement,
-  TimelineContainerProps
->(function TimelineContainer(
+  ExperienceTimelineRailProps
+>(function ExperienceTimelineRail(
   {
     experiences,
     activeIndex,
@@ -45,7 +45,7 @@ export const TimelineContainer = React.forwardRef<
 
       <div className="relative flex min-h-[6rem] items-stretch sm:min-h-[7rem]">
         {experiences.map((experience, index) => (
-          <ExperienceLabel
+          <ExperienceTimelineMarker
             key={`${experience.company}-${index}`}
             isAbove={index % 2 === 0}
             isActive={activeIndex === index}
@@ -60,4 +60,4 @@ export const TimelineContainer = React.forwardRef<
   );
 });
 
-TimelineContainer.displayName = 'TimelineContainer';
+ExperienceTimelineRail.displayName = 'ExperienceTimelineRail';

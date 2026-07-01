@@ -10,17 +10,17 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui';
 
-export type ExperienceDetailCardProps = {
+export type SelectedExperienceCardProps = {
   slideDirection: 'left' | 'right' | 'none';
   current: Experience;
   headerAccessory?: ReactNode;
 };
 
-export const ExperienceDetailCard = ({
+export const SelectedExperienceCard = ({
   slideDirection,
   current,
   headerAccessory,
-}: ExperienceDetailCardProps) => {
+}: SelectedExperienceCardProps) => {
   const [isEvidenceOpen, setIsEvidenceOpen] = useState(false);
   const hasSignals = current.signals.length > 0;
   const hasStack = current.stack.length > 0;

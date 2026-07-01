@@ -1,1 +1,1 @@
-export * from './principle-card';
+export { SystemsSection } from './systems-section';

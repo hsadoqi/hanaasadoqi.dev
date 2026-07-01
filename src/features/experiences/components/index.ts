@@ -1,1 +1,1 @@
-export { ExperienceSection } from './timeline/timeline';
+export { ExperienceSection } from './timeline/experience-section';

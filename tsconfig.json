@@ -37,7 +37,8 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "src"
-  ],
+
+],
   "exclude": [
     "node_modules",
     ".next",
@@ -45,7 +46,6 @@
     "build",
     "dist",
     "docs",
-    "src/quarantine/deleted-components",
     "archives",
     "docs"
   ]
