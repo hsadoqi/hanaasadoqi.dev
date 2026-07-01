@@ -1,47 +1,17 @@
 import {
   DropdownMenu,
+  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { ALL_FILTER_VALUE, createFilterOptions } from '@/lib/utils';
-import { cn } from '@/lib/utils';
+} from '@/components/ui';
+import { createFilterOptions, ALL_FILTER_VALUE, cn } from '@/lib';
 import { ChevronDown } from 'lucide-react';
-import type { IndexViewFilter } from '../types';
-import { SearchForm } from './filters';
-
-type IndexControlsProps<T> = {
-  activeFilters: Record<string, string>;
-  filters: Array<IndexViewFilter<T>>;
-  items: T[];
-  onFilterChange: (filterId: string, value: string) => void;
-  onQueryChange: (query: string) => void;
-  query: string;
-  searchPlaceholder: string;
-};
-
-export function IndexControls<T>({
-  onQueryChange,
-  query,
-  searchPlaceholder,
-}: IndexControlsProps<T>) {
-  return (
-    <div className="flex flex-col gap-2">
-      <SearchForm
-        className="w-full"
-        value={query}
-        onChange={(event) => onQueryChange(event.target.value)}
-        placeholder={searchPlaceholder}
-        inputWrapperClassName="sm:max-w-md"
-      />
-    </div>
-  );
-}
+import { ControlsProps } from '../types';
 
 type FocusFilterPillProps<T> = Pick<
-  IndexControlsProps<T>,
+  ControlsProps<T>,
   'filters' | 'activeFilters' | 'onFilterChange' | 'items'
 >;
 
@@ -70,7 +40,6 @@ export function FocusFilterPill<T>({
                   type="button"
                   className={cn(
                     'border-border/40 bg-background text-muted-foreground hover:bg-background/90 active:bg-background/80 hover:text-foreground focus-visible:ring-ring inline-flex h-8 items-center gap-1.5 rounded-sm border px-3 text-xs focus-visible:ring-2 focus-visible:outline-none',
-                    // 'focus-visible:ring-ring border-border/40 inline-flex h-8 items-center gap-1.5 rounded-sm border px-3 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none',
                     isFiltered
                       ? 'border-foreground/25 bg-foreground/6 text-foreground'
                       : 'bg-background text-muted-foreground hover:text-foreground',

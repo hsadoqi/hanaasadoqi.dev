@@ -9,14 +9,38 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown, SortAscIcon } from 'lucide-react';
-import type { IndexViewSortOption } from '../../types';
-import { SortToggle } from './sort-toggle';
+import type { SortOption } from '../types';
+import { FilterPill } from '../filters/filter-pill';
 
-type SortToggleResponsiveProps<T> = {
+type SortToggleProps<T> = {
   activeSortId: string;
   onChange: (sortId: string) => void;
-  sortOptions: Array<IndexViewSortOption<T>>;
+  sortOptions: Array<SortOption<T>>;
 };
+
+export function SortToggle<T>({
+  activeSortId,
+  onChange,
+  sortOptions,
+}: SortToggleProps<T>) {
+  if (sortOptions.length === 0) return null;
+
+  return (
+    <div className="border-border/40 bg-muted/20 flex flex-wrap gap-1 rounded-lg border p-1">
+      {sortOptions.map((option) => (
+        <FilterPill
+          key={option.id}
+          active={activeSortId === option.id}
+          onClick={() => onChange(option.id)}
+        >
+          {option.label}
+        </FilterPill>
+      ))}
+    </div>
+  );
+}
+
+type SortToggleResponsiveProps<T> = SortToggleProps<T>;
 
 export function SortToggleResponsive<T>({
   activeSortId,
@@ -25,11 +49,12 @@ export function SortToggleResponsive<T>({
 }: SortToggleResponsiveProps<T>) {
   if (sortOptions.length === 0) return null;
 
-  const activeLabel = sortOptions.find((o) => o.id === activeSortId)?.label;
+  const activeLabel = sortOptions.find(
+    (option) => option.id === activeSortId,
+  )?.label;
 
   return (
     <>
-      {/* Desktop: Toggle group */}
       <div className="hidden sm:block">
         <SortToggle
           activeSortId={activeSortId}
@@ -38,7 +63,6 @@ export function SortToggleResponsive<T>({
         />
       </div>
 
-      {/* Mobile: Dropdown */}
       <div className="block sm:hidden">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

@@ -6,24 +6,28 @@ import {
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
 import { Search } from 'lucide-react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-type SearchFormProps = React.ComponentProps<'form'> & {
+type SearchFormProps = Omit<
+  ComponentPropsWithoutRef<'form'>,
+  'onChange'
+> & {
   inputWrapperClassName?: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onQueryChange: (query: string) => void;
   placeholder?: string;
-  value: string;
+  query: string;
 };
 
 export function SearchForm({
-  onChange,
+  onQueryChange,
   placeholder = 'Search...',
-  value,
+  query,
   className,
   inputWrapperClassName,
-  ...props
+  ...formProps
 }: SearchFormProps) {
   return (
-    <form className={cn('w-full', className)} {...props}>
+    <form className={cn('w-full', className)} {...formProps}>
       <SidebarGroup className="p-0">
         <SidebarGroupContent
           className={cn('relative ml-auto h-9 w-full', inputWrapperClassName)}
@@ -34,13 +38,16 @@ export function SearchForm({
 
           <SidebarInput
             id="search"
-            value={value}
-            onChange={onChange}
+            value={query}
+            onChange={(event) => onQueryChange(event.target.value)}
             placeholder={placeholder}
             className="h-9 w-full pl-8"
           />
 
-          <Search className="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 opacity-50 select-none" />
+          <Search
+            aria-hidden="true"
+            className="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 opacity-50 select-none"
+          />
         </SidebarGroupContent>
       </SidebarGroup>
     </form>
