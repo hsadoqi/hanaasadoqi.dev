@@ -322,11 +322,17 @@ export function ProcessDiagram({
   return <DiagramPlaceholder label={label} height={height} caption={caption} />;
 }
 
-export function TechStack({ items }: { items: string[] }) {
+export function TechStack({
+  items,
+  className,
+}: {
+  items: string[];
+  className?: string;
+}) {
   if (!items.length) return null;
 
   return (
-    <ul className="flex flex-wrap gap-2">
+    <ul className={cn('flex flex-wrap gap-2', className)}>
       {items.map((item) => (
         <li
           key={item}

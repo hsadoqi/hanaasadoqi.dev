@@ -3,24 +3,14 @@ import React from 'react';
 import { ShieldCheck } from 'lucide-react';
 
 type TechStackIconProps = {
+  src: string;
   className?: string;
 };
 
 const imageIconClassName = 'size-4 object-contain';
-
-export const NextJSIcon = ({ className }: TechStackIconProps) => (
+const BaseIcon = ({ src, className }: TechStackIconProps) => (
   <Image
-    src="/icons/next.svg"
-    alt=""
-    width={18}
-    height={18}
-    className={className ?? `${imageIconClassName} dark:invert`}
-  />
-);
-
-export const PostgreSQLIcon = ({ className }: TechStackIconProps) => (
-  <Image
-    src="/icons/postgresql.webp"
+    src={src}
     alt=""
     width={18}
     height={18}
@@ -28,18 +18,45 @@ export const PostgreSQLIcon = ({ className }: TechStackIconProps) => (
   />
 );
 
-export const TypeScriptIcon = ({ className }: TechStackIconProps) => (
-  <span
-    aria-hidden="true"
-    className={
-      className ??
-      'inline-flex size-4 items-center justify-center rounded-[3px] bg-[#3178c6] text-[8px] leading-none font-bold text-white'
-    }
-  >
-    TS
-  </span>
+const StorybookIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/storybook.svg" className={className} />
 );
 
+const TailwindIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/tailwind.svg" className={className} />
+);
+
+const NextJSIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/next.svg" className={className} />
+);
+
+const PostgreSQLIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/postgresql.webp" className={className} />
+);
+
+export const TypescriptIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/typescript.svg" className={className} />
+);
+
+const NestJSIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/nest.svg" className={className} />
+);
+
+const PrismaIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/prisma.svg" className={className} />
+);
+
+const ZodIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/zod.svg" className={className} />
+);
+
+const VercelIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/vercel.svg" className={className} />
+);
+
+const ReactIcon = ({ className }: TechStackIconProps) => (
+  <BaseIcon src="/icons/react.svg" className={className} />
+);
 export const techStack: TechStackIcon[] = [
   {
     id: 'next',
@@ -57,13 +74,55 @@ export const techStack: TechStackIcon[] = [
     id: 'typescript',
     name: 'TypeScript',
     aliases: ['ts'],
-    icon: TypeScriptIcon,
+    icon: TypescriptIcon,
   },
   {
     id: 'rbac',
     name: 'RBAC',
     aliases: ['role-based-access-control'],
     icon: ShieldCheck,
+  },
+  {
+    id: 'tailwind',
+    name: 'Tailwind CSS',
+    aliases: ['tailwindcss', 'tailwind-css'],
+    icon: TailwindIcon,
+  },
+  {
+    id: 'storybook',
+    name: 'Storybook',
+    aliases: ['storybook.js', 'storybookjs'],
+    icon: StorybookIcon,
+  },
+  {
+    id: 'nest',
+    name: 'NestJS',
+    aliases: ['nestjs', 'nest-js'],
+    icon: NestJSIcon,
+  },
+  {
+    id: 'prisma',
+    name: 'Prisma',
+    aliases: ['prisma', 'prisma.io'],
+    icon: PrismaIcon,
+  },
+  {
+    id: 'zod',
+    name: 'Zod',
+    aliases: ['zod', 'zod.io'],
+    icon: ZodIcon,
+  },
+  {
+    id: 'vercel',
+    name: 'Vercel',
+    aliases: ['vercel', 'vercel.com'],
+    icon: VercelIcon,
+  },
+  {
+    id: 'react',
+    name: 'React',
+    aliases: ['reactjs', 'react.js'],
+    icon: ReactIcon,
   },
 ];
 
