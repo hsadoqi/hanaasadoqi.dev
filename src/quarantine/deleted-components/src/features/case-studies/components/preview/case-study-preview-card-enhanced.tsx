@@ -4,9 +4,26 @@ import { memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { StatusBadge } from '../status-badge';
-import { CaseStudyTags } from '../artifacts/case-study-tags';
-import { cn } from '@/lib/utils';
+
+// Lightweight local replacement for `cn` to avoid dependency on '@/lib/utils'
+function cn(
+  ...inputs: Array<string | false | null | undefined | Record<string, boolean>>
+): string {
+  const classes: string[] = [];
+  for (const input of inputs) {
+    if (!input) continue;
+    if (typeof input === 'string') {
+      classes.push(input);
+    } else if (typeof input === 'object') {
+      for (const [key, value] of Object.entries(input)) {
+        if (value) classes.push(key);
+      }
+    }
+  }
+  return classes.join(' ');
+}
 import type { CaseStudy } from '@/types';
+import { CaseStudyTags } from '@/features/case-studies/components/artifacts/case-study-tags';
 
 type CaseStudyPreviewCardEnhancedProps = {
   data: CaseStudy;

@@ -15,7 +15,7 @@ import {
   shouldIndexContent,
   shouldRenderContent,
 } from '@/lib/content/content-visibility';
-import type { BadgeColor, CaseStudy, Project } from '@/types';
+import type { CaseStudy, Project } from '@/types';
 import { ContentShowHero } from '@/components/shared/views/show-view/content-show-hero';
 
 // Import the rendering components from the old case study page

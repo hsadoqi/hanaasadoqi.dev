@@ -1,5 +1,5 @@
 import { formatContentMeta } from '@/lib/content/content-meta';
-import type { BadgeColor, Project } from '@/types';
+import type { Project } from '@/types';
 import { type CaseStudyCard } from '../../components/show/case-studies-carousel';
 import { ContentShowHero } from '@/components/shared/views/show-view/content-show-hero';
 

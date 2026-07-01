@@ -4,9 +4,9 @@ import {
   getInitialFilters,
   hasActiveFilters,
   itemMatchesFilters,
-} from '@/lib/index-view/filters';
-import { itemMatchesSearch } from '@/lib/index-view/search';
-import { sortItems } from '@/lib/index-view/sort';
+  itemMatchesSearch,
+  sortItems,
+} from '@/lib/utils';
 import { useMemo, useState } from 'react';
 import {
   FocusFilterPill,

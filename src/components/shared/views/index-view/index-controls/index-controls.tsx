@@ -6,10 +6,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-  ALL_FILTER_VALUE,
-  createFilterOptions,
-} from '@/lib/utils/filters';
+import { ALL_FILTER_VALUE, createFilterOptions } from '@/lib/utils/filters';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
 import type { IndexViewFilter } from '../types';

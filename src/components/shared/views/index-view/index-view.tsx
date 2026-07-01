@@ -6,7 +6,7 @@ import {
   itemMatchesFilters,
 } from '@/lib/utils/filters';
 import { itemMatchesSearch } from '@/lib/utils/search';
-import { sortItems } from '@/lib/index-view/sort';
+import { sortItems } from '@/lib/utils/sort';
 import { useMemo, useState } from 'react';
 import {
   FocusFilterPill,

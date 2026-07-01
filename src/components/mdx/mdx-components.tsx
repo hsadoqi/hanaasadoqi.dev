@@ -15,7 +15,7 @@ import {
 } from '@/components/shared/blocks';
 import { cn } from '@/lib/utils';
 import type { ComponentProps, ReactNode } from 'react';
-import { BeforeAfterSlider } from '../shared/visual';
+import { BeforeAfterSlider } from '../shared/display/before-after-slider';
 import { CodeBlock, Pre } from './code-block';
 import { MermaidDiagram } from './mermaid-diagram';
 

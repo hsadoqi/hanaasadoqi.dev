@@ -36,7 +36,17 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "src/components/shared/icons/tech-stack/icons.tss"
+    "src"
   ],
-  "exclude": ["node_modules", ".next", "out", "build", "dist", "docs"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out",
+    "build",
+    "dist",
+    "docs",
+    "src/quarantine/deleted-components",
+    "archives",
+    "docs"
+  ]
 }
