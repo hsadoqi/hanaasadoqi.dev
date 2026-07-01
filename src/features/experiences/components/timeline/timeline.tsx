@@ -90,7 +90,7 @@ export function ExperienceSection() {
     prev,
     next,
     goToIndex,
-  } = useTimeline(total, -1);
+  } = useTimeline(total, 0);
 
   const current = useMemo(() => experiences[activeIndex], [activeIndex]);
 

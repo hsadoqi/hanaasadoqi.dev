@@ -1,40 +1,45 @@
 import { Section } from '@/components/layout/section';
-
-const contactActions = [
-  { label: 'GitHub', href: 'https://github.com/hanaasadoqi', icon: 'GH' },
-  { label: 'X', href: 'https://x.com/hanaasadoqi', icon: 'X' },
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/hanaasadoqi',
-    icon: 'IN',
-  },
-  {
-    label: 'Email',
-    href: 'mailto:hello@hanaasadoqi.dev',
-    icon: '@',
-    isPrimary: true,
-  },
-];
+import {
+  contactSocialLinks,
+  primaryContactLink,
+  primaryEmailAddress,
+} from '@/constants';
 
 export function ContactSection() {
+  const PrimaryIcon = primaryContactLink.icon;
+
   return (
     <Section
       id="contact"
       header={{
         eyebrow: 'Contact',
-        title: "Let's build something.",
-        description: "('cause, like, why not?)",
+        title: "Let's connect.",
+        description:
+          'Open to thoughtful products, complex systems, and good problems.',
       }}
     >
-      <div className="max-w-3xl space-y-14">
-        {/* Main narrative */}
-        <div className="space-y-8">
-          <p className="type-body">
-            If you&apos;ve made it this far, we probably care about similar
-            things.
-          </p>
+      <div className="max-w-3xl space-y-12 sm:space-y-14">
+        <a
+          href={primaryContactLink.href}
+          className="group border-brand/20 bg-brand/5 hover:border-brand/45 hover:bg-brand/8 focus-visible:ring-ring focus-visible:ring-offset-background flex rounded-2xl border p-5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:transition-all motion-safe:duration-200"
+        >
+          <span className="bg-brand/10 text-brand mr-4 flex size-11 items-center justify-center rounded-xl">
+            <PrimaryIcon className="size-5" />
+          </span>
+          <span className="min-w-0 space-y-1">
+            <span className="type-eyebrow text-brand/80 block">
+              Primary contact
+            </span>
+            <span className="text-foreground block text-base font-semibold">
+              Email me directly
+            </span>
+            <span className="text-muted-foreground group-hover:text-foreground block text-sm motion-safe:transition-colors motion-safe:duration-200">
+              {primaryEmailAddress}
+            </span>
+          </span>
+        </a>
 
-          {/* Values */}
+        <div className="space-y-8">
           <div className="space-y-4">
             <p className="type-eyebrow">What matters to me</p>
             <ul className="space-y-3">
@@ -57,7 +62,6 @@ export function ContactSection() {
             </ul>
           </div>
 
-          {/* Opportunities */}
           <div className="border-border/30 space-y-3 border-t pt-2">
             <p className="type-body">
               Whether it&apos;s rebuilding legacy software, validating a new
@@ -67,42 +71,52 @@ export function ContactSection() {
             </p>
 
             <p className="type-body-sm">
-              You can usually find me here. Responses are generally much faster
-              than my sleeping schedule would suggest.
+              Email is usually the fastest way to reach me.
             </p>
           </div>
         </div>
 
-        {/* Contact actions - enhanced with cards */}
         <div className="border-border/30 space-y-5 border-t pt-4">
-          <p className="type-eyebrow">Let&apos;s connect</p>
+          <p className="type-eyebrow">Elsewhere</p>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {contactActions.map((action) => (
-              <a
-                key={action.label}
-                href={action.href}
-                target={action.href.startsWith('http') ? '_blank' : undefined}
-                rel={action.href.startsWith('http') ? 'noreferrer' : undefined}
-                className={`group flex flex-col items-center gap-2 rounded-lg border p-4 motion-safe:transition-all motion-safe:duration-200 ${
-                  action.isPrimary
-                    ? 'border-brand/20 bg-brand/5 hover:border-brand/50 hover:bg-brand/10 hover:shadow-elevation-2'
-                    : 'border-border/40 bg-background/40 hover:border-border/60 hover:bg-background/60 hover:shadow-elevation-2'
-                }`}
-              >
-                <span className="font-mono text-sm font-semibold tracking-wider">
-                  {action.icon}
-                </span>
-                <span
-                  className={`text-xs font-semibold motion-safe:transition-colors motion-safe:duration-200 ${
-                    action.isPrimary
-                      ? 'text-brand/70 group-hover:text-brand'
-                      : 'text-muted-foreground group-hover:text-foreground'
+            {contactSocialLinks.map((action) => {
+              const Icon = action.icon;
+
+              return (
+                <a
+                  key={action.id}
+                  href={action.href}
+                  target={action.href.startsWith('http') ? '_blank' : undefined}
+                  rel={
+                    action.href.startsWith('http') ? 'noreferrer' : undefined
+                  }
+                  className={`group focus-visible:ring-ring focus-visible:ring-offset-background flex flex-col items-center gap-3 rounded-lg border p-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:transition-all motion-safe:duration-200 ${
+                    action.isPrimaryContact
+                      ? 'border-brand/20 bg-brand/5 hover:border-brand/50 hover:bg-brand/10 hover:shadow-elevation-2'
+                      : 'border-border/40 bg-background/40 hover:border-border/60 hover:bg-background/60 hover:shadow-elevation-2'
                   }`}
                 >
-                  {action.label}
-                </span>
-              </a>
-            ))}
+                  <span
+                    className={`flex size-10 items-center justify-center rounded-full ${
+                      action.isPrimaryContact
+                        ? 'bg-brand/10 text-brand'
+                        : 'bg-muted text-muted-foreground group-hover:text-foreground'
+                    }`}
+                  >
+                    <Icon className="size-5" />
+                  </span>
+                  <span
+                    className={`text-sm font-semibold motion-safe:transition-colors motion-safe:duration-200 ${
+                      action.isPrimaryContact
+                        ? 'text-brand/70 group-hover:text-brand'
+                        : 'text-muted-foreground group-hover:text-foreground'
+                    }`}
+                  >
+                    {action.label}
+                  </span>
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import {
-  Hero,
   AboutSection,
   ContactSection,
   ExperienceSection,
+  Hero,
   WritingSection,
 } from '@/components/sections';
 import { ProjectsSection } from '@/features/projects/components/homepage/featured-work-section';
@@ -39,9 +39,9 @@ export default function Home() {
         <span className="bg-border/60 h-px w-16" />
       </div>
       <ProjectsSection />
+      <AboutSection />
       <WritingSection />
       <ExperienceSection />
-      <AboutSection />
       <ContactSection />
     </main>
   );

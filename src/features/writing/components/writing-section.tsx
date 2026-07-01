@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import { Section } from '@/components/layout/section';
 import { StatusBadge } from '@/components/shared/badges';
+import { useState } from 'react';
 import { writingArticles } from '../data';
 
 const MOBILE_INITIAL = 3;
@@ -34,9 +34,10 @@ export function WritingSection() {
         {visibleArticles.map((article, index) => (
           <article
             key={article.id}
-            className={`border-border/20 hover:border-border/40 hover:bg-background/40 space-y-4 rounded-md px-4 py-7 motion-safe:transition-all motion-safe:duration-200 sm:px-6 sm:py-8 ${
+            className={`border-border/20 hover:border-border/40 hover:bg-background/40 motion-safe:hero-enter space-y-4 rounded-md px-4 py-7 motion-safe:transition-all motion-safe:duration-200 sm:px-6 sm:py-8 ${
               index !== visibleArticles.length - 1 ? 'border-b' : ''
             }`}
+            style={{ animationDelay: `${index * 90}ms` }}
           >
             <div className="flex items-start justify-between gap-4">
               <h3 className="type-card-title-sm hover:text-foreground flex-1 motion-safe:transition-colors motion-safe:duration-200 sm:text-lg">
