@@ -1,8 +1,9 @@
 import React from 'react';
-import { experiences } from '../../data';
+import type { Experience } from '../../types';
 import { ExperienceLabel } from './timeline-label';
 
 type TimelineContainerProps = {
+  experiences: Experience[];
   activeIndex: number;
   focusedIndex: number;
   onClick: (index: number) => void;
@@ -14,13 +15,20 @@ export const TimelineContainer = React.forwardRef<
   HTMLDivElement,
   TimelineContainerProps
 >(function TimelineContainer(
-  { activeIndex, focusedIndex, onClick, onFocusIndex, progressWidth },
+  {
+    experiences,
+    activeIndex,
+    focusedIndex,
+    onClick,
+    onFocusIndex,
+    progressWidth,
+  },
   ref,
 ) {
   return (
     <div
       ref={ref}
-      className="relative mx-auto min-w-max px-32 py-8 sm:py-10 lg:py-11"
+      className="relative mx-auto min-w-max px-32 py-6 sm:py-7 lg:py-8"
     >
       {/* Background track */}
       <div

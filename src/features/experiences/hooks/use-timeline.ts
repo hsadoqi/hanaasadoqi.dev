@@ -13,7 +13,6 @@ export function useTimeline(total: number, initialIndex = -1) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const timelineContainerRef = useRef<HTMLDivElement | null>(null);
-  const isSectionActiveRef = useRef(false);
   const hasAutoOpenedRef = useRef(initialIndex >= 0);
   const pendingScrollIndexRef = useRef<number | null>(null);
   const pendingFocusIndexRef = useRef<number | null>(null);
@@ -45,21 +44,6 @@ export function useTimeline(total: number, initialIndex = -1) {
     (index: number) => setFocusedIndex(clampIndex(index, total)),
     [total],
   );
-
-  const shouldIgnoreGlobalKey = useCallback((target: EventTarget | null) => {
-    if (!(target instanceof HTMLElement)) return false;
-    if (target.closest('[data-timeline-dot]')) return true;
-    if (
-      target instanceof HTMLInputElement ||
-      target instanceof HTMLTextAreaElement ||
-      target instanceof HTMLSelectElement ||
-      target.isContentEditable
-    ) {
-      return true;
-    }
-
-    return !!target.closest('button:not([data-timeline-dot])');
-  }, []);
 
   const handleTimelineKey = useCallback(
     (key: string) => {
@@ -117,7 +101,6 @@ export function useTimeline(total: number, initialIndex = -1) {
       ([entry]) => {
         const isActive =
           entry.isIntersecting && entry.intersectionRatio >= 0.45;
-        isSectionActiveRef.current = isActive;
 
         if (isActive && !hasAutoOpenedRef.current && total > 0) {
           hasAutoOpenedRef.current = true;
@@ -132,23 +115,6 @@ export function useTimeline(total: number, initialIndex = -1) {
     observer.observe(section);
     return () => observer.disconnect();
   }, [total]);
-
-  useEffect(() => {
-    const handleWindowKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (!isSectionActiveRef.current) return;
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
-        return;
-      }
-      if (shouldIgnoreGlobalKey(event.target)) return;
-
-      if (handleTimelineKey(event.key)) {
-        event.preventDefault();
-      }
-    };
-
-    window.addEventListener('keydown', handleWindowKeyDown);
-    return () => window.removeEventListener('keydown', handleWindowKeyDown);
-  }, [handleTimelineKey, shouldIgnoreGlobalKey]);
 
   useEffect(() => {
     const container = timelineContainerRef.current;

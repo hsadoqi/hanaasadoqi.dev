@@ -1,17 +1,14 @@
 import { cn } from '@/lib/utils';
+import { SectionAlign, SectionJustify, SectionVariant } from '@/types';
 import { MarginLine, type MarginLineProps } from './margin-line';
 import { SectionHeader, type SectionHeaderProps } from './section-header';
-import { SectionAlign, SectionJustify, SectionVariant } from '@/types';
 import { alignMap, justifyMap } from './types';
 
 export type SectionProps = React.HTMLAttributes<HTMLElement> & {
   id?: string;
   variant?: SectionVariant;
-  /** Fills the viewport height (`min-h-svh`). Implicitly enables flex layout. */
   fullScreen?: boolean;
-  /** Horizontal alignment of children (cross-axis in column flex). Only applies when flex is active. */
   align?: SectionAlign;
-  /** Vertical distribution of children (main-axis in column flex). Only applies when flex is active. */
   justify?: SectionJustify;
   showMarginLine?: boolean;
   marginLineText?: React.ReactNode;
@@ -70,7 +67,7 @@ export function Section({
           <SectionHeader
             {...header}
             id={headerId}
-            className={cn('mb-14 sm:mb-16', header.className)}
+            className={cn('mb-4 sm:mb-8', header.className)}
           />
         ) : null}
         {children}
@@ -82,5 +79,6 @@ export function Section({
   );
 }
 
-export * from './section-header';
 export * from './margin-line';
+export * from './section-header';
+

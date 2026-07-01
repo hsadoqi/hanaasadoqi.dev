@@ -4,13 +4,28 @@
     "title": "Founding Engineer",
     "period": "2023 — Present",
     "location": "Remote",
-    "description": "Architecting and building a full-stack platform from zero — spanning product infrastructure, design systems, and a modular composable widget layer across a 50+ package monorepo.",
+    "description": "Building an early-stage product platform from zero across architecture, UX systems, and full-stack infrastructure, with emphasis on composable workflows and long-term product flexibility.",
+    "signals": [
+      {
+        "label": "Focus",
+        "value": "Product infrastructure, UX systems, and composable workflows"
+      },
+      {
+        "label": "Scope",
+        "value": "Founding-level ownership across architecture and product direction"
+      },
+      {
+        "label": "Impact",
+        "value": "A flexible platform foundation for rapid product iteration"
+      }
+    ],
+    "stack": ["Next.js", "TypeScript", "Turborepo", "PNPM", "Design systems"],
     "highlights": [
-      "Built a Turborepo monorepo with 50+ packages across domain, UI, and platform layers using Next.js and TypeScript",
-      "Designed a modular widget system enabling dynamic, composable interfaces and rapid feature iteration",
-      "Developed core product infrastructure: command palette, theming system, and extensible sidebar navigation",
-      "Established scalable engineering foundations — PNPM workspaces, shared configs, and internal documentation",
-      "Led end-to-end product decisions across architecture, design system, and UX, prioritizing long-term extensibility"
+      "Architected a 50+ package Turborepo monorepo spanning domain logic, UI primitives, platform tooling, and product surfaces",
+      "Designed a composable widget system so interfaces can be assembled, extended, and iterated without rebuilding the product shell",
+      "Owned product infrastructure across command palette, theming, navigation, workspace structure, and developer documentation",
+      "Made early architecture decisions around package boundaries, shared configuration, and extensibility to keep the platform adaptable",
+      "Balanced product direction, UX quality, and implementation tradeoffs in a founding-engineer role with broad ownership"
     ]
   },
   {
@@ -18,12 +33,27 @@
     "title": "Software Engineer II",
     "period": "2022 — 2023",
     "location": "Remote",
-    "description": "Built and maintained internal tooling for the Merchandising org — improving data reliability, shipping user-driven features, and leading a full rebuild of a core internal app.",
+    "description": "Built internal tooling for merchandising workflows where reliability, user trust, and operational efficiency mattered more than surface-level feature shipping.",
+    "signals": [
+      {
+        "label": "Focus",
+        "value": "Internal tooling, workflow automation, and data reliability"
+      },
+      {
+        "label": "Scope",
+        "value": "Cross-functional product work with Merch, IT, and Product"
+      },
+      {
+        "label": "Impact",
+        "value": "300+ hours per month returned to merchandising workflows"
+      }
+    ],
+    "stack": ["React", "TypeScript", "Internal tools", "Operational workflows"],
     "highlights": [
-      "Reduced Merch team workload by 300+ hours per month through targeted code optimisations and automation",
-      "Rebuilt a core internal web app using React and TypeScript, improving scalability, maintainability, and UX",
-      "Partnered across Merch, IT, and Product teams to resolve complex data issues and improve system reliability",
-      "Designed and deployed features based on direct user feedback, iterating quickly on real workflows"
+      "Reduced Merch team workload by 300+ hours per month through targeted workflow automation and code-level optimizations",
+      "Led a rebuild of a core internal React and TypeScript app to improve scalability, maintainability, and day-to-day usability",
+      "Partnered with Merch, IT, and Product stakeholders to diagnose data issues and improve confidence in internal systems",
+      "Translated direct user feedback into shipped workflow improvements for real operational users"
     ]
   },
   {
@@ -31,11 +61,26 @@
     "title": "Apprentice Software Engineer",
     "period": "Apr — Nov 2021",
     "location": "Remote",
-    "description": "Contributed to consumer-facing social sharing features on the Pandora web platform, working closely with product, design, and the core web team.",
+    "description": "Contributed to consumer-facing web product work while learning production engineering practices inside an established product and platform team.",
+    "signals": [
+      {
+        "label": "Focus",
+        "value": "Consumer-facing web features and social sharing flows"
+      },
+      {
+        "label": "Scope",
+        "value": "Product, design, and platform collaboration"
+      },
+      {
+        "label": "Impact",
+        "value": "Production product contributions inside an established web platform"
+      }
+    ],
+    "stack": ["React", "TypeScript", "GraphQL", "Web platform"],
     "highlights": [
-      "Led development of social sharing features end-to-end — from ideation through production",
-      "Collaborated with product, design, and platform teams using React, TypeScript, and GraphQL",
-      "Received intensive hands-on training while contributing directly to key product initiatives"
+      "Built social sharing features from product idea through production delivery on the Pandora web platform",
+      "Collaborated with product, design, and platform engineers across React, TypeScript, and GraphQL surfaces",
+      "Learned production engineering habits in a consumer product environment while contributing to active product initiatives"
     ]
   },
   {
@@ -43,11 +88,26 @@
     "title": "Lead Instructor",
     "period": "2020 — 2022",
     "location": "Remote",
-    "description": "Delivered full-stack curriculum and technical mentorship to 40+ students across cohorts, covering JavaScript, React, Redux, Ruby on Rails, and modern developer workflows.",
+    "description": "Led technical instruction and mentorship across full-stack engineering fundamentals, turning ambiguous student problems into teachable architecture and debugging lessons.",
+    "signals": [
+      {
+        "label": "Focus",
+        "value": "Technical mentorship, debugging, and full-stack fundamentals"
+      },
+      {
+        "label": "Scope",
+        "value": "40+ students across project architecture and deployment"
+      },
+      {
+        "label": "Impact",
+        "value": "Clearer engineering judgment through repeated teaching and review"
+      }
+    ],
+    "stack": ["JavaScript", "React", "Redux", "Ruby on Rails", "ActiveRecord"],
     "highlights": [
-      "Mentored 40+ students through 5 projects each — guiding architecture, debugging, and deployment",
-      "Delivered live lectures across the full stack: JavaScript, React, Redux, Ruby on Rails, and ActiveRecord",
-      "Improved curriculum delivery by incorporating real-world coding challenges and modern tooling"
+      "Mentored 40+ students through five projects each, guiding architecture, debugging strategy, and deployment decisions",
+      "Delivered live full-stack lectures across JavaScript, React, Redux, Ruby on Rails, ActiveRecord, and developer workflows",
+      "Improved curriculum delivery with real-world coding challenges, modern tooling, and clearer technical communication"
     ]
   }
 ]

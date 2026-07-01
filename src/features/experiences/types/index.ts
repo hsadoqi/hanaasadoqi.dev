@@ -4,5 +4,10 @@ export type Experience = {
   period: string;
   location: string;
   description: string;
+  signals: {
+    label: string;
+    value: string;
+  }[];
+  stack: string[];
   highlights: string[];
 };

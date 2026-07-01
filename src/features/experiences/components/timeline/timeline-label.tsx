@@ -40,7 +40,7 @@ export const ExperienceLabel = ({
     : INACTIVE_SUBTITLE_CLASS;
   const titleClassName = isActive
     ? 'block scale-100 opacity-100'
-    : 'hidden scale-0 opacity-0 hover:scale-100 hover:opacity-100 transition-[scale,opacity] duration-300 ease-linear';
+    : 'block opacity-70 transition-[opacity,color] duration-300 group-hover:opacity-100 group-focus-within:opacity-100';
 
   return (
     <div
