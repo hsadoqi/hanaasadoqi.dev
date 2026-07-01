@@ -11,11 +11,13 @@ export function ContactSection() {
   return (
     <Section
       id="contact"
+      className="pt-10 pb-16 sm:pt-12 sm:pb-20 md:pt-20 md:pb-28 lg:pb-32"
       header={{
         eyebrow: 'Contact',
         title: "Let's connect.",
         description:
           'Open to thoughtful products, complex systems, and good problems.',
+        className: 'mb-8 sm:mb-10 lg:mb-12',
       }}
     >
       <div className="max-w-3xl space-y-12 sm:space-y-14">
@@ -78,7 +80,7 @@ export function ContactSection() {
 
         <div className="border-border/30 space-y-5 border-t pt-4">
           <p className="type-eyebrow">Elsewhere</p>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {contactSocialLinks.map((action) => {
               const Icon = action.icon;
 
@@ -88,7 +90,9 @@ export function ContactSection() {
                   href={action.href}
                   target={action.href.startsWith('http') ? '_blank' : undefined}
                   rel={
-                    action.href.startsWith('http') ? 'noreferrer' : undefined
+                    action.href.startsWith('http')
+                      ? 'noopener noreferrer'
+                      : undefined
                   }
                   className={`group focus-visible:ring-ring focus-visible:ring-offset-background flex flex-col items-center gap-3 rounded-lg border p-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:transition-all motion-safe:duration-200 ${
                     action.isPrimaryContact

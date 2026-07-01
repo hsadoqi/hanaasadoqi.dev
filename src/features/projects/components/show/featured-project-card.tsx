@@ -2,10 +2,13 @@
 
 import { LinkButton } from '@/components';
 import { StatusBadge } from '@/components/shared/badges';
-import { prepareIcons } from '@/components/shared/icons/tech-stack';
+import {
+  prepareIcons,
+  TechStackIcons,
+} from '@/components/shared/icons/tech-stack';
 import { getProjectDisplay } from '@/features/projects/lib/project-display';
 import type { CaseStudy, Project } from '@/features/projects/types';
-import { isDraftContent } from '@/lib/content-visibility';
+import { isDraftContent } from '@/lib/content/content-visibility';
 import Link from 'next/link';
 
 type FeaturedProject = CaseStudy | Project;
@@ -60,44 +63,6 @@ function FeaturedProjectHeader({
       {displayMeta && <p className="type-caption mb-3">{displayMeta}</p>}
       <p className="type-body-sm mb-6 text-balance">{featured.subtitle}</p>
     </header>
-  );
-}
-
-export function TechStackIcons({
-  items,
-  className,
-}: {
-  items: Omit<TechStackIcon, 'src'>[];
-  className?: string;
-}) {
-  if (items.length === 0) return null;
-
-  return (
-    <div>
-      <p className="type-eyebrow mb-2">Tech stack</p>
-      <div
-        className="flex items-center gap-0.5"
-        aria-label={`Tech stack: ${items.map((item) => item.name).join(', ')}`}
-      >
-        {items.map((item) => {
-          const IconComponent = item.icon as React.ComponentType<{
-            className?: string;
-          }>;
-
-          return (
-            <span
-              key={item.id}
-              role="img"
-              aria-label={item.name}
-              title={item.name}
-              className="text-muted-foreground inline-flex size-8 items-center justify-center rounded-md"
-            >
-              <IconComponent className={className} />
-            </span>
-          );
-        })}
-      </div>
-    </div>
   );
 }
 
@@ -237,7 +202,7 @@ function FeaturedProjectCta({
   if (display.link.isDisabled && !isDraft) {
     return (
       <span className="type-body-sm text-muted-foreground/50 ml-auto inline-flex w-fit items-center rounded font-medium">
-        Coming soon
+        Coming
       </span>
     );
   }

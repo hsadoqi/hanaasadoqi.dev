@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
-import { Section } from '@/components/layout/section';
-import { ProjectsIndexWithToolbar } from '@/features/projects/components/layouts/projects-index/projects-index-with-toolbar';
+import { ProjectsIndex } from '@/features/projects/components/layouts/projects-index/projects-index';
 import { loadAllProjects } from '@/features/projects/lib';
 
 export const metadata: Metadata = {
@@ -13,9 +12,5 @@ export const metadata: Metadata = {
 export default async function ProjectsPage() {
   const projects = await loadAllProjects();
 
-  return (
-    <Section id="projects" containerClassName="max-w-6xl">
-      <ProjectsIndexWithToolbar projects={projects} />
-    </Section>
-  );
+  return <ProjectsIndex projects={projects} />;
 }

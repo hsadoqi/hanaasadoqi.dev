@@ -1,6 +1,6 @@
 import { allCaseStudies } from 'content-collections';
 import type { CaseStudy } from '@/types';
-import { isListedContent } from '@/lib/content-visibility';
+import { isListedContent } from '@/lib/content/content-visibility';
 
 const caseStudies = (allCaseStudies as CaseStudy[]).filter(isListedContent);
 const generafiMultitenancy = caseStudies.find(

@@ -1,0 +1,9 @@
+  <svg
+    aria-hidden="true"
+    width="15"
+    height="15"
+    viewBox="0 0 15 15"
+    fill="currentColor"
+  >
+    <path d="M7.5 10.5l-3.5-3.5h2V2h3v5h2L7.5 10.5zM2 12h11v1.5H2V12z" />
+  </svg>

@@ -2,8 +2,8 @@
 
 import { useCallback, useMemo, useState } from 'react';
 
-import type { IndexViewFilterValue } from '@/components/shared/index-view';
-import { normalizeSearchValue } from '@/lib/index-view/search';
+import type { IndexViewFilterValue } from '@/components/shared/views/index-view';
+import { normalizeSearchValue } from '@/lib/utils/search';
 
 export type IndexViewFilterMode = 'any' | 'all';
 

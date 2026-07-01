@@ -42,7 +42,7 @@ export function FeaturedWorkSection() {
             },
           ],
         }}
-        className="overflow-hidden"
+        className="overflow-hidden pt-10 pb-12 sm:pt-12 sm:pb-16 md:pt-20 md:pb-24"
       >
         <div className="border-border/35 bg-background/45 shadow-elevation-1 rounded-xl border p-6 sm:p-8">
           <p className="type-eyebrow mb-3">In progress</p>
@@ -76,8 +76,9 @@ export function FeaturedWorkSection() {
             variant: 'ghost',
           },
         ],
+        className: 'mb-8 sm:mb-10 lg:mb-12',
       }}
-      className="overflow-hidden"
+      className="overflow-hidden pt-10 pb-12 sm:pt-12 sm:pb-16 md:pt-20 md:pb-24"
     >
       <p id="projects-carousel-instructions" className="sr-only">
         Use horizontal scrolling, arrow keys, or carousel controls to browse

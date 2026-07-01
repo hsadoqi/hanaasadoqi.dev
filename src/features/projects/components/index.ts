@@ -1,8 +1,7 @@
 // Projects section for homepage
 export { ProjectsSection } from './homepage/featured-work-section';
 
-export { ProjectsIndexWithToolbar } from './layouts/projects-index/projects-index-with-toolbar';
-export { ProjectsIndexPage } from './layouts/projects-index/projects-index-page';
+export { ProjectsIndex } from './layouts/projects-index/projects-index';
 
 // Shared components
 export { ProjectTagList } from './shared/tag-list';

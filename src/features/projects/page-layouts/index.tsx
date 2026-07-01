@@ -1,8 +1,8 @@
-import { ProjectsIndexPage } from '../components';
+import { ProjectsIndex } from '../components';
 import { loadAllProjects } from '../lib';
 
 export default async function ProjectsPage() {
   const projects = await loadAllProjects();
 
-  return <ProjectsIndexPage projects={projects} />;
+  return <ProjectsIndex projects={projects} />;
 }

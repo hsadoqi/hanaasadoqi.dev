@@ -1,6 +1,6 @@
 import type { CaseStudy, Project } from '@/types';
 import { allCaseStudies, allProjects } from 'content-collections';
-import { isListedContent } from '@/lib/content-visibility';
+import { isListedContent } from '@/lib/content/content-visibility';
 import { hydrateProjectCaseStudies } from '../lib/project-relations';
 
 export const projects = hydrateProjectCaseStudies(

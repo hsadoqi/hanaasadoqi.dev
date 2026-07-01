@@ -3,11 +3,11 @@ import {
   EmptyState,
   ErrorState,
 } from '@/components/shared';
-import { formatContentMeta } from '@/lib/content-meta';
+import { formatContentMeta } from '@/lib/content/content-meta';
 import {
   shouldIndexContent,
   shouldRenderContent,
-} from '@/lib/content-visibility';
+} from '@/lib/content/content-visibility';
 import type { Project } from '@/types';
 import { loadCaseStudiesByProject } from '../../../case-studies/lib/case-studies-loader';
 import { type CaseStudyCard } from '../../components/show/case-studies-carousel';

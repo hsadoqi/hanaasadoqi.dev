@@ -105,13 +105,14 @@ export function ExperienceSection() {
       header={{
         eyebrow: 'Professional',
         title: 'Work Experience',
+        className: 'mb-8 sm:mb-10 lg:mb-12',
       }}
-      className="overflow-hidden"
+      className="overflow-hidden pt-10 pb-14 sm:pt-12 sm:pb-16 md:pt-20 md:pb-24 lg:pb-28"
       containerClassName="flex flex-col flex-1"
     >
       <div
         ref={sectionRef}
-        className="flex size-full flex-1 flex-col gap-8 sm:gap-10"
+        className="flex size-full flex-1 flex-col gap-10 sm:gap-12"
       >
         <div
           role="region"

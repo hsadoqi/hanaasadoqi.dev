@@ -12,7 +12,7 @@ import {
   breakpointQueries,
   collapseMap,
   type CollapseAt,
-} from '@/lib/breakpoints';
+} from '@/constants/breakpoints';
 import { cn } from '@/lib/utils';
 import clsx from 'clsx';
 

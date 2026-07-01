@@ -3,7 +3,7 @@
  *
  * Project/case studies feature with:
  * - ProjectsSection: carousel view for homepage
- * - ProjectsIndexPage: detailed index with search/filters
+ * - ProjectsIndex: detailed index with search/filters
  * - Case study data and components
  */
 

@@ -1,14 +1,15 @@
 import { Section } from '@/components/layout';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const profileHighlights = [
   {
-    label: 'Drawn to',
-    value: 'Product, architecture, and engineering',
+    label: 'Engineering lens',
+    value: 'Product-minded systems architecture',
   },
   {
-    label: 'Built for',
-    value: 'Systems that quietly get out of the way',
+    label: 'Shown through',
+    value: 'Payroll, permissions, and knowledge workflows',
   },
   {
     label: 'Started in',
@@ -20,17 +21,13 @@ export function AboutSection() {
   return (
     <Section
       id="about"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden pt-10 pb-14 sm:pt-12 sm:pb-16 md:pt-20 md:pb-24"
       header={{
         eyebrow: 'About',
-        title: 'About Me',
+        title: 'How I Think',
+        className: 'mb-8 sm:mb-10 lg:mb-12',
       }}
     >
-      <div
-        aria-hidden="true"
-        className="bg-brand/6 absolute top-20 right-0 h-56 w-56 rounded-full blur-3xl"
-      />
-
       <div className="grid items-start gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-14">
         <div className="space-y-8 lg:col-span-2">
           <div className="border-border/30 bg-background/45 shadow-elevation-1 relative overflow-hidden rounded-[1.75rem] border p-6 backdrop-blur-sm sm:p-8">
@@ -60,6 +57,17 @@ export function AboutSection() {
                 and engineering, understanding messy problems deeply before
                 writing code, and building systems that quietly get out of
                 people&apos;s way.
+              </p>
+              <p>
+                That shows up in projects like{' '}
+                <Link
+                  href="/projects/generafi"
+                  className="text-foreground decoration-border hover:text-brand hover:decoration-brand/50 underline underline-offset-4 motion-safe:transition-colors"
+                >
+                  Generafi
+                </Link>
+                , where the problem is not just shipping screens, but making
+                payroll, permissions, and operational workflows easier to trust.
               </p>
               <div className="border-border/30 border-t pt-2">
                 <p>I still think like a world builder.</p>

@@ -1,6 +1,6 @@
 import type { CaseStudy, Project } from '@/types';
-import { formatContentMeta, getContentDateMeta } from '@/lib/content-meta';
-import { isDraftContent } from '@/lib/content-visibility';
+import { formatContentMeta, getContentDateMeta } from '@/lib/content/content-meta';
+import { isDraftContent } from '@/lib/content/content-visibility';
 
 export type ProjectLink = {
   href: string;

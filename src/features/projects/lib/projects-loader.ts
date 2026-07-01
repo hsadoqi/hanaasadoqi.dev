@@ -4,7 +4,7 @@ import {
   isListedContent,
   isPublicContent,
   isRoutableContent,
-} from '@/lib/content-visibility';
+} from '@/lib/content/content-visibility';
 import { hydrateProjectCaseStudies } from './project-relations';
 
 const projects = hydrateProjectCaseStudies(

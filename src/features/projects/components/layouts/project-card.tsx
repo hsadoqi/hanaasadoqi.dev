@@ -11,7 +11,7 @@ import {
 import type { Project } from '@/types';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { TechStackIcons } from '../show/featured-project-card';
+import { TechStackIcons } from '@/components/shared/icons/tech-stack';
 
 export interface ProjectCardProps {
   project: Project;
@@ -82,7 +82,10 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
               </span>
             )}
           </span>
-          <TechStackIcons items={techStackIcons} className="ml-auto" />
+          <TechStackIcons
+            items={techStackIcons}
+            className="opacity-70 transition-[opacity,scale] hover:scale-115 hover:opacity-100 motion-safe:duration-200 motion-safe:ease-linear"
+          />
         </div>
       </div>
     </article>

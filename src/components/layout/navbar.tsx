@@ -1,7 +1,7 @@
 'use client';
 
 import { LinkButton } from '@/components/shared/buttons/link-button';
-import { Container } from '@/components/shared/container';
+import { Container } from '@/components/layout/container';
 import { Logo } from '@/components/shared/icons/logo';
 import { ThemeToggle } from '@/components/shared/theme/theme-toggle';
 import {

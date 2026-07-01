@@ -23,6 +23,8 @@ export type SocialLink = {
   isPrimaryContact?: boolean;
 };
 
+export const primaryEmailAddress = 'hello@hanaasadoqi.dev';
+
 export const siteNavigationLinks: SiteNavLink[] = [
   { href: '/#projects', label: 'Projects' },
   { href: '/#writing', label: 'Writing' },
@@ -61,7 +63,7 @@ export const socialLinks: SocialLink[] = [
   {
     id: 'email',
     label: 'Email',
-    href: 'mailto:hello@hanaasadoqi.dev',
+    href: `mailto:${primaryEmailAddress}`,
     icon: MailIcon,
     showInHero: true,
     showInContact: true,
@@ -74,8 +76,7 @@ export const footerSocialLinks = socialLinks.filter(
   (link) => link.showInFooter,
 );
 export const contactSocialLinks = socialLinks.filter(
-  (link) => link.showInContact,
+  (link) => link.showInContact && !link.isPrimaryContact,
 );
 export const primaryContactLink =
   socialLinks.find((link) => link.isPrimaryContact) ?? socialLinks[0];
-export const primaryEmailAddress = 'hello@hanaasadoqi.dev';
