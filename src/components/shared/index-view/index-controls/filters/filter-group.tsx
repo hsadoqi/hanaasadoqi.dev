@@ -11,7 +11,7 @@ export function FilterGroup({ children, label }: FilterGroupProps) {
       <p className="text-muted-foreground/70 mb-2 text-xs font-medium tracking-wider uppercase">
         {label}
       </p>
-      <div className="border-border/40 bg-muted/20 flex flex-wrap gap-1 rounded-lg border p-1">
+      <div className="border-border/40 bg-muted/20 flex flex-col items-start gap-1 truncate rounded-lg border p-1 break-words">
         {children}
       </div>
     </div>

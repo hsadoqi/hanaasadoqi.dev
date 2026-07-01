@@ -1,6 +1,5 @@
 'use client';
 
-import { useMemo, useState } from 'react';
 import {
   getInitialFilters,
   hasActiveFilters,
@@ -8,12 +7,16 @@ import {
 } from '@/lib/index-view/filters';
 import { itemMatchesSearch } from '@/lib/index-view/search';
 import { sortItems } from '@/lib/index-view/sort';
-import { getInitialId } from './utils';
-import { IndexControls } from './index-controls/index-controls';
+import { useMemo, useState } from 'react';
+import {
+  FocusFilterPill,
+  IndexControls,
+} from './index-controls/index-controls';
+import { SortToggleResponsive } from './index-controls/toggles/sort-toggle-responsive';
+import { ViewModeToggleResponsive } from './index-controls/toggles/view-mode-toggle-responsive';
 import { IndexEmptyState } from './index-empty-state';
-import { SortToggle } from './index-controls/toggles/sort-toggle';
-import { ViewModeToggle } from './index-controls/toggles/view-mode-toggle';
 import type { IndexViewProps } from './types';
+import { getInitialId } from './utils';
 
 export function IndexView<T>({
   defaultSortId,
@@ -76,50 +79,56 @@ export function IndexView<T>({
 
   return (
     <main className="bg-background min-h-screen">
-      <section className="border-border/40 border-b px-6 py-16 sm:px-8 sm:py-24 lg:px-12">
-        <div className="mx-auto max-w-6xl space-y-8">
-          <div className="max-w-3xl">
-            {eyebrow ? (
-              <p className="text-muted-foreground/50 font-mono text-xs tracking-widest uppercase">
-                {eyebrow}
-              </p>
-            ) : null}
-            <h1 className="text-foreground mt-3 text-4xl font-bold text-balance sm:text-5xl lg:text-6xl">
-              {title}
-            </h1>
-            <p className="text-muted-foreground/80 mt-4 max-w-2xl text-base leading-relaxed sm:text-lg">
-              {description}
-            </p>
-          </div>
+      <section className="border-border/20 border-b px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-6 lg:gap-8">
+            <div className="flex flex-col gap-1">
+              {eyebrow ? (
+                <p className="text-muted-foreground/50 font-mono text-[11px] tracking-[0.24em] uppercase">
+                  {eyebrow}
+                </p>
+              ) : null}
+              <h1 className="text-foreground text-2xl font-semibold tracking-tight sm:text-3xl">
+                {title}
+              </h1>
+            </div>
 
-          <IndexControls
-            activeFilters={activeFilters}
-            filters={filters}
-            items={items}
-            onFilterChange={handleFilterChange}
-            onQueryChange={setQuery}
-            query={query}
-            searchLabel={search.label}
-            searchPlaceholder={search.placeholder}
-          />
+            <div className="flex-1">
+              <IndexControls
+                activeFilters={activeFilters}
+                filters={filters}
+                items={items}
+                onFilterChange={handleFilterChange}
+                onQueryChange={setQuery}
+                query={query}
+                searchPlaceholder={search.placeholder}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="px-6 py-16 sm:px-8 sm:py-24 lg:px-12">
+      <section className="px-4 py-4 sm:px-6 sm:py-5 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <p className="text-muted-foreground/70 text-sm">
+          <div className="border-border/30 mb-3 flex flex-col gap-3 border-b pb-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-muted-foreground/70 text-xs font-medium tracking-[0.2em] uppercase">
               {visibleItems.length}{' '}
               {visibleItems.length === 1 ? itemLabelSingular : itemLabelPlural}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 sm:justify-end">
-              <SortToggle
+            <div className="flex flex-wrap items-center gap-2">
+              <FocusFilterPill
+                filters={filters}
+                activeFilters={activeFilters}
+                onFilterChange={handleFilterChange}
+                items={items}
+              />
+              <SortToggleResponsive
                 activeSortId={activeSortId}
                 onChange={setActiveSortId}
                 sortOptions={sortOptions}
               />
-              <ViewModeToggle
+              <ViewModeToggleResponsive
                 activeViewId={activeViewId}
                 onChange={setActiveViewId}
                 views={views}
@@ -129,9 +138,9 @@ export function IndexView<T>({
                 <button
                   type="button"
                   onClick={resetControls}
-                  className="text-muted-foreground hover:text-foreground focus-visible:ring-ring rounded px-2 py-1 text-sm font-medium focus-visible:ring-2 focus-visible:outline-none"
+                  className="text-muted-foreground hover:text-foreground focus-visible:ring-ring rounded px-2 py-1 text-xs font-medium focus-visible:ring-2 focus-visible:outline-none"
                 >
-                  Clear filters
+                  Clear
                 </button>
               ) : null}
             </div>

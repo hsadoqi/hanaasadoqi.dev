@@ -28,7 +28,7 @@ const viewOptions = [
 
 type ProjectsToolbarProps = {
   searchQuery: string;
-  onSearchChange: (query: string) => void;
+  onSearchChangeAction: (query: string) => void;
   selectedTags: string[];
   onTagsChange: (tags: string[]) => void;
   allTags: string[];
@@ -40,7 +40,7 @@ type ProjectsToolbarProps = {
 
 export function ProjectsToolbar({
   searchQuery,
-  onSearchChange,
+  onSearchChangeAction,
   selectedTags,
   onTagsChange,
   allTags,
@@ -59,7 +59,7 @@ export function ProjectsToolbar({
       }}
       search={{
         label: 'Search projects',
-        onChange: onSearchChange,
+        onChange: onSearchChangeAction,
         placeholder: 'Search by title, tech, or focus...',
         query: searchQuery,
       }}
