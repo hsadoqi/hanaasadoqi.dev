@@ -13,6 +13,9 @@ interface CarouselNavProps {
   layout?: 'desktop' | 'mobile' | 'both';
   className?: string;
   introLabel?: string;
+  itemLabel?: string;
+  previousLabel?: string;
+  nextLabel?: string;
 }
 
 export function CarouselNav({
@@ -24,6 +27,9 @@ export function CarouselNav({
   layout = 'both',
   className = '',
   introLabel = 'Select a slide',
+  itemLabel = 'slide',
+  previousLabel = 'Previous slide',
+  nextLabel = 'Next slide',
 }: CarouselNavProps) {
   const showDesktop = layout === 'desktop' || layout === 'both';
   const showMobile = layout === 'mobile' || layout === 'both';
@@ -46,7 +52,7 @@ export function CarouselNav({
               onClick={onPrevious}
               disabled={!hasSelection || currentIndex === 0}
               className={buttonClassName}
-              aria-label="Previous slide"
+              aria-label={previousLabel}
             >
               <ChevronLeft aria-hidden="true" className="size-4" />
             </button>
@@ -61,7 +67,9 @@ export function CarouselNav({
               onClick={onNext}
               disabled={!hasItems || currentIndex === totalItems - 1}
               className={buttonClassName}
-              aria-label={hasSelection ? 'Next slide' : 'Select first slide'}
+              aria-label={
+                hasSelection ? nextLabel : `Select first ${itemLabel}`
+              }
             >
               <ChevronRight aria-hidden="true" className="size-4" />
             </button>

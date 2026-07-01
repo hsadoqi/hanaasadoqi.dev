@@ -1,10 +1,11 @@
 'use client';
 
-import { IconButton, LinkButton } from '@/components';
+import { LinkButton } from '@/components';
 import { StatusBadge } from '@/components/shared/badges';
 import { prepareIcons } from '@/components/shared/icons/tech-stack';
 import { getProjectDisplay } from '@/features/projects/lib/project-display';
 import type { CaseStudy, Project } from '@/features/projects/types';
+import { isDraftContent } from '@/lib/content-visibility';
 import Link from 'next/link';
 
 type FeaturedProject = CaseStudy | Project;
@@ -68,17 +69,23 @@ function TechStackIcons({ items }: { items: TechStackIcon[] }) {
   return (
     <div>
       <p className="type-eyebrow mb-2">Tech stack</p>
-      <div className="flex items-center gap-0.5">
+      <div
+        className="flex items-center gap-0.5"
+        aria-label={`Tech stack: ${items.map((item) => item.name).join(', ')}`}
+      >
         {items.map((item) => {
           const IconComponent = item.icon;
 
           return (
-            <IconButton
+            <span
               key={item.id}
-              icon={<IconComponent />}
-              label={item.name}
-              variant="ghost"
-            />
+              role="img"
+              aria-label={item.name}
+              title={item.name}
+              className="text-muted-foreground inline-flex size-8 items-center justify-center rounded-md"
+            >
+              <IconComponent />
+            </span>
           );
         })}
       </div>
@@ -172,7 +179,11 @@ function FeaturedProjectFooter({
 }) {
   return (
     <footer className="border-border/30 mt-5 flex shrink-0 items-center justify-between space-y-5 border-t pt-5">
-      <RelatedCaseStudiesLink display={display} projectSlug={featured.slug} />
+      <RelatedCaseStudiesLink
+        display={display}
+        projectSlug={featured.slug}
+        projectTitle={featured.title}
+      />
       <FeaturedProjectCta display={display} featured={featured} />
     </footer>
   );
@@ -180,15 +191,20 @@ function FeaturedProjectFooter({
 
 function RelatedCaseStudiesLink({
   display,
+  projectTitle,
   projectSlug,
 }: {
   display: ProjectDisplay;
+  projectTitle: string;
   projectSlug: string;
 }) {
   return (
     <div className="flex items-center gap-2">
       {display.caseStudyCount > 0 && (
-        <Link href={`/projects/${projectSlug}/#related-case-studies`}>
+        <Link
+          href={`/projects/${projectSlug}/#related-case-studies`}
+          aria-label={`View related case studies for ${projectTitle}`}
+        >
           <span className="border-brand/20 bg-brand/5 text-brand inline-flex items-center gap-1.5 rounded-full border px-2.5 text-xs font-medium">
             <span aria-hidden="true">↳</span>
             {display.caseStudyCount}{' '}
@@ -207,7 +223,16 @@ function FeaturedProjectCta({
   display: ProjectDisplay;
   featured: FeaturedProject;
 }) {
-  if (display.link.isDisabled) return null;
+  const projectHref = `/projects/${featured.slug}`;
+  const isDraft = isDraftContent(featured);
+
+  if (display.link.isDisabled && !isDraft) {
+    return (
+      <span className="type-body-sm text-muted-foreground/50 ml-auto inline-flex w-fit items-center rounded font-medium">
+        Coming soon
+      </span>
+    );
+  }
 
   if (display.link.isExternal) {
     return (
@@ -226,13 +251,13 @@ function FeaturedProjectCta({
 
   return (
     <LinkButton
-      href={`/projects/${featured.slug}`}
+      href={projectHref}
       className="type-body-sm text-foreground hover:text-brand focus-visible:ring-ring ml-auto inline-flex w-fit items-center rounded font-medium focus-visible:ring-2 focus-visible:outline-none motion-safe:transition-colors"
       variant="ghost"
-      aria-label={`Project overview for ${featured.title}`}
+      aria-label={`Discover ${featured.title}`}
       iconRight={<span aria-hidden="true">→</span>}
     >
-      Read More
+      Discover
     </LinkButton>
   );
 }

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { Section } from '@/components/layout/section';
 import {
   Carousel,
@@ -10,6 +9,7 @@ import {
 import { CarouselNav } from '@/features/projects/components/shared/carousel-nav';
 import { projects } from '@/features/projects/data';
 import { useCarouselState } from '@/hooks/use-carousel-state';
+import Link from 'next/link';
 import { FeaturedProjectCard } from '../show/featured-project-card';
 
 export function FeaturedWorkSection() {
@@ -34,8 +34,6 @@ export function FeaturedWorkSection() {
         header={{
           eyebrow: 'Projects',
           title: 'Featured Work',
-          description:
-            'Case studies and project write-ups are being prepared before they become part of the public portfolio.',
           ctaLinks: [
             {
               label: 'View All',
