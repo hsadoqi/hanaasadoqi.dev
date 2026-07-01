@@ -44,7 +44,7 @@ export type IndexViewEmptyState = {
 export type IndexViewProps<T> = {
   defaultSortId?: string;
   defaultViewId?: string;
-  description: string;
+  description?: string;
   emptyState: IndexViewEmptyState;
   eyebrow?: string;
   filters?: Array<IndexViewFilter<T>>;

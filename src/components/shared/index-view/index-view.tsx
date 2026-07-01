@@ -21,7 +21,6 @@ import { getInitialId } from './utils';
 export function IndexView<T>({
   defaultSortId,
   defaultViewId,
-  description,
   emptyState,
   eyebrow,
   filters = [],

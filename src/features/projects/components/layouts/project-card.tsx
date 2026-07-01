@@ -1,6 +1,5 @@
 'use client';
 
-import { TechStack } from '@/components/mdx';
 import { StatusBadge } from '@/components/shared/badges';
 import { FeaturedBadge } from '@/components/shared/badges/featured-badge';
 import { prepareIcons } from '@/components/shared/icons/tech-stack';
