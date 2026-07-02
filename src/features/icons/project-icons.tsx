@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { ComponentProps, ComponentType, ReactNode } from 'react';
 import { LinkButton } from '@/components/shared/buttons/link-button';
 import { cn } from '@/lib/utils';
