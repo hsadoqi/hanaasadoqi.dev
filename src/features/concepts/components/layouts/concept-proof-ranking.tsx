@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
-import type { ConceptItem } from '../types';
-import { ConceptReceiptList } from './concept-meta';
+import type { ConceptItem } from '../../types';
+import { ConceptReceiptList } from '../concept-meta';
 
 export function ConceptProofRanking({ items }: { items: ConceptItem[] }) {
   const sortedItems = useMemo(

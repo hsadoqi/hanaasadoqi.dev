@@ -11,8 +11,8 @@ import {
 import { getProjectDisplay } from '@/features/projects/lib/project-display';
 import type { Project } from '@/types';
 import { GridIcon, ListIcon } from 'lucide-react';
-import { ProjectsGrid } from '../projects-grid';
-import { ProjectsList } from '../projects-list';
+import { ProjectsGrid } from '../layouts/projects-grid';
+import { ProjectsList } from '../layouts/projects-list';
 
 type ProjectsIndexProps = {
   projects: Project[];
@@ -78,7 +78,6 @@ export function ProjectsIndex({ projects }: ProjectsIndexProps) {
     <IndexView
       defaultSortId="featured"
       defaultViewId="grid"
-      description="Browse the complete portfolio of projects, organized by focus area. Each project links to detailed case studies that explore architectural decisions, constraints, and trade-offs."
       emptyState={{
         title: 'No projects found',
         description:

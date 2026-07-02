@@ -5,7 +5,7 @@ import {
   Hero,
   WritingSection,
 } from '@/components/sections';
-import { ProjectsSection } from '@/features/projects/components/homepage/featured-work-section';
+import { ProjectsSection } from '@/features/projects/components/layouts/featured-section';
 
 const greeting = "Hi, I'm Hanaa. 👋";
 const headlineParts = [

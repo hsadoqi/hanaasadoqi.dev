@@ -2,7 +2,7 @@
 
 import { PillList } from '@/components/shared/display/badges';
 import { CardMedia } from '@/components/shared/display';
-import { prepareIcons } from '@/components/shared/icons/tech-stack';
+import { prepareIcons } from '../../../../../../archives/icons/tech-stack';
 import {
   getProjectDisplay,
   type ProjectLink,
@@ -10,8 +10,7 @@ import {
 import type { Project } from '@/types';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import ProjectCardHeader from '@/features/projects/components/shared/project-card-primitives/header';
-import ProjectCardFooter from '@/features/projects/components/shared/project-card-primitives/footer';
+import { ProjectCardFooter, ProjectCardHeader } from '../cards';
 
 export interface ProjectCardProps {
   project: Project;

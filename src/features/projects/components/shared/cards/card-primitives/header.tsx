@@ -56,7 +56,7 @@ export function ProjectCardHeader({
         )}
       </div>
 
-      {techSlot ? <div className="pt-2">{techSlot}</div> : null}
+      {techSlot ? <div className="flex-1 p-2">{techSlot}</div> : null}
     </div>
   );
 }

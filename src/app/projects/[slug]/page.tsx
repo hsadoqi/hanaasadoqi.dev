@@ -1,10 +1,10 @@
-import { generateMetadata as showGenerateMetadata } from '@/features/projects/page-layouts/show';
+import { generateMetadata as showGenerateMetadata } from '@/features/projects/components/views/project-show';
 import type { Metadata } from 'next';
 
 export {
   default,
   generateStaticParams,
-} from '@/features/projects/page-layouts/show';
+} from '@/features/projects/components/views/project-show';
 
 export async function generateMetadata(
   ...args: Parameters<typeof showGenerateMetadata>

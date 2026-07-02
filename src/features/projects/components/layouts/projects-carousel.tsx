@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectCard } from './project-card';
+import { ProjectCard } from '../shared/cards/project-card';
 import {
   Carousel,
   CarouselContent,

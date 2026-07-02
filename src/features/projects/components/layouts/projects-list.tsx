@@ -1,7 +1,7 @@
 'use client';
 
 import type { Project } from '@/types';
-import { ProjectListItem } from './project-list-item';
+import { ProjectListItem } from '../shared/project-list-item';
 
 export interface ProjectsListProps {
   projects: Project[];

@@ -4,8 +4,8 @@ import { LinkButton } from '@/components';
 import {
   prepareIcons,
   TechStackIcons,
-} from '@/components/shared/icons/tech-stack';
-import ProjectCardHeader from '@/features/projects/components/shared/project-card-primitives/header';
+} from '../../../../../../archives/icons/tech-stack';
+import ProjectCardHeader from '@/features/projects/components/shared/cards/card-primitives/header';
 import { getProjectDisplay } from '@/features/projects/lib/project-display';
 import type { CaseStudy, Project } from '@/features/projects/types';
 import { isDraftContent } from '@/lib/content/content-visibility';
@@ -139,7 +139,7 @@ export function FeaturedProjectFooter({
   featured: FeaturedProject;
 }) {
   return (
-    <footer className="border-border/30 mt-5 flex shrink-0 items-center justify-between space-y-5 border-t pt-5">
+    <footer className="border-border/30 mt-5 flex  shrink-0 items-center justify-between space-y-5 border-t pt-5">
       <RelatedCaseStudiesLink
         display={display}
         projectSlug={featured.slug}
@@ -160,7 +160,7 @@ function RelatedCaseStudiesLink({
   projectSlug: string;
 }) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-end justify-center flex-col gap-2">
       {display.caseStudyCount > 0 && (
         <Link
           href={`/projects/${projectSlug}/#related-case-studies`}
@@ -216,9 +216,9 @@ function FeaturedProjectCta({
       className="type-body-sm text-foreground hover:text-brand focus-visible:ring-ring ml-auto inline-flex w-fit items-center rounded font-medium focus-visible:ring-2 focus-visible:outline-none motion-safe:transition-colors"
       variant="ghost"
       aria-label={`Discover ${featured.title}`}
-      iconRight={<span aria-hidden="true">→</span>}
+      // iconRight={<span aria-hidden="true">→</span>}
     >
-      Discover
+      Discover More
     </LinkButton>
   );
 }

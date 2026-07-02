@@ -9,8 +9,7 @@ import {
 import type { Project } from '@/types';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import ProjectCardHeader from '@/features/projects/components/shared/project-card-primitives/header';
-import ProjectCardFooter from '@/features/projects/components/shared/project-card-primitives/footer';
+import { ProjectCardHeader, ProjectCardFooter } from './cards';
 
 export interface ProjectListItemProps {
   project: Project;

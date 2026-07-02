@@ -10,7 +10,7 @@ import { CarouselNav } from '@/components/shared/navigation';
 import { projects } from '@/features/projects/data';
 import { useCarouselState } from '@/hooks/use-carousel-state';
 import Link from 'next/link';
-import { FeaturedProjectCard } from '../show/featured-project-card';
+import { FeaturedProjectCard } from '../shared/cards/featured-card';
 
 export function FeaturedWorkSection() {
   const featured = projects.filter((project) => project.featured);

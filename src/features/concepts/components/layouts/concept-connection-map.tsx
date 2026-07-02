@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import type { ConceptGroup, ConceptItem } from '../types';
+import type { ConceptGroup, ConceptItem } from '../../types';
 import { cn } from '@/lib/utils';
-import { ConceptMetaTags } from './concept-meta';
+import { ConceptMetaTags } from '../concept-meta';
 
 export function ConceptConnectionMap({
   groups,
