@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: ['/lab', '/lab/'],
     },
     sitemap: 'https://hanaasadoqi.dev/sitemap.xml',
   };

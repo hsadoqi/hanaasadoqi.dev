@@ -24,12 +24,17 @@ export type SocialLink = {
 
 export const primaryEmailAddress = 'hello@hsadoqi@gmail.com';
 
-export const siteNavigationLinks: SiteNavLink[] = [
+const publicNavigationLinks: SiteNavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
   { href: '/case-studies', label: 'Case Studies' },
   { href: '/writing', label: 'Writing' },
 ];
+
+export const siteNavigationLinks: SiteNavLink[] =
+  process.env.NODE_ENV === 'development'
+    ? [...publicNavigationLinks, { href: '/lab', label: 'Lab' }]
+    : publicNavigationLinks;
 
 export const socialLinks: SocialLink[] = [
   {

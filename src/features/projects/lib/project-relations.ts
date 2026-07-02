@@ -39,3 +39,23 @@ export function hydrateProjectCaseStudies(
     };
   });
 }
+
+export type ProjectDisplayItem = Project | CaseStudy;
+
+export function getProjectSlug(item: ProjectDisplayItem) {
+  return 'project_slug' in item ? item.project_slug : item.slug;
+}
+
+export function getFirstCaseStudySlug(item: ProjectDisplayItem) {
+  if ('project_slug' in item) return item.slug;
+  if ('caseStudies' in item) return item.caseStudies?.[0]?.slug;
+  if ('relatedCaseStudies' in item) return item.relatedCaseStudies?.[0];
+}
+
+export function getProjectHref(projectSlug: string) {
+  return `/projects/${projectSlug}`;
+}
+
+export function getCaseStudyHref(projectHref: string, caseStudySlug?: string) {
+  return caseStudySlug ? `${projectHref}/${caseStudySlug}` : undefined;
+}

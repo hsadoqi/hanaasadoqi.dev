@@ -65,6 +65,11 @@ export interface CaseStudyCardProps {
   layout?: 'featured' | 'compact' | 'minimal';
 }
 
+export interface ContentItemStatus {
+  value: StatusType;
+  variant: StatusColorVariant;
+}
+
 export interface ProjectItem {
   slug: string;
   title: string;
@@ -80,10 +85,7 @@ export interface ProjectItem {
   impactSummary?: string[];
   role?: string;
   proof?: string;
-  status: {
-    value: StatusType;
-    variant: StatusColorVariant;
-  };
+  status: ContentItemStatus;
   dates?: ProjectDates;
   readingTime?: {
     words: number;

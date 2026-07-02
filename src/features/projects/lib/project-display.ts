@@ -4,6 +4,13 @@ import {
   getContentDateMeta,
 } from '@/lib/content/content-meta';
 import { isDraftContent } from '@/lib/content/content-visibility';
+import {
+  getCaseStudyHref,
+  getFirstCaseStudySlug,
+  getProjectHref,
+  getProjectSlug,
+  type ProjectDisplayItem,
+} from './project-relations';
 
 export type ProjectLink = {
   href: string;
@@ -11,8 +18,6 @@ export type ProjectLink = {
   isExternal: boolean;
   isDisabled: boolean;
 };
-
-type ProjectDisplayItem = Project | CaseStudy;
 
 export function getProjectDisplay(project: ProjectDisplayItem) {
   const isFeaturedProject = project.featured;
@@ -23,8 +28,9 @@ export function getProjectDisplay(project: ProjectDisplayItem) {
     'relatedCaseStudies' in project ? (project.relatedCaseStudies ?? []) : [];
   const caseStudies =
     'caseStudies' in project ? (project.caseStudies ?? []) : [];
-  const projectSlug =
-    'projectSlug' in project ? project.projectSlug : project.slug;
+  const projectSlug = getProjectSlug(project);
+  const firstCaseStudySlug =
+    caseStudies[0]?.slug ?? relatedCaseStudySlugs[0] ?? undefined;
 
   return {
     title: project.title,
@@ -42,29 +48,21 @@ export function getProjectDisplay(project: ProjectDisplayItem) {
     readingTime: project.readingTime,
     isFeaturedProject,
     caseStudyCount: caseStudies.length || relatedCaseStudySlugs.length,
-    caseStudyHref:
-      (caseStudies[0]?.slug ?? relatedCaseStudySlugs[0])
-        ? `/projects/${projectSlug}/${caseStudies[0]?.slug ?? relatedCaseStudySlugs[0]}`
-        : undefined,
+    caseStudyHref: getCaseStudyHref(
+      getProjectHref(projectSlug),
+      firstCaseStudySlug,
+    ),
   };
 }
 
 export function getProjectLink(project: ProjectDisplayItem): ProjectLink {
   const isComingSoon = isDraftContent(project) || project.isComingSoon;
   const primaryCta = project.ctaItems?.[0];
-  const projectSlug =
-    'projectSlug' in project ? project.projectSlug : project.slug;
-  const caseStudySlug =
-    'caseStudies' in project ? project.caseStudies?.[0]?.slug : undefined;
-  const relatedCaseStudySlug =
-    caseStudySlug ??
-    ('relatedCaseStudies' in project
-      ? project.relatedCaseStudies?.[0]
-      : undefined);
-  const projectHref = `/projects/${projectSlug}`;
-  const caseStudyHref = relatedCaseStudySlug
-    ? `${projectHref}/${relatedCaseStudySlug}`
-    : undefined;
+  const projectHref = getProjectHref(getProjectSlug(project));
+  const caseStudyHref = getCaseStudyHref(
+    projectHref,
+    getFirstCaseStudySlug(project),
+  );
   const primaryCtaHref = primaryCta?.link;
   const shouldUsePrimaryCta =
     primaryCtaHref && (primaryCtaHref !== projectHref || !caseStudyHref);
@@ -84,6 +82,6 @@ export function getProjectLink(project: ProjectDisplayItem): ProjectLink {
   };
 }
 
-export function isFeaturedCaseStudy(project: ProjectDisplayItem) {
+export function isFeaturedCaseStudy(project: CaseStudy | Project) {
   return project.featured;
 }

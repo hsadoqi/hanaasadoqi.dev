@@ -37,8 +37,7 @@ export function TechStackIcons({
               key={item.id}
               role="img"
               aria-label={item.name}
-              title={item.name}
-              className="text-muted-foreground inline-flex items-center justify-center rounded-md"
+              className="text-muted-foreground inline-flex size-8 items-center justify-center rounded-md"
             >
               <IconComponent className={className} />
             </span>
@@ -50,7 +49,7 @@ export function TechStackIcons({
               <TooltipContent
                 side="top"
                 sideOffset={4}
-                className="bg-card text-card-foreground shadow-elevation-3 rounded-md text-xs font-medium"
+                className="bg-card text-card-foreground shadow-elevation-3 rounded-md px-2 py-1 text-xs font-medium"
               >
                 {item.name}
               </TooltipContent>
