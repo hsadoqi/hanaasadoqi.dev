@@ -1,11 +1,11 @@
 import {
   AboutSection,
   ContactSection,
-  ExperienceSection,
   Hero,
-  WritingSection,
 } from '@/components/sections';
+import { ExperienceSection } from '@/features/experiences';
 import { ProjectsSection } from '@/features/projects/components/layouts/featured-section';
+import { WritingSection } from '@/features/writing';
 
 const greeting = "Hi, I'm Hanaa. 👋";
 const headlineParts = [

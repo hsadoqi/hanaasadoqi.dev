@@ -26,7 +26,7 @@ export const HeroLayout = ({
       id="hero"
       aria-labelledby="hero-heading"
       className={cn(
-        'relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-evenly gap-12 overflow-hidden px-6 py-14 sm:gap-14 sm:px-8 sm:py-20 md:px-12',
+        'relative isolate flex min-h-[calc(100svh-4rem)] flex-col justify-between gap-12 overflow-hidden px-6 py-14 sm:gap-14 sm:px-8 sm:py-20 md:px-12',
         className,
       )}
     >

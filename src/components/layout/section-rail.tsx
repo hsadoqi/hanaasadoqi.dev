@@ -22,9 +22,9 @@ type SectionRailLink = {
 const sectionRailByPathname: Record<string, SectionRailLink[]> = {
   '/': [
     { id: 'projects', label: 'Projects' },
+    { id: 'about', label: 'About' },
     { id: 'writing', label: 'Writing' },
     { id: 'experience', label: 'Experience' },
-    { id: 'about', label: 'About' },
     { id: 'contact', label: 'Contact' },
   ],
   '/projects': [

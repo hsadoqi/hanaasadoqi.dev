@@ -2,7 +2,6 @@
 
 import { LinkButton } from '@/components/shared/buttons/link-button';
 import { Container } from '@/components/layout/container';
-import { Logo } from '../../../archives/icons/logo';
 import { ThemeToggle } from '@/components/shared/theme/theme-toggle';
 import {
   Sheet,
@@ -16,6 +15,7 @@ import { siteNavigationLinks } from '@/constants';
 import { MenuIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
+import { Logo } from '../shared';
 
 export type NavLink = {
   href: string;

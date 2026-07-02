@@ -1,8 +1,6 @@
 'use client';
 
-import { PillList } from '@/components/shared/display/badges';
 import { CardMedia } from '@/components/shared/display';
-import { prepareIcons } from '../../../../../../archives/icons/tech-stack';
 import {
   getProjectDisplay,
   type ProjectLink,
@@ -10,7 +8,9 @@ import {
 import type { Project } from '@/types';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { ProjectChipRail } from '../project-chip-rail';
 import { ProjectCardFooter, ProjectCardHeader } from '../cards';
+import { prepareIcons } from '@/features/icons/tech-stack';
 
 export interface ProjectCardProps {
   project: Project;
@@ -44,20 +44,16 @@ export function ProjectCard({
           meta={display.meta}
           subtitle={display.subtitle}
           status={display.status}
-          isFeatured={isFeatured}
+          showBadges={false}
           techSlot={null}
         />
 
-        {/* Focus Areas */}
-        <PillList items={display.focus} limit={2} />
-
-        {display.caseStudyCount > 0 && (
-          <div className="border-brand/20 bg-brand/5 text-brand inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium">
-            <span aria-hidden="true">↳</span>
-            {display.caseStudyCount}{' '}
-            {display.caseStudyCount === 1 ? 'case study' : 'case studies'}
-          </div>
-        )}
+        <ProjectChipRail
+          status={display.status}
+          isFeatured={isFeatured}
+          caseStudyCount={display.caseStudyCount}
+          tags={display.focus}
+        />
 
         <div className="flex-1" />
         <ProjectCardFooter
