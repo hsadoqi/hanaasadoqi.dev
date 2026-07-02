@@ -4,7 +4,7 @@ import {
   GitHubIcon,
   LinkedInIcon,
   MailIcon,
-} from '@/features/icons/social-icons';
+} from '@/features/icons';
 
 export type SiteNavLink = {
   href: string;
