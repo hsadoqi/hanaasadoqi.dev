@@ -11,11 +11,11 @@ import { useMemo, useState } from 'react';
 
 import { IndexEmptyState } from '../../../states/index-empty-state';
 import type { ViewProps } from '@/components/shared/forms/types';
-import { getInitialId } from '../../../../../lib/utils/get-initial-id';
-import Controls from '../../../forms/controls/controls';
-import { FocusFilterPill } from '../../../forms/filters/focus-filter-pill';
-import { SortToggleResponsive } from '../../../forms/toggles/sort-toggle';
-import { ViewModeToggleResponsive } from '../../../forms/toggles/view-mode-toggle';
+import { getInitialId } from '@/lib/utils/get-initial-id';
+import { FocusFilterPill } from '@/components/shared/forms/filters/focus-filter-pill';
+import { SortToggleResponsive } from '@/components/shared/forms/toggles/sort-toggle';
+import { ViewModeToggleResponsive } from '@/components/shared/forms/toggles/view-mode-toggle';
+import { SearchForm } from '@/components/shared/forms';
 
 export function IndexView<T>({
   defaultSortId,
@@ -62,6 +62,17 @@ export function IndexView<T>({
 
   const activeView = views.find((view) => view.id === activeViewId) ?? views[0];
   const hasControls = Boolean(query) || hasActiveFilters(activeFilters);
+  const normalizedTitle = title.toLowerCase();
+  const collectionId =
+    normalizedTitle === 'case studies'
+      ? 'all-case-studies'
+      : normalizedTitle === 'writing'
+        ? 'all-writing'
+        : 'all-projects';
+  const secondaryAnchorId =
+    normalizedTitle === 'case studies' || normalizedTitle === 'writing'
+      ? 'topics'
+      : 'featured';
 
   function handleFilterChange(filterId: string, value: string) {
     setActiveFilters((current) => ({
@@ -77,50 +88,64 @@ export function IndexView<T>({
 
   return (
     <main className="bg-background min-h-screen">
-      <section className="border-border/20 border-b px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6">
+      <section
+        id="overview"
+        className="border-border/20 scroll-mt-24 border-b px-4 py-4 sm:px-6 lg:px-8"
+      >
         <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-6 lg:gap-8">
-            <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+            <div className="flex flex-1 flex-col gap-2">
               {eyebrow ? (
-                <p className="text-muted-foreground/50 font-mono text-[11px] tracking-[0.24em] uppercase">
+                <p className="text-muted-foreground/60 font-mono text-[11px] tracking-[0.24em] uppercase">
                   {eyebrow}
                 </p>
               ) : null}
-              <h1 className="text-foreground text-2xl font-semibold tracking-tight sm:text-3xl">
+              <h1 className="text-foreground text-3xl font-semibold tracking-tight sm:text-4xl">
                 {title}
               </h1>
             </div>
-
-            <div className="flex-1">
-              <Controls
-                activeFilters={activeFilters}
-                filters={filters}
-                items={items}
-                onFilterChange={handleFilterChange}
-                onQueryChange={setQuery}
-                query={query}
-                searchPlaceholder={search.placeholder}
-              />
+            <div
+              id="filters"
+              className="flex flex-1 scroll-mt-24 flex-col items-stretch sm:items-end"
+            >
+              <div className="flex w-full flex-col gap-2 sm:max-w-lg sm:flex-row sm:items-center sm:justify-end sm:gap-4">
+                {query !== '' && (
+                  <p className="text-muted-foreground/70 flex-shrink-0 text-xs font-medium tracking-[0.2em] uppercase">
+                    {visibleItems.length}{' '}
+                    {visibleItems.length === 1
+                      ? itemLabelSingular
+                      : itemLabelPlural}
+                  </p>
+                )}
+                <SearchForm
+                  onQueryChange={setQuery}
+                  query={query}
+                  placeholder={search.placeholder}
+                  inputWrapperClassName="sm:max-w-lg"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-4 sm:px-6 sm:py-5 lg:px-8">
+      <section
+        id={collectionId}
+        className="scroll-mt-24 px-4 py-3 sm:px-6 sm:py-4 lg:px-8"
+      >
         <div className="mx-auto max-w-6xl">
-          <div className="border-border/30 mb-3 flex flex-col gap-3 border-b pb-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-muted-foreground/70 text-xs font-medium tracking-[0.2em] uppercase">
-              {visibleItems.length}{' '}
-              {visibleItems.length === 1 ? itemLabelSingular : itemLabelPlural}
-            </p>
+          <div
+            id={secondaryAnchorId}
+            className="border-border/25 mb-4 flex scroll-mt-24 flex-col gap-3 border-b pb-4 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <FocusFilterPill
+              filters={filters}
+              activeFilters={activeFilters}
+              onFilterChange={handleFilterChange}
+              items={items}
+            />
 
             <div className="flex flex-wrap items-center gap-2">
-              <FocusFilterPill
-                filters={filters}
-                activeFilters={activeFilters}
-                onFilterChange={handleFilterChange}
-                items={items}
-              />
               <SortToggleResponsive
                 activeSortId={activeSortId}
                 onChange={setActiveSortId}

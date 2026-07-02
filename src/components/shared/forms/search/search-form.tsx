@@ -8,10 +8,7 @@ import { cn } from '@/lib/utils';
 import { Search } from 'lucide-react';
 import type { ComponentPropsWithoutRef } from 'react';
 
-type SearchFormProps = Omit<
-  ComponentPropsWithoutRef<'form'>,
-  'onChange'
-> & {
+type SearchFormProps = Omit<ComponentPropsWithoutRef<'form'>, 'onChange'> & {
   inputWrapperClassName?: string;
   onQueryChange: (query: string) => void;
   placeholder?: string;

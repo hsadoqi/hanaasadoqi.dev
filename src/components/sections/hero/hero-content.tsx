@@ -1,6 +1,7 @@
-import { SocialMediaIcons } from '@/components/shared';
+import { heroSocialLinks } from '@/constants';
 import { cn } from '@/lib/utils';
 import { HeroHeadlinePart } from './hero-layout';
+import { ProjectIcons } from '@/features/icons/project-icons';
 
 export const HeroContent = ({
   greeting,
@@ -11,6 +12,7 @@ export const HeroContent = ({
   headlineParts: HeroHeadlinePart[];
   supportingLine?: string;
 }) => {
+
   return (
     <div className="relative z-10 w-full max-w-[calc(100vw-3rem)] min-w-0 md:max-w-none">
       <p className="hero-enter type-eyebrow mb-10 sm:mb-12">{greeting}</p>
@@ -53,8 +55,12 @@ export const HeroContent = ({
           {supportingLine}
         </p>
       ) : null}
-
-      <SocialMediaIcons />
+      <div className="hero-enter hero-enter-delay-3 flex items-center gap-4 sm:gap-6">
+        {/* <SocialMediaIcons iconClass="text-foreground hover:text-brand motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-linear opacity-50 group-hover/button:opacity-100" /> */}
+        <ProjectIcons
+          items={heroSocialLinks} iconClassName="size-7 sm:size-8 shrink-0 text-muted-foreground hover:text-brand motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-linear opacity-50 group-hover/button:opacity-100"
+        />
+      </div>
     </div>
   );
 };

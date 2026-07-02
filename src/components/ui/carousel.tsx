@@ -51,8 +51,10 @@ function Carousel({
   plugins,
   className,
   children,
+  ref,
   ...props
 }: React.ComponentProps<'div'> & CarouselProps) {
+  const carouselRootRef = React.useRef<HTMLDivElement | null>(null);
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
@@ -79,6 +81,19 @@ function Carousel({
     api?.scrollNext();
   }, [api]);
 
+  const setCarouselRootRef = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      carouselRootRef.current = node;
+
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    },
+    [ref],
+  );
+
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (event.key === 'ArrowLeft') {
@@ -99,7 +114,7 @@ function Carousel({
   );
 
   const handleWheel = React.useCallback(
-    (event: React.WheelEvent<HTMLDivElement>) => {
+    (event: WheelEvent) => {
       if (!enableWheelScroll || !api || orientation !== 'horizontal') return;
 
       const isHorizontalGesture =
@@ -146,6 +161,20 @@ function Carousel({
   );
 
   React.useEffect(() => {
+    const node = carouselRootRef.current;
+    if (!node || !enableWheelScroll || orientation !== 'horizontal') return;
+
+    node.addEventListener('wheel', handleWheel, {
+      capture: true,
+      passive: false,
+    });
+
+    return () => {
+      node.removeEventListener('wheel', handleWheel, { capture: true });
+    };
+  }, [enableWheelScroll, handleWheel, orientation]);
+
+  React.useEffect(() => {
     if (!api || !setApi) return;
     setApi(api);
   }, [api, setApi]);
@@ -178,8 +207,8 @@ function Carousel({
       }}
     >
       <div
+        ref={setCarouselRootRef}
         onKeyDownCapture={handleKeyDown}
-        onWheelCapture={handleWheel}
         className={cn(
           'relative',
           enableWheelScroll &&

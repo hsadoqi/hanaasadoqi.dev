@@ -7,7 +7,7 @@ import {
   StatusType,
   TagVariant,
 } from './components';
-import { Cta, PresentationalSection } from './presentation';
+import { AnyLink, Cta, PresentationalSection } from './presentation';
 import { PreviewCaseStudyProps, PreviewImage } from './preview';
 
 export type ProjectItemType =
@@ -114,6 +114,7 @@ export interface ProjectItem {
   caseStudies?: RelatedCaseStudy[];
   timeline?: TimelineItem[];
   ctaItems: Cta[];
+  linkItems?: AnyLink[];
   artifactLinks?: ArtifactLink[];
   isComingSoon?: boolean;
   isDisabled?: boolean;

@@ -7,8 +7,11 @@
  * - Case study data and components
  */
 
-export * from './components';
 export * from './data';
 export * from './lib';
-export * from './page-layouts';
 export * from './types';
+export * from './components/layouts';
+export * from './components/shared';
+export * from './components/views/project-show';
+export * from './components/views/projects-index';
+export * from './components/views/projects-index';

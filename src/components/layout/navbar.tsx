@@ -2,7 +2,7 @@
 
 import { LinkButton } from '@/components/shared/buttons/link-button';
 import { Container } from '@/components/layout/container';
-import { Logo } from '@/components/shared/icons/logo';
+import { Logo } from '../../../archives/icons/logo';
 import { ThemeToggle } from '@/components/shared/theme/theme-toggle';
 import {
   Sheet,
@@ -30,7 +30,7 @@ export function Navbar({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="border-border/50 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b backdrop-blur">
+    <header className="border-border/50 bg-background/95 supports-[backdrop-filter]:bg-background/70 fixed inset-x-0 top-0 z-50 border-b backdrop-blur">
       <Container className="flex items-center justify-between py-4">
         <span className="block md:sr-only md:hidden">
           <Image
@@ -70,9 +70,7 @@ export function Navbar({
             <SheetContent side="left" className="w-[min(22rem,85vw)] p-0">
               <SheetHeader className="border-border/40 border-b px-5 py-5">
                 <SheetTitle>Navigate</SheetTitle>
-                <SheetDescription>
-                  Jump to the sections you care about.
-                </SheetDescription>
+                <SheetDescription>Move between main pages.</SheetDescription>
               </SheetHeader>
               <nav className="flex flex-col gap-2 p-4">
                 {navLinks.map((link) => (

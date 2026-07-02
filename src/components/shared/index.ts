@@ -1,7 +1,7 @@
 export * from './display/badges';
 export * from './buttons';
 export * from './display/cards';
-export * from './icons';
+export * from '../../../archives/icons';
 export * from './links';
 export * from './navigation';
 export * from './states';
@@ -9,5 +9,6 @@ export * from './theme/theme-provider';
 export * from './theme/theme-toggle';
 export * from '../layout/container';
 export * from './display/views/index-view';
+export * from './display/views/show-view';
 export * from './blocks';
 export * from './display';

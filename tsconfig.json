@@ -37,7 +37,8 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "src"
-
+,
+"archives/icons"
 ],
   "exclude": [
     "node_modules",
@@ -46,7 +47,6 @@
     "build",
     "dist",
     "docs",
-    "archives",
-    "docs"
+    "archives"
   ]
 }

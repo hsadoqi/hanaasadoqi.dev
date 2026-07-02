@@ -1,5 +1,6 @@
 export * from './project-display';
 export * from './projects-loader';
+export * from './project-relations';
 export type {
   Project,
   Project as ProjectShowData,
