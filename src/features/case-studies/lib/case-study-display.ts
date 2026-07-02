@@ -14,7 +14,7 @@ function getCaseStudyFilePath(slug: string) {
   );
 }
 
-export async function loadCaseStudyShowData(slug: string): Promise<CaseStudy> {
+export async function loadCaseStudyJsonData(slug: string): Promise<CaseStudy> {
   try {
     const content = await readFile(getCaseStudyFilePath(slug), 'utf-8');
     return JSON.parse(content) as CaseStudy;

@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
-import CaseStudiesIndexPage from '@/features/case-studies/page-layouts';
+
+import { CaseStudiesIndex } from '@/features/case-studies/components';
+import { loadAllCaseStudies } from '@/features/case-studies/lib';
+import { loadAllProjects } from '@/features/projects/lib';
 
 export const metadata: Metadata = {
   title: 'Case Studies',
@@ -7,4 +10,19 @@ export const metadata: Metadata = {
     'Browse technical case studies across projects, filtered by project, status, and focus area.',
 };
 
-export default CaseStudiesIndexPage;
+export default async function CaseStudiesPage() {
+  const [caseStudies, projects] = await Promise.all([
+    loadAllCaseStudies(),
+    loadAllProjects(),
+  ]);
+
+  return (
+    <CaseStudiesIndex
+      caseStudies={caseStudies}
+      projects={projects.map((project) => ({
+        slug: project.slug,
+        title: project.title,
+      }))}
+    />
+  );
+}

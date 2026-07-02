@@ -2,24 +2,26 @@ import Link from 'next/link';
 import {
   loadCaseStudyBySlug,
   loadRoutableCaseStudies,
-} from '../lib/case-studies-loader';
-import { loadProjectBySlug } from '../../projects/lib/projects-loader';
+} from '../../lib/case-studies-loader';
+import { loadProjectBySlug } from '../../../projects/lib/projects-loader';
 import {
   ContentClosedState,
   EmptyState,
   ErrorState,
 } from '@/components/shared';
-import { MDXContent } from '@/components/mdx';
 import { formatContentMeta } from '@/lib/content/content-meta';
 import {
   shouldIndexContent,
   shouldRenderContent,
 } from '@/lib/content/content-visibility';
 import type { CaseStudy, Project } from '@/types';
-import { ContentShowHero } from '@/components/shared/display/views/show-view/content-show-hero';
+import {
+  ContentShowContent,
+  type ContentShowCard,
+  ContentShowHero,
+} from '@/components/shared/display/views/show-view';
 
 import { DiagramPlaceholder } from '@/components/shared/blocks';
-import { RenderSection } from '@/components/shared/blocks/render-section';
 
 export const dynamicParams = false;
 
@@ -35,11 +37,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string; caseStudySlug: string }>;
+  params: { slug: string; caseStudySlug: string };
 }) {
   try {
-    const resolvedParams = await params;
-    const data = await loadCaseStudyBySlug(resolvedParams.caseStudySlug);
+    const data = await loadCaseStudyBySlug(params.caseStudySlug);
     const isIndexable = shouldIndexContent(data);
 
     return {
@@ -144,6 +145,32 @@ export default async function CaseStudyPage({
     );
   }
 
+  const contentCards: ContentShowCard[] = [
+    ...(data.problem
+      ? [{ id: 'problem', label: 'Problem', body: data.problem }]
+      : []),
+    ...(data.solution
+      ? [{ id: 'approach', label: 'Approach', body: data.solution }]
+      : []),
+    ...(projectData
+      ? [
+          {
+            id: 'project-context',
+            label: 'Project context',
+            body: projectData.subtitle,
+            action: (
+              <Link
+                href={`/projects/${resolvedParams.slug}`}
+                className="type-caption text-foreground hover:text-brand mt-4 inline-flex font-medium motion-safe:transition-colors"
+              >
+                View project <span aria-hidden="true">→</span>
+              </Link>
+            ),
+          },
+        ]
+      : []),
+  ];
+
   return (
     <main className="bg-background min-h-screen">
       {/* Hero Section */}
@@ -184,46 +211,13 @@ export default async function CaseStudyPage({
       </section>
 
       {/* Content Section */}
-      <section className="border-border/40 border-b px-6 py-16 sm:px-8 sm:py-24 lg:px-12">
-        <div className="mx-auto max-w-4xl space-y-12">
-          {(data.problem || data.solution || projectData) && (
-            <div className="grid gap-4 md:grid-cols-3">
-              {data.problem && (
-                <div className="border-border/40 bg-background/50 rounded-lg border p-5">
-                  <p className="type-eyebrow mb-3">Problem</p>
-                  <p className="type-body-sm">{data.problem}</p>
-                </div>
-              )}
-              {data.solution && (
-                <div className="border-border/40 bg-background/50 rounded-lg border p-5">
-                  <p className="type-eyebrow mb-3">Approach</p>
-                  <p className="type-body-sm">{data.solution}</p>
-                </div>
-              )}
-              {projectData && (
-                <div className="border-border/40 bg-background/50 rounded-lg border p-5">
-                  <p className="type-eyebrow mb-3">Project context</p>
-                  <p className="type-body-sm">{projectData.subtitle}</p>
-                  <Link
-                    href={`/projects/${resolvedParams.slug}`}
-                    className="type-caption text-foreground hover:text-brand mt-4 inline-flex font-medium motion-safe:transition-colors"
-                  >
-                    View project <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              )}
-            </div>
-          )}
-          {data.sections.map((section, idx) => (
-            <RenderSection key={idx} section={section} />
-          ))}
-          {data.mdx && (
-            <div className="prose-portfolio space-y-10">
-              <MDXContent code={data.mdx} />
-            </div>
-          )}
-        </div>
-      </section>
+      <ContentShowContent
+        cards={contentCards}
+        cardColumns={3}
+        linkItems={data.linkItems}
+        mdx={data.mdx}
+        sections={data.sections}
+      />
 
       {/* CTA Section */}
       <section className="px-6 py-16 sm:px-8 sm:py-20 lg:px-12">

@@ -8,8 +8,18 @@ import {
 
 const caseStudies = allCaseStudies as CaseStudy[];
 
-function sortCaseStudies(items: CaseStudy[]) {
-  return [...items].sort((a, b) => a.title.localeCompare(b.title));
+function sortCaseStudiesByKey(
+  items: CaseStudy[],
+  key?: keyof CaseStudy,
+): CaseStudy[] {
+  const sortKey = key || 'title';
+  return [...items].sort((a, b) => {
+    const aValue = a[sortKey]!;
+    const bValue = b[sortKey]!;
+    if (aValue < bValue) return -1;
+    if (aValue > bValue) return 1;
+    return 0;
+  });
 }
 
 export async function loadCaseStudies(): Promise<string[]> {
@@ -20,15 +30,15 @@ export async function loadCaseStudies(): Promise<string[]> {
 }
 
 export async function loadAllCaseStudies(): Promise<CaseStudy[]> {
-  return sortCaseStudies(caseStudies.filter(isListedContent));
+  return sortCaseStudiesByKey(caseStudies.filter(isListedContent));
 }
 
 export async function loadRoutableCaseStudies(): Promise<CaseStudy[]> {
-  return sortCaseStudies(caseStudies.filter(isRoutableContent));
+  return sortCaseStudiesByKey(caseStudies.filter(isRoutableContent));
 }
 
 export async function loadPublicCaseStudies(): Promise<CaseStudy[]> {
-  return sortCaseStudies(caseStudies.filter(isPublicContent));
+  return sortCaseStudiesByKey(caseStudies.filter(isPublicContent));
 }
 
 export async function loadCaseStudyBySlug(slug: string): Promise<CaseStudy> {
@@ -44,9 +54,41 @@ export async function loadCaseStudyBySlug(slug: string): Promise<CaseStudy> {
 export async function loadCaseStudiesByProject(
   projectSlug: string,
 ): Promise<CaseStudy[]> {
-  return sortCaseStudies(
+  return sortCaseStudiesByKey(
     caseStudies.filter(
       (c) => c.project_slug === projectSlug && isListedContent(c),
     ),
+  );
+}
+
+export async function loadCaseStudyMdx(slug: string): Promise<CaseStudy> {
+  const caseStudy = caseStudies.find((item) => item.slug === slug);
+
+  if (!caseStudy) {
+    throw new Error(`Case study "${slug}" not found`);
+  }
+
+  return caseStudy;
+}
+
+type ArrayCaseStudyKeys = {
+  [K in keyof CaseStudy]: NonNullable<CaseStudy[K]> extends readonly string[]
+    ? K
+    : never;
+}[keyof CaseStudy];
+
+export async function loadCaseStudiesWhereArrayIncludes<
+  K extends ArrayCaseStudyKeys,
+>(key: K, value: string): Promise<CaseStudy[]> {
+  return sortCaseStudiesByKey(
+    caseStudies.filter((caseStudy) => {
+      const field = caseStudy[key as keyof CaseStudy] as unknown as string[];
+
+      return (
+        Array.isArray(field) &&
+        field.includes(value) &&
+        isListedContent(caseStudy)
+      );
+    }),
   );
 }

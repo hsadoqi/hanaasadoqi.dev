@@ -1,5 +1,5 @@
-import { CaseStudiesIndex } from '../components';
-import { loadAllCaseStudies } from '../lib';
+import { CaseStudiesIndex } from './case-studies-index';
+import { loadAllCaseStudies } from '../../lib';
 import { loadAllProjects } from '@/features/projects/lib';
 
 export default async function CaseStudiesIndexPage() {
