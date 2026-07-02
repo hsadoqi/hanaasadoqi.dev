@@ -4,8 +4,7 @@ import {
   GitHubIcon,
   LinkedInIcon,
   MailIcon,
-  XIcon,
-} from '@/components/shared/icons/social-icons';
+} from '@/features/icons/social-icons';
 
 export type SiteNavLink = {
   href: string;
@@ -16,21 +15,20 @@ export type SocialLink = {
   id: 'github' | 'x' | 'linkedin' | 'email';
   label: string;
   href: string;
-  icon: ComponentType<ComponentProps<'svg'>>;
+  icon: ComponentType<ComponentProps<'span'>>;
   showInHero?: boolean;
   showInFooter?: boolean;
   showInContact?: boolean;
   isPrimaryContact?: boolean;
 };
 
-export const primaryEmailAddress = 'hello@hanaasadoqi.dev';
+export const primaryEmailAddress = 'hello@hsadoqi@gmail.com';
 
 export const siteNavigationLinks: SiteNavLink[] = [
-  { href: '/#projects', label: 'Projects' },
-  { href: '/#writing', label: 'Writing' },
-  { href: '/#experience', label: 'Experience' },
-  { href: '/#about', label: 'About' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/writing', label: 'Writing' },
 ];
 
 export const socialLinks: SocialLink[] = [
@@ -41,15 +39,7 @@ export const socialLinks: SocialLink[] = [
     icon: GitHubIcon,
     showInHero: true,
     showInFooter: true,
-    showInContact: true,
-  },
-  {
-    id: 'x',
-    label: 'X',
-    href: 'https://x.com/hanaasadoqi',
-    icon: XIcon,
-    showInFooter: true,
-    showInContact: true,
+    showInContact: true
   },
   {
     id: 'linkedin',
