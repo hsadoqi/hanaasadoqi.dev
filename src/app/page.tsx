@@ -1,8 +1,4 @@
-import {
-  AboutSection,
-  ContactSection,
-  Hero,
-} from '@/components/sections';
+import { AboutSection, ContactSection, Hero } from '@/components/sections';
 import { ExperienceSection } from '@/features/experiences';
 import { ProjectsSection } from '@/features/projects/components/layouts/featured-section';
 import { WritingSection } from '@/features/writing';

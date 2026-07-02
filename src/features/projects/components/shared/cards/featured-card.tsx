@@ -139,7 +139,7 @@ export function FeaturedProjectFooter({
   featured: FeaturedProject;
 }) {
   return (
-    <footer className="border-border/30 mt-5 flex  shrink-0 items-center justify-between space-y-5 border-t pt-5">
+    <footer className="border-border/30 mt-5 flex shrink-0 items-center justify-between space-y-5 border-t pt-5">
       <RelatedCaseStudiesLink
         display={display}
         projectSlug={featured.slug}
@@ -160,7 +160,7 @@ function RelatedCaseStudiesLink({
   projectSlug: string;
 }) {
   return (
-    <div className="flex items-end justify-center flex-col gap-2">
+    <div className="flex flex-col items-end justify-center gap-2">
       {display.caseStudyCount > 0 && (
         <Link
           href={`/projects/${projectSlug}/#related-case-studies`}

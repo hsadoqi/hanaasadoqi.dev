@@ -39,7 +39,7 @@ export const socialLinks: SocialLink[] = [
     icon: GitHubIcon,
     showInHero: true,
     showInFooter: true,
-    showInContact: true
+    showInContact: true,
   },
   {
     id: 'linkedin',

@@ -1,4 +1,4 @@
-import { CardBase } from '@/components/cards/card-base';
+import { CardBase } from '@/components/shared/display/cards/card-base/card-base';
 
 export interface MetricCardProps {
   label: string;

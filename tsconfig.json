@@ -36,10 +36,9 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "src"
-,
-"archives/icons"
-],
+    "src",
+    "archives/icons"
+  ],
   "exclude": [
     "node_modules",
     ".next",
